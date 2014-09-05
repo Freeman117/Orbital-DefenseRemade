@@ -155,7 +155,7 @@ $RECYCLE.BIN/
 *.workspace
 
 #Android
-android/libs/
+#android/libs/
 
 #Assets
 android/assets/

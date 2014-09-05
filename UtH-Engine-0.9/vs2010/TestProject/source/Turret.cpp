@@ -1,19 +1,22 @@
 #include "Turret.hpp"
 
 
-Turret::Turret()
+Turret::Turret(uth::SpriteBatch* spriteBatch)
 {
-	
-}
+	_spriteBatch = spriteBatch;
 
-void Turret::init(int t, int orb,int orbPos)
-{
 	damage = 0;
 	speed = 0;
 	range = 0;
 	aoe = 0;
 	orbit = 0;
 	orbitPos = 0;
+	totalTime = 0;
+}
+
+void Turret::init(int t, int orb,int orbPos)
+{
+	
 
 	if(t == 1)
 	{
@@ -33,9 +36,10 @@ void Turret::init(int t, int orb,int orbPos)
 
 }
 
-void Turret::AddTurret(int o, int oPos)
+void Turret::AddTurret(int o, int oPos, int tType)
 {
-	
+	//turret = _spriteBatch->
+	//turrets.push_back(turret);
 }
 
 void Turret::Update(float dt)

@@ -10,7 +10,7 @@
 class Turret
 {
 public:
-	Turret();
+	Turret(uth::SpriteBatch*);
 	~Turret();
 
 	void init(int t, int orb,int orbPos);
@@ -29,9 +29,10 @@ public:
 	std::vector<uth::GameObject*> turrets;
 
 	void Update(float dt);
-	void AddTurret(int o,int oPos);
-protected:
+	void AddTurret(int o,int oPos, int tType);
 
+
+	uth::SpriteBatch* _spriteBatch;
 	Turret* turret;
 	
 };
