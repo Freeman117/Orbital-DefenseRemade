@@ -167,3 +167,7 @@ vs2010/TestProject/assets/
 .settings/
 gen/
 project.properties
+
+#reverse rules
+!UtH-Engine/extlibs/glfw/lib/Win32/glfw3.lib
+!extlibs/glfw/lib/Win32/glfw3-d.lib
