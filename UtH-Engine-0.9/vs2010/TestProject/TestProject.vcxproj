@@ -93,10 +93,12 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\TestScene.cpp" />
+    <ClCompile Include="source\Turret.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\MoveAffector.hpp" />
     <ClInclude Include="include\TestScene.hpp" />
+    <ClInclude Include="include\Turret.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

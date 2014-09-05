@@ -32,7 +32,15 @@ bool TestScene::Init()
 	herp->AddComponent(new Sprite(umath::vector4(0,0,1,1),umath::vector2(128,128)));
 	herp->transform.SetPosition(128.0f,128.0f);
 
+	orbit1angle = 0.0f;
+	orbit2angle = 0.0f;
+
+	image = new GameObject();
+	image->AddComponent(new Sprite("test2.tga"));
+	image->transform.SetPosition(50.0f,50.0f);
+	image->transform.SetScale(0.1f);
 	return true;
+
 }
 bool TestScene::DeInit()
 {
@@ -43,7 +51,12 @@ bool TestScene::Update(float dt)
 {
 	if(uthInput.Keyboard.IsKeyDown(Keyboard::Up))
 	{
-		herp->transform.Move(0,1.0f);
+		herp->transform.Move(0,-1.0f);
+	}
+	if(uthInput.Keyboard.IsKeyPressed(Keyboard::D))
+	{
+		orbit1angle += PI/3.0f;
+		image->transform.SetPosition(100*cosf(orbit1angle),100*sinf(orbit1angle));
 	}
 	return true;
 }
@@ -51,5 +64,7 @@ bool TestScene::Draw()
 {
 	test->Draw(uthEngine.GetWindow());
 	herp->Draw(uthEngine.GetWindow());
+	image->Draw(uthEngine.GetWindow());
+
 	return true;
 }
