@@ -2,10 +2,8 @@
 #ifndef TURRET_H_
 #define TURRET_H_
 
-#include <UtH/Engine/GameObject.hpp>
 #include <UtH/Engine/SpriteBatch.hpp>
-#include <stdlib.h>
-
+#include <UtH/Engine/UtHEngine.h>
 
 class Turret
 {
@@ -23,17 +21,17 @@ public:
 
 	float totalTime;
 
-	int orbit;
-	int orbitPos;
+	float orbit;
+	float orbitPos;
 
 	std::vector<uth::GameObject*> turrets;
 
-	void Update(float dt);
-	void AddTurret(int o,int oPos, int tType);
-
+	void Update(float dt, float rotation);
+	void AddTurret(float o,float oPos, int tType);
+	void Draw();
 
 	uth::SpriteBatch* _spriteBatch;
-	Turret* turret;
+	uth::GameObject* turret;
 	
 };
 

@@ -25,15 +25,18 @@ namespace uth
 		virtual bool Draw();
 
 		float orbit1angle, orbit2angle;
+		int orbitpos;
+		bool constructed;
 
 	protected:
+		SpriteBatch* spriteBatch;
 		Shader* shader;
 		GameObject *image;
-		GameObject *test;
-		GameObject *herp;
 
-		GameObject *turret;
+		GameObject *test2;
 
+		Turret *turret;
+		
 	};
 }
 
