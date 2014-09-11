@@ -44,12 +44,11 @@ void Turret::AddTurret(float o, float oPos, int tType)
 
 	turret = new uth::GameObject();
 	turrets.push_back(turret);
-	//_spriteBatch->AddSprite(turret,"Turret",umath::vector4(1,1,1,1),umath::rectangle(0,0,16,16));
 	turret->AddComponent(new uth::Sprite("test2.tga"));
 	turret->transform.SetScale(0.1f);
 	o = orbit;
 	oPos = orbitPos;
-	turret->transform.SetPosition(100*cosf(oPos),100*sinf(oPos));
+	//turret->transform.SetPosition(100*cosf(oPos),100*sinf(oPos));
 }
 
 void Turret::Update(float dt, float rotation)
