@@ -14,41 +14,45 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 	orbitPos = 0;
 	totalTime = 0;
 
+	testi = 0;		//TODO: Suunnittele logiikka tornien asettamiselle.
+
 }
 
 void Turret::init(int t, int orb,int orbPos)
 {
 
-
 	//if(t == 1)
 	//{
-	damage = 1.0f;
-	speed = 2.0f;
-	range = 150.0f;
-	aoe = 0;
-	type = 1;
+	//damage = 1.0f;
+	//speed = 2.0f;
+	//range = 150.0f;
+	//aoe = 0;
+	//type = 1;
 	//}
 	//else
 	//{
 		
 	//}
 
-	orbit = orb;
-	orbitPos = orbPos;
-
 }
 
 void Turret::AddTurret(float o, float oPos, int tType)
 {
-	init(tType,o,oPos);
+	o = orbit;
+	oPos = orbitPos;
+
+	//init(tType,o,oPos);  //Tällä hetkellä turha funktio
 
 	turret = new uth::GameObject();
 	turrets.push_back(turret);
 	turret->AddComponent(new uth::Sprite("test2.tga"));
 	turret->transform.SetScale(0.1f);
-	o = orbit;
-	oPos = orbitPos;
-	//turret->transform.SetPosition(100*cosf(oPos),100*sinf(oPos));
+
+	for (int i = turrets.size()-1; i >=0; i--)
+	{
+		testi++;
+		turrets[i]->transform.SetPosition(100*cosf(oPos+PI/3*testi),100*sinf(oPos+PI/3*testi));
+	}
 }
 
 void Turret::Update(float dt, float rotation)
@@ -60,7 +64,7 @@ void Turret::Update(float dt, float rotation)
 	totalTime += dt;
 	for(int i = turrets.size() -1; i>= 0; i--)
 	{
-		turret->transform.SetPosition(100*cosf(rotation),100*sinf(rotation));
+		turrets[i]->transform.SetPosition(100*cosf(rotation),100*sinf(rotation));
 	}
 }
 
@@ -72,7 +76,7 @@ void Turret::Draw()
 	}
 	for(int i = turrets.size() -1; i>=0; i--)
 	{
-		turret->Draw(uthEngine.GetWindow());
+		turrets[i]->Draw(uthEngine.GetWindow());
 	}
 }
 

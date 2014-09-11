@@ -45,6 +45,7 @@ bool TestScene::DeInit()
 
 bool TestScene::Update(float dt)
 {
+	
 
 	if(uthInput.Keyboard.IsKeyPressed(Keyboard::D))
 	{
@@ -55,7 +56,7 @@ bool TestScene::Update(float dt)
 		test2->transform.SetPosition(100*cosf(orbit1angle+PI/3),100*sinf(orbit1angle+PI/3));
 		}
 	}
-	if(uthInput.Keyboard.IsKeyDown(Keyboard::Key1))
+	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Key1))
 	{
 	test2 = new GameObject();
 	test2->AddComponent(new Sprite("test2.tga"));
@@ -64,9 +65,11 @@ bool TestScene::Update(float dt)
 	test2->transform.SetRotation(45.0f);
 	constructed = true;
 	}
-	if(uthInput.Keyboard.IsKeyDown(Keyboard::Key2))
+	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
+		
 		turret->AddTurret(1,1,1);
+
 	}
 	return true;
 }

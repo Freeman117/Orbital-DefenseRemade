@@ -28,6 +28,7 @@ namespace uth
 		int orbitpos;
 		bool constructed;
 
+
 	protected:
 		SpriteBatch* spriteBatch;
 		Shader* shader;

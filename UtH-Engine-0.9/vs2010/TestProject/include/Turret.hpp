@@ -24,6 +24,9 @@ public:
 	float orbit;
 	float orbitPos;
 
+	float testi;
+
+
 	std::vector<uth::GameObject*> turrets;
 
 	void Update(float dt, float rotation);
