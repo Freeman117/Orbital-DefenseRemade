@@ -25,6 +25,7 @@ namespace uth
 		virtual bool Draw();
 
 		float orbit1angle, orbit2angle;
+<<<<<<< HEAD
 		int orbitpos;
 		bool constructed;
 
@@ -37,6 +38,17 @@ namespace uth
 
 		Turret *turret;
 		
+=======
+
+	protected:
+		Shader* shader;
+		GameObject *image;
+		GameObject *test;
+		GameObject *herp;
+
+		GameObject *turret;
+
+>>>>>>> origin/master
 	};
 }
 

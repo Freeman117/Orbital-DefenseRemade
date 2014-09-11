@@ -1,7 +1,10 @@
 #include "Turret.hpp"
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 Turret::Turret(uth::SpriteBatch* spriteBatch)
 {
 	_spriteBatch = spriteBatch;
@@ -13,11 +16,15 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 	orbit = 0;
 	orbitPos = 0;
 	totalTime = 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 
 void Turret::init(int t, int orb,int orbPos)
 {
+<<<<<<< HEAD
 
 
 	//if(t == 1)
@@ -32,12 +39,29 @@ void Turret::init(int t, int orb,int orbPos)
 	//{
 		
 	//}
+=======
+	
+
+	if(t == 1)
+	{
+		damage = 1.0f;
+		speed = 2.0f;
+		range = 150.0f;
+		aoe = 0;
+		type = 1;
+	}
+	else
+	{
+		
+	}
+>>>>>>> origin/master
 
 	orbit = orb;
 	orbitPos = orbPos;
 
 }
 
+<<<<<<< HEAD
 void Turret::AddTurret(float o, float oPos, int tType)
 {
 	init(tType,o,oPos);
@@ -74,6 +98,17 @@ void Turret::Draw()
 	{
 		turret->Draw(uthEngine.GetWindow());
 	}
+=======
+void Turret::AddTurret(int o, int oPos, int tType)
+{
+	//turret = _spriteBatch->
+	//turrets.push_back(turret);
+}
+
+void Turret::Update(float dt)
+{
+	
+>>>>>>> origin/master
 }
 
 Turret::~Turret()
