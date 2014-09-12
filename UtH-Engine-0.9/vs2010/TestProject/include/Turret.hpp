@@ -25,7 +25,7 @@ public:
 	float orbitPos;
 
 	float testi;
-
+	float testi2;
 
 	std::vector<uth::GameObject*> turrets;
 

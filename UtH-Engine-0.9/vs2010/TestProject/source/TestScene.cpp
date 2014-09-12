@@ -29,11 +29,6 @@ bool TestScene::Init()
 	orbitpos = 0;
 	constructed = false;
 
-	image = new GameObject();
-	image->AddComponent(new Sprite("test2.tga"));
-	image->transform.SetPosition(50.0f,50.0f);
-	image->transform.SetScale(0.1f);
-
 	turret = new Turret(spriteBatch);
 	return true;
 
@@ -45,41 +40,27 @@ bool TestScene::DeInit()
 
 bool TestScene::Update(float dt)
 {
-	
+	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
+	{
+		turret->Update(dt,1);
+	}
 
 	if(uthInput.Keyboard.IsKeyPressed(Keyboard::D))
 	{
-		orbit1angle += PI/3.0f;
-		image->transform.SetPosition(100*cosf(orbit1angle),100*sinf(orbit1angle));
-		if(constructed == true)
-		{
-		test2->transform.SetPosition(100*cosf(orbit1angle+PI/3),100*sinf(orbit1angle+PI/3));
-		}
-	}
-	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Key1))
-	{
-	test2 = new GameObject();
-	test2->AddComponent(new Sprite("test2.tga"));
-	test2->transform.SetPosition(100*cosf(orbit1angle+PI/3),100*sinf(orbit1angle+PI/3));
-	test2->transform.SetScale(0.1f);
-	test2->transform.SetRotation(45.0f);
-	constructed = true;
+		//turret->Update(dt,2);
 	}
 	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
-		
 		turret->AddTurret(1,1,1);
-
+	}
+	if(uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
+	{
+		//turret->AddTurret(2,1,1);
 	}
 	return true;
 }
 bool TestScene::Draw()
 {
-	image->Draw(uthEngine.GetWindow());
-	if(constructed == true)
-	{
-	test2->Draw(uthEngine.GetWindow());
-	}
 	turret->Draw();
 	return true;
 }

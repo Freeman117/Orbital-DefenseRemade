@@ -32,9 +32,6 @@ namespace uth
 	protected:
 		SpriteBatch* spriteBatch;
 		Shader* shader;
-		GameObject *image;
-
-		GameObject *test2;
 
 		Turret *turret;
 		

@@ -15,7 +15,7 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 	totalTime = 0;
 
 	testi = 0;		//TODO: Suunnittele logiikka tornien asettamiselle.
-
+	testi2= 0;
 }
 
 void Turret::init(int t, int orb,int orbPos)
@@ -55,17 +55,21 @@ void Turret::AddTurret(float o, float oPos, int tType)
 	}
 }
 
-void Turret::Update(float dt, float rotation)
+void Turret::Update(float dt, float rotation)		//Funktion toimintaa pit‰‰ muuttaa j‰rkev‰mm‰ksi
 {
+	
 	if(turrets.size() < 1)
 	{
 		return;
 	}
 	totalTime += dt;
+
 	for(int i = turrets.size() -1; i>= 0; i--)
 	{
-		turrets[i]->transform.SetPosition(100*cosf(rotation),100*sinf(rotation));
+		testi2++;
+		turrets[i]->transform.SetPosition(100*cosf(rotation+PI/3*testi2),100*sinf(rotation+PI/3*testi2));
 	}
+	
 }
 
 void Turret::Draw()
