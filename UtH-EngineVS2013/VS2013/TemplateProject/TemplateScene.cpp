@@ -18,7 +18,7 @@ bool TemplateScene::Update(float dt)
 {
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
-		turret->Update(dt, 1);
+		turret->Update(dt,1.0f);
 	}
 
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
@@ -27,7 +27,7 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
-		turret->AddTurret(1, 1, 1);
+		turret->AddTurret(1.0f, 1.0f, 1);
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 	{
