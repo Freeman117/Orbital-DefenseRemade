@@ -50,24 +50,24 @@ void Turret::AddTurret(float o, float oPos, int tType)
 
 	turret = new uth::GameObject();
 	turrets.push_back(turret);
-	turret->AddComponent(new uth::Sprite("test2.tga"));
+	turret->AddComponent(new uth::Sprite("test2.tga"));		//Ei toimi (Error:ATTEMPT TO DIVIDE BY ZERO)
 	turret->transform.SetScale(0.1f);
-	if(turrets.size() <= 5)
-	{
+	//if(turrets.size() <= 5)
+	//{
 		for (int i = turrets.size()-1; i >=0; i--)
 		{
 		testi++;
 		turrets[i]->transform.SetPosition(100 * cosf(oPos + pmath::pi / 3 * testi), 100 * sinf(oPos + pmath::pi / 3 * testi));
 		}
-	}
-	if(turrets.size() <= 6)
+	//}
+	/*if(turrets.size() <= 6)
 	{
 		for (int i = turrets.size()-1; i >=0; i--)
 		{
 		testi++;
 		turrets[i]->transform.SetPosition(180 * cosf(oPos + pmath::pi / 3 * testi), 180 * sinf(oPos + pmath::pi / 3 * testi));
 		}
-	}
+	}*/
 }
 //pmath::pi  MATIKKAKIRJASTO VAIHTUNUT
 void Turret::Update(float dt, float rotation)		//Funktion toimintaa pitää muuttaa järkevämmäksi
@@ -85,13 +85,13 @@ void Turret::Update(float dt, float rotation)		//Funktion toimintaa pitää muutta
 		turrets[i]->transform.SetPosition(100 * cosf(rotation + pmath::pi / 3 * testi2), 100 * sinf(rotation + pmath::pi / 3 * testi2));
 	}
 
-	if(turrets.size() >=6)
+	/*if(turrets.size() >=6)
 	{
 		for(int i = turrets.size()-1; i>=6; i--)
 		{
 			turrets[i]->transform.SetPosition(180 * cosf(rotation + pmath::pi / 3 * testi2), 180 * sinf(rotation + pmath::pi / 3 * testi2));
 		}
-	}
+	}*/
 }
 
 void Turret::Draw()

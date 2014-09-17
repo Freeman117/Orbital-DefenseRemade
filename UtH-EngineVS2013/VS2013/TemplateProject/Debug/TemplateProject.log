@@ -1,12 +1,10 @@
-﻿Build started 17.9.2014 11:25:59.
+﻿Build started 17.9.2014 14:38:52.
      1>Project "C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\TemplateProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\../UtH/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Turret.cpp
          Turret.cpp
      1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(60): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(68): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
      1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(85): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(92): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\../UtH/lib/Win32/Debug" UtHEngine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.lib" /MACHINE:X86 Debug\main.obj
          Debug\TemplateScene.obj
@@ -151,4 +149,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.98
+Time Elapsed 00:00:03.80
