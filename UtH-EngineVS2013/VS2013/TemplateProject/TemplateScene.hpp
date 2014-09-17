@@ -21,6 +21,7 @@ public:
 private:
 	uth::Shader shader;
 	Turret* turret;
+	uth::SpriteBatch* spriteBatch;
 	
 };
 

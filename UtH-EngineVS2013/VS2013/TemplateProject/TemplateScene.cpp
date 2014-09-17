@@ -9,6 +9,8 @@ bool TemplateScene::Init()
 	shader.Use();
 	uthEngine.GetWindow().SetShader(&shader);
 
+	turret = new Turret(spriteBatch);
+
 	return true;
 }
 
