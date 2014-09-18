@@ -1,23 +1,21 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include <UtH/Engine/SpriteBatch.hpp>
 #include <UtH/Engine/UtHEngine.h>
 #include <UtH/Math/Math.hpp>
 
-class Enemy
+class Enemy : uth::Component
 {
 public:
-	Enemy(float health, float armor, float speed,uth::SpriteBatch*);
+	Enemy(float health, float armor, float speed);
 	~Enemy(){};
 
-	void Update(float deltaTime);
-	void Draw();
 	void TakeHit(float damageAmount);
 
 
 protected:
 
+	bool isAlive;
 	float health;
 	float armor;
 	float speed;
