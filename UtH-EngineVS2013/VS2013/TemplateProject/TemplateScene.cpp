@@ -11,6 +11,7 @@ bool TemplateScene::Init()
 
 	testi = 0;
 
+
 	moonbase = new GameObject();
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
 	moonbase->transform.SetScale(0.5f);
@@ -18,6 +19,9 @@ bool TemplateScene::Init()
 	background = new GameObject();
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
+
+	
+	
 	return true;
 }
 
@@ -25,7 +29,7 @@ bool TemplateScene::Update(float dt)
 {
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
-
+		
 	}
 
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
@@ -34,12 +38,19 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
+		
 		GameObject* turret = new uth::GameObject();
 		turret->AddComponent(new uth::Sprite("CannonTower.png"));
 		turret->transform.SetScale(0.30f);
 		turret->AddComponent(new Turret(spriteBatch));
 		turret->transform.SetPosition(cosf(pmath::pi / 3*testi) * 125, sinf(pmath::pi / 3*testi) * 125);
 		turrets.push_back(turret);
+		
+		for (int i = turrets.size() - 1; i >= 0; i--)
+		{
+			Turret* turretComponent = turrets[i]->GetComponent<Turret>("");
+			turretComponent->init(1, 0, 0);
+		}
 		testi++;
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
