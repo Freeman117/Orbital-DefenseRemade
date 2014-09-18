@@ -6,7 +6,7 @@
 #include <UtH/Engine/UtHEngine.h>
 #include <pmath/PMath.hpp>
 
-class Turret
+class Turret : public uth::Component
 {
 public:
 	Turret(uth::SpriteBatch*);
@@ -36,6 +36,7 @@ public:
 
 	uth::SpriteBatch* _spriteBatch;
 	uth::GameObject* turret;
+
 	
 };
 

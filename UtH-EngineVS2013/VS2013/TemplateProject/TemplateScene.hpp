@@ -18,10 +18,15 @@ public:
 
 	bool Update(float dt);
 	bool Draw();
+
+	int testi;
+
 private:
 	uth::Shader shader;
-	Turret* turret;
+	std::vector<uth::GameObject*> turrets;
 	uth::SpriteBatch* spriteBatch;
+	uth::GameObject* moonbase;
+	uth::GameObject* background;
 	
 };
 

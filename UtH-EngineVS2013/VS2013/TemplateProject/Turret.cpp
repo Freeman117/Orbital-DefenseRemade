@@ -20,37 +20,30 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 
 void Turret::init(int t, int orb,int orbPos)
 {
+	if (t == 1)
+	{
+		damage = 1.0f;
 
-	//if(t == 1)
-	//{
-	//damage = 1.0f;
-	//speed = 2.0f;
-	//range = 150.0f;
-	//aoe = 0;
-	//type = 1;
-	//}
-	//else
-	//{
-		
-	//}
+		speed= 1.0f;
 
+		range = 1.0f;
+	}
+	else
+	{
+		return;
+	}
 }
 
 void Turret::AddTurret(float o, float oPos, int tType)
 {
 	o = orbit;
 	oPos = orbitPos;
+	tType = type;
 
-	//init(tType,o,oPos);  //Tällä hetkellä turha funktio
-
-	//if(turrets.size() >= 6)
-	//{
-	//	return;
-	//}
 
 	turret = new uth::GameObject();
 	turrets.push_back(turret);
-	turret->AddComponent(new uth::Sprite("test2.tga"));		//Ei toimi (Error:ATTEMPT TO DIVIDE BY ZERO)
+	turret->AddComponent(new uth::Sprite("test2.tga"));
 	turret->transform.SetScale(0.1f);
 	//if(turrets.size() <= 5)
 	//{
@@ -59,15 +52,16 @@ void Turret::AddTurret(float o, float oPos, int tType)
 		testi++;
 		turrets[i]->transform.SetPosition(100 * cosf(oPos + pmath::pi / 3 * testi), 100 * sinf(oPos + pmath::pi / 3 * testi));
 		}
-	//}
-	/*if(turrets.size() <= 6)
-	{
-		for (int i = turrets.size()-1; i >=0; i--)
-		{
-		testi++;
-		turrets[i]->transform.SetPosition(180 * cosf(oPos + pmath::pi / 3 * testi), 180 * sinf(oPos + pmath::pi / 3 * testi));
-		}
-	}*/
+
+	if (turrets.size() < 0)
+		return;
+
+	int t = turrets.size()-1;
+
+	Turret* turretComponent = turrets[t]->GetComponent<Turret>("");
+	turretComponent->init(1, 0, 0);
+	
+
 }
 //pmath::pi  MATIKKAKIRJASTO VAIHTUNUT
 void Turret::Update(float dt, float rotation)		//Funktion toimintaa pitää muuttaa järkevämmäksi
@@ -85,13 +79,7 @@ void Turret::Update(float dt, float rotation)		//Funktion toimintaa pitää muutta
 		turrets[i]->transform.SetPosition(100 * cosf(rotation + pmath::pi / 3 * testi2), 100 * sinf(rotation + pmath::pi / 3 * testi2));
 	}
 
-	/*if(turrets.size() >=6)
-	{
-		for(int i = turrets.size()-1; i>=6; i--)
-		{
-			turrets[i]->transform.SetPosition(180 * cosf(rotation + pmath::pi / 3 * testi2), 180 * sinf(rotation + pmath::pi / 3 * testi2));
-		}
-	}*/
+	
 }
 
 void Turret::Draw()
