@@ -1,4 +1,3 @@
-#pragma once
 #ifndef TURRET_H_
 #define TURRET_H_
 

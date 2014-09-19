@@ -2,24 +2,27 @@
 #define ENEMY_HPP
 
 #include <UtH/Engine/UtHEngine.h>
-#include <UtH/Math/Math.hpp>
+#include <UtH/Engine/SpriteBatch.hpp>
+#include <pmath/PMath.hpp>
 
-class Enemy : uth::Component
+class Enemy : public uth::Component
 {
 public:
-	Enemy(float health, float armor, float speed);
+	Enemy(float health, float armor, float speed, float angle);
 	~Enemy(){};
 
 	void TakeHit(float damageAmount);
-
-
+	float Distance();
+	float GetAngle();
 protected:
 
 	bool isAlive;
 	float health;
 	float armor;
 	float speed;
-    
+	float distance;
+	float angle;
+
 private:
 };
 

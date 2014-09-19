@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TemplateScene.cpp" />
     <ClCompile Include="Turret.cpp" />
@@ -91,6 +92,7 @@
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="EnemyManager.hpp" />
     <ClInclude Include="TemplateScene.hpp" />
     <ClInclude Include="Turret.hpp" />
   </ItemGroup>

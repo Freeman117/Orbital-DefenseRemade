@@ -26,6 +26,7 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
+	enemyManager.UpdateEnemies();
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
 		if (turrets.size() < 1)
@@ -61,7 +62,7 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 	{
-
+		enemyManager.SpawnEnemy();
 	}
 	if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
 	{
@@ -72,6 +73,7 @@ bool TemplateScene::Update(float dt)
 
 bool TemplateScene::Draw()
 {
+
 	background->Draw(uthEngine.GetWindow());
 	moonbase->Draw(uthEngine.GetWindow());
 
@@ -80,7 +82,7 @@ bool TemplateScene::Draw()
 		GameObject* turret = turrets[i];
 		turret->Draw(uthEngine.GetWindow());
 	}
-
+	enemyManager.DrawEnemies();
 	return true;
 }
 
