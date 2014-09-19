@@ -11,7 +11,6 @@ bool TemplateScene::Init()
 
 	testi = 0;
 
-
 	moonbase = new GameObject();
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
 	moonbase->transform.SetScale(0.5f);
@@ -27,6 +26,7 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
+	enemyManager.UpdateEnemies();
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
 		
@@ -55,13 +55,14 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 	{
-
+		enemyManager.SpawnEnemy();
 	}
 	return true;
 }
 
 bool TemplateScene::Draw()
 {
+
 	background->Draw(uthEngine.GetWindow());
 	moonbase->Draw(uthEngine.GetWindow());
 
@@ -70,7 +71,7 @@ bool TemplateScene::Draw()
 		GameObject* turret = turrets[i];
 		turret->Draw(uthEngine.GetWindow());
 	}
-
+	enemyManager.DrawEnemies();
 	return true;
 }
 

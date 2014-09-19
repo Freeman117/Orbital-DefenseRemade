@@ -4,6 +4,7 @@
 #include <UtH/Engine/Scene.hpp>
 #include <UtH/Platform/Input.hpp>
 #include "Turret.hpp"
+#include "EnemyManager.hpp"
 #include <UtH/Engine/SpriteBatch.hpp>
 
 
@@ -27,7 +28,7 @@ private:
 	uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
-	
+	EnemyManager enemyManager;
 };
 
 #endif
