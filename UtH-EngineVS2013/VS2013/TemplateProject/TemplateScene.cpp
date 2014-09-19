@@ -34,7 +34,7 @@ bool TemplateScene::Update(float dt)
 		}
 		for (int i = turrets.size() - 1; i >= 0; i--)
 		{
-			turrets[i]->transform.SetPosition(125*cosf(pmath::pi / 3), 125*sinf(pmath::pi / 3));
+			//turrets[i]->transform.SetPosition(125*cosf(pmath::pi / 3), 125*sinf(pmath::pi / 3));
 		}
 	}
 
