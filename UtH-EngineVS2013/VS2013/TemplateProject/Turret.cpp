@@ -6,6 +6,7 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 {
 	_spriteBatch = spriteBatch;
 
+	type = 0;
 	damage = 0;
 	speed = 0;
 	range = 0;
@@ -21,7 +22,7 @@ Turret::Turret(uth::SpriteBatch* spriteBatch)
 void Turret::init(int t, int orb,int orbPos)
 {
 	t = type;
-	if (t == 1)
+	if (t = 1)
 	{
 		damage = 1.0f;
 		speed= 1.0f;

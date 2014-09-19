@@ -20,14 +20,16 @@ public:
 	bool Draw();
 
 	int testi;
-
+	
 private:
 	uth::Shader shader;
 	std::vector<uth::GameObject*> turrets;
 	uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
-	
+	uth::GameObject* turret;
+	Turret* turretComponent;
+
 };
 
 #endif
