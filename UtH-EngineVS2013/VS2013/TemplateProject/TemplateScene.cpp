@@ -25,7 +25,7 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
-	enemyManager.UpdateEnemies();
+	enemyManager.UpdateEnemies(dt);
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
 		if (turrets.size() < 1)
@@ -61,7 +61,10 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 	{
-		enemyManager.SpawnEnemy();
+		enemyManager.SpawnEnemy(5, 5, 80, 90);
+		enemyManager.SpawnEnemy(5, 5, 90, 70);
+		enemyManager.SpawnEnemy(5, 5, 100, 110);
+		enemyManager.SpawnEnemy(5, 5, 100, 130);
 	}
 	if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
 	{
