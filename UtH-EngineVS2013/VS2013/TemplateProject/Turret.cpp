@@ -2,7 +2,11 @@
 
 
 
+<<<<<<< HEAD
 Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
+=======
+Turret::Turret(uth::SpriteBatch* spriteBatch) : uth::Component("Turret")
+>>>>>>> origin/master
 {
 
 	type = type_;
@@ -73,11 +77,11 @@ void Turret::Update(float dt, float rotation)		//Funktion toimintaa pitää muutta
 	}
 	totalTime += dt;
 
-	//for(int i = turrets.size() -1; i>= 0; i--)//turrets.size()-1
-	//{
-	//	testi2++;
-	//	turrets[i]->transform.SetPosition(100 * cosf(rotation + pmath::pi / 3 * testi2), 100 * sinf(rotation + pmath::pi / 3 * testi2));
-	//}
+	for(int i = turrets.size() -1; i>= 0; i--)//turrets.size()-1
+	{
+		testi2++;
+		//turrets[i]->transform.SetPosition(100 * cosf(rotation + pmath::pi / 3 * testi2), 100 * sinf(rotation + pmath::pi / 3 * testi2));
+	}
 
 	
 }

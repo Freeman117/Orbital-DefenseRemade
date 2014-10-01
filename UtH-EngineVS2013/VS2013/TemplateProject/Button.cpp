@@ -19,7 +19,6 @@ void Button::update(float)
 		//auto clickPos = m_target.pixelToCoords(uthInput.Mouse.Position());
 		//Esimerkkikoodia uth-enginen sivulta, ei toimi
 		//if (transform.getBounds().contains(clickPos) && _callback)
-
 	}
 
 }
