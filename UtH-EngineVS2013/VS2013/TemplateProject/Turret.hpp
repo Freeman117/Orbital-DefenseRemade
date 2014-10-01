@@ -8,7 +8,7 @@
 class Turret : public uth::Component
 {
 public:
-	Turret(uth::SpriteBatch*);
+	Turret(int t, int orb, int orbPos);
 	~Turret();
 
 	void init(int t, int orb,int orbPos);

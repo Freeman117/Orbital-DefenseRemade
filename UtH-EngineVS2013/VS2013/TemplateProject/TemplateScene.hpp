@@ -20,6 +20,7 @@ public:
 	bool Draw();
 
 	int testi;
+	float turretAngle;
 	
 private:
 	uth::Shader shader;

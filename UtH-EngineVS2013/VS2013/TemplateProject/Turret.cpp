@@ -2,17 +2,16 @@
 
 
 
-Turret::Turret(uth::SpriteBatch* spriteBatch)
+Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
 {
-	_spriteBatch = spriteBatch;
 
-	type = 0;
+	type = type_;
 	damage = 0;
 	speed = 0;
 	range = 0;
 	aoe = 0;
-	orbit = 0;
-	orbitPos = 0;
+	orbit = orb;
+	orbitPos = orbPos;
 	totalTime = 0;
 
 	testi = 0;		//TODO: Suunnittele logiikka tornien asettamiselle.

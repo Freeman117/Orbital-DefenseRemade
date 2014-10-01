@@ -10,6 +10,7 @@ bool TemplateScene::Init()
 	uthEngine.GetWindow().SetShader(&shader);
 
 	testi = 0;
+	turretAngle = 0;
 	moonbase = new GameObject();
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
 	moonbase->transform.SetScale(0.5f);
@@ -28,14 +29,7 @@ bool TemplateScene::Update(float dt)
 	enemyManager.UpdateEnemies(dt);
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
 	{
-		if (turrets.size() < 1)
-		{
-			return true;
-		}
-		for (int i = turrets.size() - 1; i >= 0; i--)
-		{
-			//turrets[i]->transform.SetPosition(125*cosf(pmath::pi / 3), 125*sinf(pmath::pi / 3));
-		}
+		turretAngle += 2 * dt;
 	}
 
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
@@ -45,18 +39,12 @@ bool TemplateScene::Update(float dt)
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
 		
-		turret = new uth::GameObject();
+	    GameObject* turret = new uth::GameObject();
 		turret->AddComponent(new uth::Sprite("CannonTower.png"));
 		turret->transform.SetScale(0.30f);
-		turret->AddComponent(new Turret(spriteBatch));
-		turret->transform.SetPosition(cosf(pmath::pi / 3*testi) * 125, sinf(pmath::pi / 3*testi) * 125);
+		turret->AddComponent(new Turret(1,1,testi));
 		turrets.push_back(turret);
 		
-		for (int i = turrets.size() - 1; i >= 0; i--)
-		{
-			turretComponent = turrets[i]->GetComponent<Turret>("");
-			turretComponent->init(1, 0, 0);
-		}
 		testi++;
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
@@ -70,6 +58,17 @@ bool TemplateScene::Update(float dt)
 	{
 		//uthInput.Mouse.Position();
 	}
+
+	if (turrets.size() >= 1)
+	{
+		for (int i = turrets.size() - 1; i >= 0; i--)
+		{
+			uth::GameObject* turret = turrets[i];
+			Turret* turret_c = turret->GetComponent<Turret>("Turret");
+			turret->transform.SetPosition(cosf(turretAngle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit, sinf(turretAngle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit);
+		}
+	}
+
 	return true;
 }
 

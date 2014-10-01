@@ -37,9 +37,11 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 		if (enemyC->GetDistance() <= 0)
 		{
 			//Does not free any memory at the moment, needs to be fixed!
+			delete enemies[i - 1];
 			enemies.erase(enemies.begin() + i-1);
-		}
 
+		}
+		
 	}
 
 }
