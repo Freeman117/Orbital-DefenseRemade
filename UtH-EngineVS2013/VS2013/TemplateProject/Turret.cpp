@@ -1,10 +1,5 @@
 #include "Turret.hpp"
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
 Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
 {
 
