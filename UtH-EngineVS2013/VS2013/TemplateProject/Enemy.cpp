@@ -22,8 +22,15 @@ float Enemy::GetAngle()
 {
 	return angle;
 }
-float Enemy::Distance()
+float Enemy::GetDistance()
 {
-	distance -= speed;
 	return distance;
+}
+void Enemy::SetDistance(float f)
+{
+	distance = f;
+}
+float Enemy::GetSpeed()
+{
+	return speed;
 }

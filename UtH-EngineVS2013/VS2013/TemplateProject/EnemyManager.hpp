@@ -13,9 +13,9 @@ public:
 
 	std::vector<uth::GameObject*> enemies;
 
-	void UpdateEnemies();
+	void UpdateEnemies(float deltaTime);
 	void DrawEnemies();
-	void SpawnEnemy();
+	void SpawnEnemy(float healt, float armor, float speed, float angle);
 };
 
 #endif ENEMYMANAGER_HPP

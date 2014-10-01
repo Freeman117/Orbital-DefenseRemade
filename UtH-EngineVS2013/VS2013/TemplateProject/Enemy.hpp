@@ -12,8 +12,10 @@ public:
 	~Enemy(){};
 
 	void TakeHit(float damageAmount);
-	float Distance();
+	float GetDistance();
+	void SetDistance(float f);
 	float GetAngle();
+	float GetSpeed();
 protected:
 
 	bool isAlive;
