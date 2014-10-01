@@ -36,12 +36,16 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 
 		if (enemyC->GetDistance() <= 0)
 		{
-			//Does not free any memory at the moment, needs to be fixed!
+			//Does not free any memory at the moment, needs to be fixed! Or maybe it does, who knows.
 			delete enemies[i - 1];
 			enemies.erase(enemies.begin() + i-1);
 
 		}
-		
+		if (!enemyC->GetAlive())
+		{
+			delete enemies[i - 1];
+			enemies.erase(enemies.begin() + i - 1);
+		}
 	}
 
 }
@@ -52,4 +56,9 @@ void EnemyManager::DrawEnemies()
 		uth::GameObject* enemy = enemies[i-1];
 		enemy->Draw(uthEngine.GetWindow());
 	}
+}
+
+std::vector<uth::GameObject*> EnemyManager::GetEnemies()
+{
+	return enemies;
 }

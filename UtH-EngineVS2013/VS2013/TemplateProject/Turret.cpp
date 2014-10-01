@@ -1,7 +1,10 @@
 #include "Turret.hpp"
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
 {
 
@@ -14,18 +17,20 @@ Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
 	orbitPos = orbPos;
 	totalTime = 0;
 
+	init(type);
+
 	testi = 0;		//TODO: Suunnittele logiikka tornien asettamiselle.
 	testi2= 0;
 }
 
-void Turret::init(int t, int orb,int orbPos)
+void Turret::init(int t)
 {
 	t = type;
 	if (t = 1)
 	{
-		damage = 1.0f;
+		damage = 10.0f;
 		speed= 1.0f;
-		range = 1.0f;
+		range = 100.0f;
 		aoe = 0.0f;
 	}
 	else
@@ -59,7 +64,6 @@ void Turret::AddTurret(float o, float oPos, int tType)
 	int t = turrets.size()-1;
 
 	Turret* turretComponent = turrets[t]->GetComponent<Turret>("");
-	turretComponent->init(1, 0, 0);
 	
 
 }

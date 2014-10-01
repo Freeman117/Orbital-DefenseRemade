@@ -11,7 +11,7 @@ public:
 	Turret(int t, int orb, int orbPos);
 	~Turret();
 
-	void init(int t, int orb,int orbPos);
+	void init(int t);
 
 	int type;
 	float damage;
