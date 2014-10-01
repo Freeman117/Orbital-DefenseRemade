@@ -11,11 +11,14 @@ public:
 	EnemyManager();
 	~EnemyManager(){};
 
-	std::vector<uth::GameObject*> enemies;
-
 	void UpdateEnemies(float deltaTime);
 	void DrawEnemies();
 	void SpawnEnemy(float healt, float armor, float speed, float angle);
+
+	std::vector<uth::GameObject*> GetEnemies();
+
+protected:
+	std::vector<uth::GameObject*> enemies;
 };
 
 #endif ENEMYMANAGER_HPP

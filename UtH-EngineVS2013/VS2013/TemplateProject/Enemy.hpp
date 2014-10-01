@@ -16,6 +16,7 @@ public:
 	void SetDistance(float f);
 	float GetAngle();
 	float GetSpeed();
+	bool GetAlive();
 protected:
 
 	bool isAlive;

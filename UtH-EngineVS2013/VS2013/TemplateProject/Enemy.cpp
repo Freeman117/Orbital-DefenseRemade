@@ -34,3 +34,7 @@ float Enemy::GetSpeed()
 {
 	return speed;
 }
+bool Enemy::GetAlive()
+{
+	return isAlive;
+}
