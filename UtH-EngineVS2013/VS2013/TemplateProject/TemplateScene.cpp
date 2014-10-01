@@ -26,7 +26,7 @@ bool TemplateScene::Init()
 bool TemplateScene::Update(float dt)
 {
 	enemyManager.UpdateEnemies();
-	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Right))
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
 	{
 		if (turrets.size() < 1)
 		{
@@ -34,7 +34,7 @@ bool TemplateScene::Update(float dt)
 		}
 		for (int i = turrets.size() - 1; i >= 0; i--)
 		{
-			//turrets[i]->transform.SetPosition(125*cosf(pmath::pi / 3), 125*sinf(pmath::pi / 3));
+			
 		}
 	}
 
