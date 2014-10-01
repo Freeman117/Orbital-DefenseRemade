@@ -26,26 +26,25 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
-	enemyManager.UpdateEnemies();
-	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
+	enemyManager.UpdateEnemies(dt);
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 	{
-<<<<<<< HEAD
-		turretAngle += 2 * dt;
-=======
 		if (turrets.size() < 1)
 		{
 			return true;
 		}
-		for (int i = turrets.size() - 1; i >= 0; i--)
-		{
-			
-		}
->>>>>>> origin/master
+		else
+		turretAngle += 2 * dt;
 	}
 
-	if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
 	{
-
+		if (turrets.size() < 1)
+		{
+			return true;
+		}
+		else
+			turretAngle -= 2 * dt;
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
@@ -60,7 +59,7 @@ bool TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 	{
-		enemyManager.SpawnEnemy();
+		//enemyManager.SpawnEnemy();
 	}
 	if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
 	{
