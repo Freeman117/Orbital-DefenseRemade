@@ -6,6 +6,7 @@
 #include "Turret.hpp"
 #include <UtH/Engine/SpriteBatch.hpp>
 #include "EnemyManager.hpp"
+#include "TurretManager.hpp"
 
 class TemplateScene : public uth::Scene
 {
@@ -32,6 +33,7 @@ private:
 	Turret* turretComponent;
 
 	EnemyManager enemyManager;
+	TurretManager turretManager;
 };
 
 #endif

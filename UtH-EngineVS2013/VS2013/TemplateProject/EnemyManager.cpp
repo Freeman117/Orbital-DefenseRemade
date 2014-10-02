@@ -24,10 +24,12 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 {
 	float tempDistance = 0.0f;
 	float tempAngle = 0.0f;
-	for (int i = enemies.size(); i > 0; i--)
+	uth::GameObject* enemy;
+	Enemy* enemyC;
+	for (int i = enemies.size()-1; i >= 0; i--)
 	{
-		uth::GameObject* enemy = enemies[i-1];
-		Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
+		enemy = enemies[i];
+		enemyC = enemy->GetComponent<Enemy>("Enemy");
 		enemyC->SetDistance(enemyC->GetDistance() - enemyC->GetSpeed()*deltaTime);
 		tempDistance = enemyC->GetDistance();
 		tempAngle = enemyC->GetAngle();
@@ -37,23 +39,24 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 		if (enemyC->GetDistance() <= 0)
 		{
 			//Does not free any memory at the moment, needs to be fixed! Or maybe it does, who knows.
-			delete enemies[i - 1];
-			enemies.erase(enemies.begin() + i-1);
+			delete enemies[i];
+			enemies.erase(enemies.begin() + i);
 
 		}
 		if (!enemyC->GetAlive())
 		{
-			delete enemies[i - 1];
-			enemies.erase(enemies.begin() + i - 1);
+			delete enemies[i];
+			enemies.erase(enemies.begin() + i);
 		}
 	}
 
 }
 void EnemyManager::DrawEnemies()
 {
-	for (int i = enemies.size(); i > 0; i--)
+	uth::GameObject* enemy;
+	for (int i = enemies.size()-1; i >= 0; i--)
 	{
-		uth::GameObject* enemy = enemies[i-1];
+		enemy = enemies[i];
 		enemy->Draw(uthEngine.GetWindow());
 	}
 }
