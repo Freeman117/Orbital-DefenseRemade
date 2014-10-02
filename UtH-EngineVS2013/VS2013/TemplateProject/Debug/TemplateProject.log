@@ -1,21 +1,10 @@
-﻿Build started 1.10.2014 15:01:54.
-     1>Project "C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\TemplateProject.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2.10.2014 8:12:15.
+     1>Project "C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\TemplateProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\../UtH/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Button.cpp Enemy.cpp EnemyManager.cpp main.cpp TemplateScene.cpp Turret.cpp
-         Turret.cpp
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(11): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(12): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\turret.cpp(53): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\../UtH/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TemplateScene.cpp
          TemplateScene.cpp
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\templatescene.cpp(90): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\templatescene.cpp(137): warning C4018: '<' : signed/unsigned mismatch
-         main.cpp
-         EnemyManager.cpp
-         Enemy.cpp
-         Button.cpp
-         Bullet.cpp
-         Generating Code...
-     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\templatescene.cpp(130): warning C4715: 'TemplateScene::Update' : not all control paths return a value
+     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\templatescene.cpp(89): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\tti12ssamut\desktop\repo\orbital-defenseremade\uth-enginevs2013\vs2013\templateproject\templatescene.cpp(135): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\../UtH/lib/Win32/Debug" UtHEngine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.lib" /MACHINE:X86 Debug\Bullet.obj
          Debug\Button.obj
@@ -160,8 +149,8 @@
      1>UtHEngine.lib(b2FrictionJoint.obj) : warning LNK4204: 'C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
      1>UtHEngine.lib(b2DistanceJoint.obj) : warning LNK4204: 'C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
          TemplateProject.vcxproj -> C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\Debug\TemplateProject.exe
-     1>Done Building Project "C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\TemplateProject.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\tti12ssamut\Desktop\Repo\Orbital-DefenseRemade\UtH-EngineVS2013\VS2013\TemplateProject\TemplateProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.01
+Time Elapsed 00:00:03.73

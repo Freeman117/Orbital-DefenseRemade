@@ -26,18 +26,17 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
-	enemyManager.UpdateEnemies(dt);
-	if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
-	{
-		if (turrets.size() < 1)
+		enemyManager.UpdateEnemies(dt);
+
+		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 		{
-			return true;
-		}
-		else
-			if (uthInput.Keyboard.IsKeyPressed(Keyboard::D))
+			if (turrets.size() < 1)
 			{
-			turretAngle += 2 * dt;
+				return true;
 			}
+			else
+			turretAngle += 2 * dt;
+		}
 
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
 		{
@@ -46,7 +45,7 @@ bool TemplateScene::Update(float dt)
 				return true;
 			}
 			else
-				turretAngle -= 2 * dt;
+			turretAngle -= 2 * dt;
 		}
 		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 		{
@@ -125,8 +124,7 @@ bool TemplateScene::Update(float dt)
 			}
 		}
 
-		return true;
-	}
+	return true;
 }
 bool TemplateScene::Draw()
 {
