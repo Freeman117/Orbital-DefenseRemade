@@ -14,16 +14,18 @@ namespace uth
 
 namespace ns
 {
-	class Button : public uth::GameObject
+	class Button final: public uth::GameObject
 	{
+		typedef std::function<void()> Callback;
 	public:
 		//Esimerkkikoodia uth-enginen sivulta
 		Button(const uth::RenderTarget& target, uth::Texture* texture);
-		void update(float dt) override;
-		void setCallBack(std::function<void()> callback);
+		
+		void setCallBack(Callback callback);
 	private:
+		void update(float dt) override;
 		const uth::RenderTarget& m_target;
-		std::function<void()> m_callback;
+		Callback m_callback;
 
 	};
 
