@@ -20,8 +20,8 @@ Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
 
 void Turret::init(int t)
 {
-	t = type;
-	if (t = 1)
+	type = t;
+	if (t == 1)
 	{
 		damage = 10.0f;
 		speed= 1.0f;
@@ -53,16 +53,9 @@ void Turret::AddTurret(float o, float oPos, int tType)
 		turrets[i]->transform.SetPosition(100 * cosf(oPos + pmath::pi / 3 * testi), 100 * sinf(oPos + pmath::pi / 3 * testi));
 		}
 
-	if (turrets.size() < 0)
-		return;
-
-	int t = turrets.size()-1;
-
-	Turret* turretComponent = turrets[t]->GetComponent<Turret>("");
-	
 
 }
-void Turret::Update(float dt, float rotation)//Funktion toimintaa pit‰‰ muuttaa j‰rkev‰mm‰ksi
+void Turret::Update(float dt)//Funktion toimintaa pit‰‰ muuttaa j‰rkev‰mm‰ksi
 {
 	
 	if(turrets.size() < 1)
@@ -75,7 +68,7 @@ void Turret::Update(float dt, float rotation)//Funktion toimintaa pit‰‰ muuttaa 
 	
 }
 
-void Turret::Draw()
+void Turret::Draw(uth::RenderTarget& target)
 {
 	if(turrets.size() < 1)
 	{
@@ -83,7 +76,7 @@ void Turret::Draw()
 	}
 	for(int i = turrets.size() -1; i>=0; i--)
 	{
-		turrets[i]->Draw(uthEngine.GetWindow());
+		turrets[i]->Draw(target);
 	}
 }
 

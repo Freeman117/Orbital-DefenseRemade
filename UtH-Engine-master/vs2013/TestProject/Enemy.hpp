@@ -29,4 +29,4 @@ protected:
 private:
 };
 
-#endif ENEMY_HPP
+#endif //ENEMY_HPP

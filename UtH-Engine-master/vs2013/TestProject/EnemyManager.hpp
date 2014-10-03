@@ -23,4 +23,4 @@ protected:
 	std::vector<uth::GameObject*> enemies;
 };
 
-#endif ENEMYMANAGER_HPP
+#endif //ENEMYMANAGER_HPP

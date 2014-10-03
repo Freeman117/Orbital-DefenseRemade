@@ -1,9 +1,6 @@
 #ifndef TURRET_H_
 #define TURRET_H_
 
-#include <UtH/Engine/SpriteBatch.hpp>
-#include <UtH/Engine/GameObject.hpp>
-#include <pmath/PMath.hpp>
 #include <UtH/UtHEngine.hpp>
 
 class Turret : public uth::Component
@@ -30,13 +27,13 @@ public:
 
 	std::vector<uth::GameObject*> turrets;
 
-	void Update(float dt, float rotation);
+	void Update(float dt) override;
 	void AddTurret(float o,float oPos, int tType);
-	void Draw();
+	void Draw(uth::RenderTarget& target) override;
 
 	uth::SpriteBatch* _spriteBatch;
 	uth::GameObject* turret;
-
+	
 	
 };
 

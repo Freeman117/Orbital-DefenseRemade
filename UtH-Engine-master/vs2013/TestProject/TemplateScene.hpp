@@ -25,11 +25,11 @@ public:
 private:
 	uth::Shader shader;
 	std::vector<uth::GameObject*> turrets;
-	uth::SpriteBatch* spriteBatch;
+	//uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
 	uth::GameObject* turret;
-	Turret* turretComponent;
+	//Turret* turretComponent;
 
 	EnemyManager enemyManager;
 };
