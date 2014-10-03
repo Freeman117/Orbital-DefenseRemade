@@ -27,7 +27,7 @@ bool TemplateScene::Init()
 bool TemplateScene::Update(float dt)
 {
 		enemyManager.UpdateEnemies(dt);
-
+#if defined WIN32
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 		{
 			if (turrets.size() < 1)
@@ -71,10 +71,10 @@ bool TemplateScene::Update(float dt)
 		{
 			//uthInput.Mouse.Position();
 		}
+#endif
 
 		if (turrets.size() >= 1)
 		{
-			uth::GameObject* turret;
 			Turret* turret_c;
 			GameObject* enemy;
 			Enemy* enemy_c;
