@@ -1,5 +1,5 @@
 #include "TemplateScene.hpp"
-#include <UtH/UtHEngine.hpp>
+#include <Uth/Engine/Engine.hpp>
 
 using namespace uth;
 
@@ -18,43 +18,27 @@ bool TemplateScene::Init()
 	background = new GameObject();
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
-
-	
 	
 	return true;
 }
 
 bool TemplateScene::Update(float dt)
 {
-		enemyManager.UpdateEnemies(dt);
-#if defined WIN32
+
+
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 		{
-			if (turrets.size() < 1)
-			{
-				return true;
-			}
-			else
-			turretAngle += 2 * dt;
+			turretManager.RotateTurrets(1,2 * dt);
 		}
 
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
 		{
-			if (turrets.size() < 1)
-			{
-				return true;
-			}
-			else
-			turretAngle -= 2 * dt;
+			turretManager.RotateTurrets(1, -2 * dt);
 		}
 		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 		{
 
-			GameObject* turret = new uth::GameObject();
-			turret->AddComponent(new uth::Sprite("CannonTower.png"));
-			turret->transform.SetScale(0.30f);
-			turret->AddComponent(new Turret(1, 1, testi));
-			turrets.push_back(turret);
+			turretManager.CreateTurret(1, 1, testi);
 
 			testi++;
 		}
@@ -71,58 +55,11 @@ bool TemplateScene::Update(float dt)
 		{
 			//uthInput.Mouse.Position();
 		}
-#endif
 
-		if (turrets.size() >= 1)
-		{
-			Turret* turret_c;
-			GameObject* enemy;
-			Enemy* enemy_c;
 
-			int target_i = -1;
+		turretManager.UpdateTurrets(dt, &enemyManager);
+		enemyManager.UpdateEnemies(dt);
 
-			for (int i = turrets.size() - 1; i >= 0; i--)
-			{
-				target_i = -1;
-				turret = turrets[i];
-				turret_c = turret->GetComponent<Turret>("Turret");
-				turret->transform.SetPosition(cosf(turretAngle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit, sinf(turretAngle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit);
-
-				float enemyPositionX = 0.0f;
-				float enemyPositionY = 0.0f;
-				float turretPositionX = turret->transform.GetPosition().x;
-				float turretPositionY = turret->transform.GetPosition().y;
-				float distanceToEnemy = 0.0f;
-				float nearestEnemy = 1000.0f;
-
-				for (int j = enemyManager.GetEnemies().size() - 1; j >= 0; j--)
-				{
-					enemy = enemyManager.GetEnemies()[j];
-					enemy_c = enemy->GetComponent<Enemy>("Enemy");
-
-					enemyPositionX = enemy->transform.GetPosition().x;
-					enemyPositionY = enemy->transform.GetPosition().y;
-
-					distanceToEnemy = sqrtf(pow((enemyPositionX - turretPositionX), 2) + pow((enemyPositionY - turretPositionY), 2));
-
-					if (distanceToEnemy < turret_c->range && distanceToEnemy < nearestEnemy)
-					{
-						target_i = j;
-						nearestEnemy = distanceToEnemy;
-
-						std::cout << "TARGET " << target_i << std::endl;
-						std::cout << "DISTANCE " << nearestEnemy << std::endl;
-					}
-				}
-				if (target_i != -1)
-				{
-					enemy = enemyManager.GetEnemies()[target_i];
-					enemy_c = enemy->GetComponent<Enemy>("Enemy");
-					turret->transform.SetRotation(pmath::radiansToDegrees(-atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) - 90);
-					enemy_c->TakeHit(turret_c->damage);
-				}
-			}
-		}
 	return true;
 }
 bool TemplateScene::Draw()
@@ -131,11 +68,7 @@ bool TemplateScene::Draw()
 	background->Draw(uthEngine.GetWindow());
 	moonbase->Draw(uthEngine.GetWindow());
 
-	for (int i = 0; i < turrets.size(); i++)
-	{
-		GameObject* turret = turrets[i];
-		turret->Draw(uthEngine.GetWindow());
-	}
+	turretManager.DrawTurrets();
 	enemyManager.DrawEnemies();
 	return true;
 }

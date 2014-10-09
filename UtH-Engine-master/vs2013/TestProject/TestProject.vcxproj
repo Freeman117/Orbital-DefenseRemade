@@ -102,6 +102,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TemplateScene.cpp" />
     <ClCompile Include="Turret.cpp" />
+    <ClCompile Include="TurretManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.hpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Scenes.hpp" />
     <ClInclude Include="TemplateScene.hpp" />
     <ClInclude Include="Turret.hpp" />
+    <ClInclude Include="TurretManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

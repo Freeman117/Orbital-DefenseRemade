@@ -1,5 +1,5 @@
 #include "TurretManager.hpp"
-#include <UtH/Engine/UtHEngine.h>
+#include <UtH/Engine/Engine.hpp>
 
 TurretManager::TurretManager()
 {
@@ -73,7 +73,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			{
 				enemy = enemyManager->GetEnemies()[target_i];
 				enemy_c = enemy->GetComponent<Enemy>("Enemy");
-				turret->transform.SetRotation(pmath::radiansToDegrees(-atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) - 90);
+				turret->transform.SetRotation(pmath::radiansToDegrees(atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) + 90);
 				enemy_c->TakeHit(turret_c->damage);
 			}
 		}
