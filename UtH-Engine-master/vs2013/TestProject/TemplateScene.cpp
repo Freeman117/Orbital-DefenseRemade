@@ -19,6 +19,20 @@ bool TemplateScene::Init()
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
 	
+	std::array<uth::Texture*, 1> buttonTextures =
+	{
+		uthRS.LoadTexture("test.tga")
+	};
+
+	m_buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
+
+	m_buttons[0]->setCallBack([]()
+	{
+		WriteLog("Button press detected");
+	});
+
+	m_buttons[0]->transform.SetPosition(0,0);
+
 	return true;
 }
 

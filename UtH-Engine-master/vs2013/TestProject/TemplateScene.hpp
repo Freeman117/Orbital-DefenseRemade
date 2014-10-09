@@ -7,6 +7,9 @@
 #include <UtH/Engine/SpriteBatch.hpp>
 #include "EnemyManager.hpp"
 #include "TurretManager.hpp"
+#include "Button.hpp"
+#include <array>
+#include <memory>
 
 class TemplateScene : public uth::Scene
 {
@@ -34,6 +37,9 @@ private:
 
 	EnemyManager enemyManager;
 	TurretManager turretManager;
+
+	std::array<ns::Button*, 1> m_buttons;
+
 };
 
 #endif
