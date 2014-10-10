@@ -10,6 +10,7 @@
 #include "Button.hpp"
 #include <array>
 #include <memory>
+#include <UtH/Core/Randomizer.hpp>
 
 class TemplateScene : public uth::Scene
 {
@@ -34,6 +35,8 @@ private:
 	uth::GameObject* background;
 	uth::GameObject* turret;
 	Turret* turretComponent;
+
+	uth::Randomizer* randomizer;
 
 	EnemyManager enemyManager;
 	TurretManager turretManager;

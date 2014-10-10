@@ -11,11 +11,15 @@ bool TemplateScene::Init()
 
 	testi = 0;
 	turretAngle = 0;
+
 	moonbase = new GameObject();
+	AddChild(moonbase);
+
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
 	moonbase->transform.SetScale(0.5f);
 
 	background = new GameObject();
+	AddChild(background);
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
 	
@@ -77,17 +81,17 @@ void TemplateScene::Update(float dt)
 
 		return;
 }
-bool TemplateScene::Draw()
-{
-
-	background->Draw(uthEngine.GetWindow());
-	moonbase->Draw(uthEngine.GetWindow());
-
-	turretManager.DrawTurrets();
-	enemyManager.DrawEnemies();
-	turretManager.DrawBullets();
-	return true;
-}
+//bool TemplateScene::Draw()
+//{
+//
+//	background->Draw(uthEngine.GetWindow());
+//	moonbase->Draw(uthEngine.GetWindow());
+//
+//	turretManager.DrawTurrets();
+//	enemyManager.DrawEnemies();
+//	turretManager.DrawBullets();
+//	return true;
+//}
 
 bool TemplateScene::DeInit()
 {

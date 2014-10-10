@@ -1,5 +1,4 @@
 #include "TurretManager.hpp"
-#include <UtH/Engine/Engine.hpp>
 
 TurretManager::TurretManager()
 {

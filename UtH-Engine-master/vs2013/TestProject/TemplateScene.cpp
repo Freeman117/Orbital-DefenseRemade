@@ -19,6 +19,9 @@ bool TemplateScene::Init()
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
 	
+	
+
+
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
 		uthRS.LoadTexture("test2.tga")
@@ -58,12 +61,12 @@ bool TemplateScene::Update(float dt)
 		}
 		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 		{
-			enemyManager.SpawnEnemy(150, 3, 50, 60);
-			enemyManager.SpawnEnemy(250, 3, 60, 70);
-			enemyManager.SpawnEnemy(150, 3, 50, 80);
-			enemyManager.SpawnEnemy(250, 3, 60, 90);
-			enemyManager.SpawnEnemy(150, 3, 50, 100);
-			enemyManager.SpawnEnemy(250, 3, 60, 110);
+			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
+			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
+			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
+			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
+			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
+			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
 		}
 		if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
 		{
