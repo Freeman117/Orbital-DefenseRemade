@@ -8,6 +8,7 @@ Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Com
 	angle = angle_;
 	isAlive = true;
 	distance = 700;
+	HitBox = 30;
 }
 
 void Enemy::TakeHit(float damageAmount)

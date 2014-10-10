@@ -19,9 +19,9 @@ public:
 	void DrawTurrets();
 	void CreateTurret(float type, float orb, float orbPos);
 	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe);
-	void UpdateBullets(float dt);
+	void UpdateBullets(float dt, EnemyManager* enemyManager);
 	void DrawBullets();
-
+	std::vector<uth::GameObject*> EnemyWithinRange(EnemyManager* enemyManager,float positionX, float positionY, float radius);
 
 	std::vector<uth::GameObject*> turrets;
 	std::vector<uth::GameObject*> bullets;

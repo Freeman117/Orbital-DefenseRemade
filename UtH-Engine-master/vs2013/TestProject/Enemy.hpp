@@ -17,6 +17,8 @@ public:
 	float GetAngle();
 	float GetSpeed();
 	bool GetAlive();
+	float HitBox;
+
 protected:
 
 	bool isAlive;

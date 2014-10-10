@@ -9,6 +9,8 @@ Bullet::Bullet(float bulletPositionX, float bulletPositionY, float angle, float 
 	speed = velocity;
 	range = range_;
 	explosionradius = splash;
+	travelledDistance = 0;
+	hitBox = 5;
 }
 
 Bullet::~Bullet()

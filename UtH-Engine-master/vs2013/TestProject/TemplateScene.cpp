@@ -21,7 +21,7 @@ bool TemplateScene::Init()
 	
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
-		uthRS.LoadTexture("test.tga")
+		uthRS.LoadTexture("test2.tga")
 	};
 
 	m_buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
@@ -73,6 +73,7 @@ bool TemplateScene::Update(float dt)
 
 		turretManager.UpdateTurrets(dt, &enemyManager);
 		enemyManager.UpdateEnemies(dt);
+		turretManager.UpdateBullets(dt, &enemyManager);
 
 	return true;
 }
@@ -84,6 +85,7 @@ bool TemplateScene::Draw()
 
 	turretManager.DrawTurrets();
 	enemyManager.DrawEnemies();
+	turretManager.DrawBullets();
 	return true;
 }
 

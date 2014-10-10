@@ -17,6 +17,7 @@ public:
 	float explosionradius;
 	float range;
 	float travelledDistance;
+	float hitBox;
 
 private:
 
