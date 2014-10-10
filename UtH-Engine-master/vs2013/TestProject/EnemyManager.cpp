@@ -13,7 +13,7 @@ void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float an
 	uth::GameObject* enemy = new uth::GameObject();
 	enemy->AddComponent(new Enemy(health_, armor_, speed_, pmath::degreesToRadians(angle_)));
 	enemy->AddComponent(new uth::AnimatedSprite(enemytexture,8,4,2,5,0,false,true));
-	enemy->transform.SetScale(0.5f);
+	enemy->transform.SetScale(0.2f);
 
 	//A bit wonky at the moment, propably need to be reworked.
 	Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
@@ -26,9 +26,9 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 {
 	float tempDistance = 0.0f;
 	float tempAngle = 0.0f;
-	for (int i = enemies.size(); i > 0; i--)
+	for (int i = enemies.size()-1; i > 0; i--)
 	{
-		uth::GameObject* enemy = enemies[i-1];
+		uth::GameObject* enemy = enemies[i];
 		Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
 		enemyC->SetDistance(enemyC->GetDistance() - enemyC->GetSpeed()*deltaTime);
 
@@ -42,15 +42,14 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 
 		if (enemyC->GetDistance() <= 0)
 		{
-			//Does not free any memory at the moment, needs to be fixed! Or maybe it does, who knows.
-			delete enemies[i - 1];
-			enemies.erase(enemies.begin() + i-1);
+			delete enemies[i];
+			enemies.erase(enemies.begin() + i);
 
 		}
 		if (!enemyC->GetAlive())
 		{
-			delete enemies[i - 1];
-			enemies.erase(enemies.begin() + i - 1);
+			delete enemies[i];
+			enemies.erase(enemies.begin() + i);
 		}
 
 	}

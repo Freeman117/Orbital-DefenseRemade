@@ -3,19 +3,22 @@
 #define BULLET_H_
 #include <UtH/Engine/GameObject.hpp>
 
-class Bullet : public uth::GameObject
+class Bullet : public uth::Component
 {
 public:
-	Bullet(float bulletPositionX,float bulletPositionY,float dmg, float angle, float velocity,float splash);
+	Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float dmg,float range, float splash);
 	~Bullet();
-	void Update(float dt);
-	std::vector<Bullet*> bullets;
-private:
+
+	bool MaxRangeTravelled(float dt);
 	float bPosx, bPosy;
 	float damage;
 	float rotation;
 	float speed;
 	float explosionradius;
+	float range;
+	float travelledDistance;
+
+private:
 
 };
 

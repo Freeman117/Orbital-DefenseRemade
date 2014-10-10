@@ -1,12 +1,13 @@
 #include "Bullet.hpp"
 
-Bullet::Bullet(float bulletPositionX, float bulletPositionY, float dmg, float angle, float velocity, float splash)
+Bullet::Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float damage_, float range_, float splash) : uth::Component("Bullet")
 {
 	bPosx = bulletPositionX;
 	bPosy = bulletPositionY;
-	damage = dmg;
+	damage = damage_;
 	rotation = angle;
 	speed = velocity;
+	range = range_;
 	explosionradius = splash;
 }
 
@@ -15,13 +16,11 @@ Bullet::~Bullet()
 
 }
 
-void Bullet::Update(float dt)
+bool Bullet::MaxRangeTravelled(float dt)
 {
-	for (int i = bullets.size() - 1; i >= 0; i--)
-	{
-		float bulletposx = bullets[i]->transform.GetPosition().x;
-		float bulletposy = bullets[i]->transform.GetPosition().y;
-
-		//bullets[i]->transform.SetPosition();
-	}
+	travelledDistance += speed*dt;
+	if (travelledDistance >= range)
+		return true;
+	else
+		return false;
 }

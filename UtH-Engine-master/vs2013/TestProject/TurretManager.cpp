@@ -14,6 +14,14 @@ void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 	turret->AddComponent(new Turret(type, orb, orbitPos));
 	turrets.push_back(turret);
 }
+void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe)
+{
+	uth::GameObject* bullet = new uth::GameObject();
+	bullet->AddComponent(new uth::Sprite("CannonTower.png"));
+	bullet->transform.SetScale(0.10f);
+	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe));
+	bullets.push_back(bullet);
+}
 void TurretManager::RotateTurrets(int orbit,float angle)
 {
 	if (orbit == 1)
@@ -76,6 +84,25 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 				turret->transform.SetRotation(pmath::radiansToDegrees(atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) + 90);
 				enemy_c->TakeHit(turret_c->damage);
 			}
+		}
+	}
+}
+void TurretManager::UpdateBullets(float dt)
+{
+	uth::GameObject* bullet;
+	Bullet* bullet_c;
+
+	for (int i = bullets.size() - 1; i >= 1; i--)
+	{
+		bullet = bullets[i];
+		bullet_c = bullet->GetComponent<Bullet>("Bullet");
+
+		bullet->transform.Move(cosf(bullet_c->rotation), sinf(bullet_c->rotation));
+
+		if (bullet_c->MaxRangeTravelled(dt))
+		{
+			delete bullets[i];
+			bullets.erase(bullets.begin() + i);
 		}
 	}
 }

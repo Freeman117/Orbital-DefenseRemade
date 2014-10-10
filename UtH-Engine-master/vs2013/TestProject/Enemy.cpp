@@ -1,11 +1,11 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(float healthi, float armori, float speedi, float anglei) : uth::Component("Enemy")
+Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Component("Enemy")
 {
-	health = healthi;
-	armor = armori;
-	speed = speedi;
-	angle = anglei;
+	health = health_;
+	armor = armor_;
+	speed = speed_;
+	angle = angle_;
 	isAlive = true;
 	distance = 700;
 }
