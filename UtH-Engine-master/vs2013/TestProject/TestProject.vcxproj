@@ -100,6 +100,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="TemplateScene.cpp" />
     <ClCompile Include="Turret.cpp" />
     <ClCompile Include="TurretManager.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="EnemyManager.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Scenes.hpp" />
     <ClInclude Include="TemplateScene.hpp" />
     <ClInclude Include="Turret.hpp" />
