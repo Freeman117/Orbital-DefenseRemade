@@ -6,7 +6,8 @@
 #include "Enemy.hpp"
 #include <UtH/Engine/AnimatedSprite.hpp>
 #include <UtH/Renderer/Texture.hpp>
-#include <UtH/Engine/Object.hpp>
+#include <UtH/Engine/GameObject.hpp>
+
 
 class EnemyManager
 {
@@ -24,4 +25,4 @@ protected:
 	std::vector<uth::GameObject*> enemies;
 };
 
-#endif //ENEMYMANAGER_HPP
+#endif

@@ -25,14 +25,14 @@ bool TemplateScene::Init()
 	
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
-		uthRS.LoadTexture("test2.tga")
+		uthRS.LoadTexture("test.tga")
 	};
 
 	m_buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
 
 	m_buttons[0]->setCallBack([]()
 	{
-		WriteLog("Button press detected");
+		WriteLog("KAIKKI KUOLI SAATANA");
 	});
 
 	for (int i = 0; i < m_buttons.size(); i++)
@@ -41,10 +41,10 @@ bool TemplateScene::Init()
 
 		b->transform.SetPosition(0, 0);
 		b->transform.SetScale(0.4f);
-		uth::Layer::AddChild(b);
+		AddChild(b);
 	}
 	
-
+	
 	return true;
 }
 
@@ -77,29 +77,17 @@ void TemplateScene::Update(float dt)
 			enemyManager.SpawnEnemy(150, 3, 50, 100);
 			enemyManager.SpawnEnemy(250, 3, 60, 110);
 		}
-		if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
-		{
-			//uthInput.Mouse.Position();
-		}
-
 
 		turretManager.UpdateTurrets(dt, &enemyManager);
 		enemyManager.UpdateEnemies(dt);
 		turretManager.UpdateBullets(dt, &enemyManager);
+		for (int i = 0; i < m_buttons.size(); i++)
+		{
+			m_buttons[i]->Update(dt);
+		}
 
 		return;
 }
-//bool TemplateScene::Draw()
-//{
-//
-//	background->Draw(uthEngine.GetWindow());
-//	moonbase->Draw(uthEngine.GetWindow());
-//
-//	turretManager.DrawTurrets();
-//	enemyManager.DrawEnemies();
-//	turretManager.DrawBullets();
-//	return true;
-//}
 
 bool TemplateScene::DeInit()
 {

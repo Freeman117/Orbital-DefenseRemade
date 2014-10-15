@@ -11,7 +11,6 @@ void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float an
 	enemytexture = uthRS.LoadTexture("asteroidMockup.png");
 
 	uth::GameObject* enemy = new uth::GameObject();
-
 	enemy->AddComponent(new Enemy(health_, armor_, speed_, pmath::degreesToRadians(angle_)));
 	enemy->AddComponent(new uth::AnimatedSprite(enemytexture,8,4,2,5,0,false,true));
 	enemy->transform.SetScale(0.2f);

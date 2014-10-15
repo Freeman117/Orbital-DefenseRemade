@@ -2,10 +2,8 @@
 #define TEMPLATESCENE_HPP
 
 #include <UtH/Engine/Engine.hpp>
-#include <UtH/Engine/Scene.hpp>
 #include <UtH/Platform/Input.hpp>
 #include "Turret.hpp"
-#include <UtH/Engine/SpriteBatch.hpp>
 #include "EnemyManager.hpp"
 #include "TurretManager.hpp"
 #include "Button.hpp"
@@ -30,7 +28,7 @@ public:
 	
 private:
 	uth::Shader shader;
-	std::vector<uth::GameObject*> turrets;
+	//std::vector<uth::GameObject*> turrets;
 	uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
