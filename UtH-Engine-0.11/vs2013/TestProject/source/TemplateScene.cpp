@@ -1,5 +1,5 @@
 #include "TemplateScene.hpp"
-#include <Uth/Engine/Engine.hpp>
+
 
 using namespace uth;
 
@@ -12,16 +12,16 @@ bool TemplateScene::Init()
 	testi = 0;
 	turretAngle = 0;
 
-	moonbase = new GameObject();
-	AddChild(moonbase);
-
-	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
-	moonbase->transform.SetScale(0.5f);
-
 	background = new GameObject();
 	AddChild(background);
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
+
+	moonbase = new GameObject();
+	AddChild(moonbase);
+	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
+	moonbase->transform.SetScale(0.5f);
+
 	
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
@@ -35,7 +35,15 @@ bool TemplateScene::Init()
 		WriteLog("Button press detected");
 	});
 
-	m_buttons[0]->transform.SetPosition(0,0);
+	for (int i = 0; i < m_buttons.size(); i++)
+	{
+		auto b = m_buttons[i];
+
+		b->transform.SetPosition(0, 0);
+		b->transform.SetScale(0.4f);
+		uth::Layer::AddChild(b);
+	}
+	
 
 	return true;
 }

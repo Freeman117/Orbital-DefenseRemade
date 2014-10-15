@@ -1,5 +1,5 @@
 #include "TurretManager.hpp"
-#include <UtH/Engine/Engine.hpp>
+
 
 TurretManager::TurretManager()
 {
@@ -9,6 +9,7 @@ TurretManager::TurretManager()
 void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 {
 	uth::GameObject* turret = new uth::GameObject();
+	
 	turret->AddComponent(new uth::Sprite("CannonTower.png"));
 	turret->transform.SetScale(0.30f);
 	turret->AddComponent(new Turret(type, orb, orbitPos));

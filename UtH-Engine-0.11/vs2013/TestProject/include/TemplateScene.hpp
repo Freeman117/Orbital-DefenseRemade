@@ -1,6 +1,7 @@
 #ifndef TEMPLATESCENE_HPP
 #define TEMPLATESCENE_HPP
 
+#include <UtH/Engine/Engine.hpp>
 #include <UtH/Engine/Scene.hpp>
 #include <UtH/Platform/Input.hpp>
 #include "Turret.hpp"
@@ -10,6 +11,7 @@
 #include "Button.hpp"
 #include <array>
 #include <memory>
+
 
 class TemplateScene : public uth::Scene
 {
