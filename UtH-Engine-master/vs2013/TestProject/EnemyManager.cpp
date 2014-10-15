@@ -4,11 +4,11 @@
 
 EnemyManager::EnemyManager()
 {
-
+	enemytexture = uthRS.LoadTexture("asteroidMockup.png");
 }
 void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float angle_)
 {
-	enemytexture = uthRS.LoadTexture("asteroidMockup.png");
+
 
 	uth::GameObject* enemy = new uth::GameObject();
 	enemy->AddComponent(new Enemy(health_, armor_, speed_, pmath::degreesToRadians(angle_)));

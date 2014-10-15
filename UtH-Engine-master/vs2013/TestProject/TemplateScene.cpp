@@ -10,6 +10,7 @@ bool TemplateScene::Init()
 	uthEngine.GetWindow().SetShader(&shader);
 
 	testi = 0;
+	testi2 = 1;
 	turretAngle = 0;
 	moonbase = new GameObject();
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
@@ -42,41 +43,48 @@ bool TemplateScene::Init()
 bool TemplateScene::Update(float dt)
 {
 
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::W))
+	{
+		testi2 = 2;
+	}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::S))
+	{
+		testi2 = 1;
+	}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
+	{
+		turretManager.RotateTurrets(testi2,2 * dt);
+	}
 
-		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
-		{
-			turretManager.RotateTurrets(1,2 * dt);
-		}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
+	{
+		turretManager.RotateTurrets(testi2, -2 * dt);
+	}
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
+	{
 
-		if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
-		{
-			turretManager.RotateTurrets(1, -2 * dt);
-		}
-		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
-		{
+		turretManager.CreateTurret(1, testi2, testi);
 
-			turretManager.CreateTurret(1, 1, testi);
-
-			testi++;
-		}
-		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
-		{
-			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
-			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
-			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
-			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
-			enemyManager.SpawnEnemy(150, 3, 50, randomizer->GetInt(0,360));
-			enemyManager.SpawnEnemy(250, 3, 60, randomizer->GetInt(0,360));
-		}
-		if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
-		{
-			//uthInput.Mouse.Position();
-		}
+		testi++;
+	}
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
+	{
+		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+	}
+	if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
+	{
+		//uthInput.Mouse.Position();
+	}
 
 
-		turretManager.UpdateTurrets(dt, &enemyManager);
-		enemyManager.UpdateEnemies(dt);
-		turretManager.UpdateBullets(dt, &enemyManager);
+	turretManager.UpdateTurrets(dt, &enemyManager);
+	enemyManager.UpdateEnemies(dt);
+	turretManager.UpdateBullets(dt, &enemyManager);
 
 	return true;
 }

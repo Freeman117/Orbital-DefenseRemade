@@ -24,7 +24,7 @@ public:
 	bool Update(float dt);
 	bool Draw();
 
-	int testi;
+	int testi,testi2;
 	float turretAngle;
 	
 private:

@@ -27,6 +27,9 @@ public:
 	std::vector<uth::GameObject*> bullets;
 protected:
 
+	uth::Sprite* turret01Sprite;
+	uth::Texture* turret01Texture;
+	uth::Texture* bullet01Texture;
 	float orbit01Angle;
 	float orbit02Angle;
 
