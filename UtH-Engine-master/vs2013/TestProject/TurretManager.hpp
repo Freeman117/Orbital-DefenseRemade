@@ -16,6 +16,8 @@ public:
 
 	void UpdateTurrets(float deltaTime, EnemyManager* enemyManager);
 	void RotateTurrets(int orb, float angle);
+	void RotationChange(float angle);
+	void RotationChange(float angle, int orbit);
 	void DrawTurrets();
 	void CreateTurret(float type, float orb, float orbPos);
 	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe);
@@ -32,7 +34,8 @@ protected:
 	uth::Texture* bullet01Texture;
 	float orbit01Angle;
 	float orbit02Angle;
-
+	float AngleAmount;
+	float currentAngle;
 
 private:
 

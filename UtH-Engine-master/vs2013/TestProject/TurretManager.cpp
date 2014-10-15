@@ -34,7 +34,16 @@ void TurretManager::RotateTurrets(int orbit,float angle)
 		orbit01Angle += angle;
 	else if (orbit == 2)
 		orbit02Angle += angle;
-
+}
+void TurretManager::RotationChange(float angle)
+{
+	currentAngle = angle;
+}
+void TurretManager::RotationChange(float angle, int orbit)
+{
+	float rotation = -(currentAngle -= angle);
+	RotateTurrets(orbit, rotation);
+	currentAngle = angle;
 }
 void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {

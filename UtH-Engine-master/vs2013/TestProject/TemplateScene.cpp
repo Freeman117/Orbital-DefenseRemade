@@ -42,7 +42,22 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
-
+	if (uthInput.Mouse.IsButtonPressed(Mouse::LEFT))
+	{
+		float targetX = uthInput.Common.Position().x;
+		float targetY = uthInput.Common.Position().y;
+		float fromX = (float)uthEngine.GetWindow().GetViewport().getRight() / 2;
+		float fromY = (float)uthEngine.GetWindow().GetViewport().getBottom() / 2;
+		turretManager.RotationChange(atan2f(targetY-fromY,targetX-fromX));
+	}
+	if (uthInput.Mouse.IsButtonDown(Mouse::LEFT))
+	{
+		float targetX = uthInput.Common.Position().x;
+		float targetY = uthInput.Common.Position().y;
+		float fromX = (float)uthEngine.GetWindow().GetViewport().getRight() / 2;
+		float fromY = (float)uthEngine.GetWindow().GetViewport().getBottom() / 2;
+		turretManager.RotationChange(atan2f(targetY - fromY, targetX - fromX),testi2);
+	}
 	if (uthInput.Keyboard.IsKeyDown(Keyboard::W))
 	{
 		testi2 = 2;
@@ -99,7 +114,6 @@ bool TemplateScene::Draw()
 	turretManager.DrawBullets();
 	return true;
 }
-
 bool TemplateScene::DeInit()
 {
 
