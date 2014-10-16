@@ -5,21 +5,24 @@ TurretManager::TurretManager()
 {
 	orbit01Angle = 0.0f;
 	orbit02Angle = 0.0f;
+	turretTexture = uthRS.LoadTexture("CannonTower.png");
 }
 void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 {
 	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	turret->AddComponent(new uth::Sprite("CannonTower.png"));
+	turret->AddComponent(new uth::Sprite(turretTexture));
 	turret->transform.SetScale(0.30f);
 	turret->AddComponent(new Turret(type, orb, orbitPos));
+	AddChild(turret);
 	turrets.push_back(turret);
 }
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe)
 {
 	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	bullet->AddComponent(new uth::Sprite("CannonTower.png"));
+	bullet->AddComponent(new uth::Sprite(turretTexture));
 	bullet->transform.SetScale(0.10f);
 	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe));
+	AddChild(bullet);
 	bullet->transform.SetPosition(posX, posY);
 	bullets.push_back(bullet);
 }
@@ -41,7 +44,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 		{
 			auto& turret = *turrets[i];
 			auto& c = *turret.GetComponent<Turret>();
-
+			
 			if (c.orbit == 1)
 				turret.transform.SetPosition(cosf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit, sinf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit);
 			else if (c.orbit == 2)
@@ -49,7 +52,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 
 			float turretPositionX = turret.transform.GetPosition().x;
 			float turretPositionY = turret.transform.GetPosition().y;
-
+			//TURRETS ATTEMPT TO ACCESS ENEMIES THAT DO NOT EXIST, FIX IT!
 			nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.range);
 
 			if (nearbyEnemies.size() > 0)
@@ -91,14 +94,6 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 	}
 }
 
-//void TurretManager::DrawTurrets()
-//{
-//	uth::GameObject* turret;
-//	for(size_t i = turrets.size()-1; i >= 0; i--)
-//	{
-//		turrets[i]->Draw(uthEngine.GetWindow());
-//	}
-//}
 
 void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 {
@@ -118,6 +113,7 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 		{
 			enemy_c = nearbyEnemies[0]->GetComponent<Enemy>();
 			enemy_c->TakeHit(c.damage);
+			RemoveChild(bullets[i]);
 			bullets.erase(bullets.begin() + i);
 		}
 		else if (c.MaxRangeTravelled(dt))
@@ -126,14 +122,6 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 		}
 	}
 }
-
-//void TurretManager::DrawBullets()
-//{
-//	for(size_t i = bullets.size()-1; i >= 0; i--)
-//	{
-//		bullets[i]->Draw(uthEngine.GetWindow());
-//	}
-//}
 
 //Returns us a vector of enemies that are within the given range, the closest one being [0]
 std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)

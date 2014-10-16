@@ -28,7 +28,6 @@ public:
 	
 private:
 	uth::Shader shader;
-	//std::vector<uth::GameObject*> turrets;
 	uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;

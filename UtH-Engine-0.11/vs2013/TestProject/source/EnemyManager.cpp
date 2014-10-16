@@ -43,6 +43,7 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 		}
 		if (!c.GetAlive())
 		{
+			RemoveChild(enemy);
 			enemies.erase(enemies.begin() + i);
 		}
 
@@ -72,14 +73,6 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 
 }
 
-//void EnemyManager::DrawEnemies()
-//{
-//	for(size_t i = enemies.size(); i > 0; i--)
-//	{
-//		uth::GameObject& enemy = enemies[i-1];
-//		enemy.Draw(uthEngine.GetWindow());
-//	}
-//}
 
 std::vector<std::shared_ptr<uth::GameObject>> EnemyManager::GetEnemies()
 {
