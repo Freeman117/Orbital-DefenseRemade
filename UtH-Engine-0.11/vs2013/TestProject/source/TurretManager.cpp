@@ -1,5 +1,5 @@
-#include "TurretManager.hpp"
 
+#include "TurretManager.hpp"
 
 TurretManager::TurretManager()
 {
@@ -8,8 +8,7 @@ TurretManager::TurretManager()
 }
 void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 {
-	uth::GameObject* turret = new uth::GameObject();
-	
+	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
 	turret->AddComponent(new uth::Sprite("CannonTower.png"));
 	turret->transform.SetScale(0.30f);
 	turret->AddComponent(new Turret(type, orb, orbitPos));
@@ -17,7 +16,7 @@ void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 }
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe)
 {
-	uth::GameObject* bullet = new uth::GameObject();
+	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
 	bullet->AddComponent(new uth::Sprite("CannonTower.png"));
 	bullet->transform.SetScale(0.10f);
 	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe));
@@ -36,29 +35,30 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {
 	if (turrets.size() >= 1)
 	{
-		uth::GameObject* turret;
-		Turret* turret_c;
-		std::vector<uth::GameObject*> nearbyEnemies;
+		std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
 
-		for (int i = turrets.size() - 1; i >= 0; i--)
+		for(int i = turrets.size() - 1; i >= 0; i--)
 		{
-			turret = turrets[i];
-			turret_c = turret->GetComponent<Turret>("Turret");
-			if (turret_c ->orbit == 1)
-				turret->transform.SetPosition(cosf(orbit01Angle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit, sinf(orbit01Angle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit);
-			else if (turret_c->orbit == 2)
-				turret->transform.SetPosition(cosf(orbit02Angle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit, sinf(orbit02Angle + turret_c->orbitPos*(pmath::pi / 3)) * 100 * turret_c->orbit);
+			auto& turret = *turrets[i];
+			auto& c = *turret.GetComponent<Turret>();
 
-			float turretPositionX = turret->transform.GetPosition().x;
-			float turretPositionY = turret->transform.GetPosition().y;
+			if (c.orbit == 1)
+				turret.transform.SetPosition(cosf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit, sinf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit);
+			else if (c.orbit == 2)
+				turret.transform.SetPosition(cosf(orbit02Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit, sinf(orbit02Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit);
 
-			nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, turret_c->range);
+			float turretPositionX = turret.transform.GetPosition().x;
+			float turretPositionY = turret.transform.GetPosition().y;
+
+			nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.range);
 
 			if (nearbyEnemies.size() > 0)
 			{
-				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, turret_c->damage, turret_c->range, turret_c->aoe);
-				turret->transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)) + 90);
+				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
+				turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)) + 90);
 			}
+
+			/*
 			//for (int j = enemyManager->GetEnemies().size() - 1; j >= 0; j--)
 			//{
 			//	enemy = enemyManager->GetEnemies()[j];
@@ -86,80 +86,80 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			//	turret->transform.SetRotation(turretAngle);
 			//	ShootBullet(turretPositionX, turretPositionY, pmath::degreesToRadians(turretAngle-90), 400, 2, turret_c->range, 0);
 			//}
+			*/
 		}
 	}
 }
-void TurretManager::DrawTurrets()
-{
-	uth::GameObject* turret;
-	for (int i = turrets.size()-1; i >= 0; i--)
-	{
-		turret = turrets[i];
-		turret->Draw(uthEngine.GetWindow());
-	}
-}
+
+//void TurretManager::DrawTurrets()
+//{
+//	uth::GameObject* turret;
+//	for(size_t i = turrets.size()-1; i >= 0; i--)
+//	{
+//		turrets[i]->Draw(uthEngine.GetWindow());
+//	}
+//}
+
 void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 {
-	uth::GameObject* bullet;
-	Bullet* bullet_c;
 	Enemy* enemy_c;
-	std::vector<uth::GameObject*> nearbyEnemies;
 
-	for (int i = bullets.size() - 1; i >= 0; i--)
+	std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
+
+	for(int i = bullets.size() - 1; i >= 0; i--)
 	{
-		bullet = bullets[i];
-		bullet_c = bullet->GetComponent<Bullet>("Bullet");
-		bullet->transform.Move(cosf(bullet_c->rotation)*bullet_c->speed*dt, sinf(bullet_c->rotation)*bullet_c->speed*dt);
+		auto& bullet = *bullets[i];
+		auto& c = *bullet.GetComponent<Bullet>();
+		bullet.transform.Move(cosf(c.rotation)*c.speed*dt, sinf(c.rotation)*c.speed*dt);
 
-		nearbyEnemies = EnemyWithinRange(enemyManager, bullet->transform.GetPosition().x, bullet->transform.GetPosition().y, bullet_c->hitBox);
+		nearbyEnemies = EnemyWithinRange(enemyManager, bullet.transform.GetPosition().x, bullet.transform.GetPosition().y, c.hitBox);
 
 		if (nearbyEnemies.size() > 0)
 		{
-			enemy_c = nearbyEnemies[0]->GetComponent<Enemy>("Enemy");
-			enemy_c->TakeHit(bullet_c->damage);
-			delete bullets[i];
+			enemy_c = nearbyEnemies[0]->GetComponent<Enemy>();
+			enemy_c->TakeHit(c.damage);
 			bullets.erase(bullets.begin() + i);
 		}
-		else if (bullet_c->MaxRangeTravelled(dt))
+		else if (c.MaxRangeTravelled(dt))
 		{
-			delete bullets[i];
 			bullets.erase(bullets.begin() + i);
 		}
 	}
 }
-void TurretManager::DrawBullets()
-{
-	uth::GameObject* bullet;
-	for (int i = bullets.size()-1; i >= 0; i--)
-	{
-		bullet = bullets[i];
-		bullet->Draw(uthEngine.GetWindow());
-	}
-}
-//Returns us a vector of enemies that are within the given range, the closest one being [0]
-std::vector<uth::GameObject*> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)
-{
-	std::vector<uth::GameObject*> enemies;
-	uth::GameObject* enemy;
-	Enemy* enemy_c;
-	float distanceToEnemy = 0;
-	std::vector<pmath::Vec2> enemyDistances;
-	for (int i = enemyManager->GetEnemies().size() - 1; i >= 0; i--)
-	{
-		enemy = enemyManager->GetEnemies()[i];
-		enemy_c = enemy->GetComponent<Enemy>("Enemy");
 
-		distanceToEnemy = sqrtf(pow((enemy->transform.GetPosition().x -positionX), 2) + pow((enemy->transform.GetPosition().y - positionY), 2))-enemy_c->HitBox;
+//void TurretManager::DrawBullets()
+//{
+//	for(size_t i = bullets.size()-1; i >= 0; i--)
+//	{
+//		bullets[i]->Draw(uthEngine.GetWindow());
+//	}
+//}
+
+//Returns us a vector of enemies that are within the given range, the closest one being [0]
+std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)
+{
+	std::vector<std::shared_ptr<uth::GameObject>> enemies;
+	std::vector<pmath::Vec2> enemyDistances;
+	float distanceToEnemy = 0;
+
+	for(size_t i = enemyManager->GetEnemies().size() - 1; i >= 0; i--)
+	{
+		auto& enemy = *enemyManager->GetEnemies()[i];
+		auto& c = *enemy.GetComponent<Enemy>();
+
+		distanceToEnemy = sqrtf(pow((enemy.transform.GetPosition().x -positionX), 2) + pow((enemy.transform.GetPosition().y - positionY), 2)) - c.HitBox;
 
 		if (distanceToEnemy <= radius)
 		{
 			enemyDistances.push_back(pmath::Vec2(distanceToEnemy, i));
 		}
 	}
+
 	std::sort(enemyDistances.begin(), enemyDistances.begin() + enemyDistances.size());
-	for (int i = 0; i < enemyDistances.size(); i++)
+	for(size_t i = 0; i < enemyDistances.size(); i++)
 	{
 		enemies.push_back(enemyManager->GetEnemies()[enemyDistances[i].y]);
 	}
+
 	return enemies;
 }

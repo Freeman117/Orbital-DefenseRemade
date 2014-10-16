@@ -22,7 +22,8 @@ bool TemplateScene::Init()
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
 	moonbase->transform.SetScale(0.5f);
 
-	
+	AddChild(enemyManager = new EnemyManager());
+
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
 		uthRS.LoadTexture("test.tga")
@@ -35,12 +36,12 @@ bool TemplateScene::Init()
 		WriteLog("KAIKKI KUOLI SAATANA");
 	});
 
-	for (int i = 0; i < m_buttons.size(); i++)
+	for (size_t i = 0; i < m_buttons.size(); i++)
 	{
 		auto b = m_buttons[i];
 
 		b->transform.SetPosition(0, 0);
-		b->transform.SetScale(0.4f);
+		b->transform.SetScale(0.7f);
 		AddChild(b);
 	}
 	
@@ -50,8 +51,6 @@ bool TemplateScene::Init()
 
 void TemplateScene::Update(float dt)
 {
-
-
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 		{
 			turretManager.RotateTurrets(1,2 * dt);
@@ -70,24 +69,27 @@ void TemplateScene::Update(float dt)
 		}
 		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
 		{
-			enemyManager.SpawnEnemy(150, 3, 50, 60);
-			enemyManager.SpawnEnemy(250, 3, 60, 70);
-			enemyManager.SpawnEnemy(150, 3, 50, 80);
-			enemyManager.SpawnEnemy(250, 3, 60, 90);
-			enemyManager.SpawnEnemy(150, 3, 50, 100);
-			enemyManager.SpawnEnemy(250, 3, 60, 110);
+			enemyManager->SpawnEnemy(150, 3, 50, 60);
+			enemyManager->SpawnEnemy(250, 3, 60, 70);
+			enemyManager->SpawnEnemy(150, 3, 50, 80);
+			enemyManager->SpawnEnemy(250, 3, 60, 90);
+			enemyManager->SpawnEnemy(150, 3, 50, 100);
+			enemyManager->SpawnEnemy(250, 3, 60, 110);
 		}
 
-		turretManager.UpdateTurrets(dt, &enemyManager);
-		enemyManager.UpdateEnemies(dt);
-		turretManager.UpdateBullets(dt, &enemyManager);
-		for (int i = 0; i < m_buttons.size(); i++)
+		turretManager.UpdateTurrets(dt, enemyManager);
+		enemyManager->UpdateEnemies(dt);
+		turretManager.UpdateBullets(dt, enemyManager);
+
+		for(size_t i = 0; i < m_buttons.size(); i++)
 		{
 			m_buttons[i]->Update(dt);
 		}
 
 		return;
 }
+
+
 
 bool TemplateScene::DeInit()
 {

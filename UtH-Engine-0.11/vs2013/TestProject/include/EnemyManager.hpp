@@ -9,7 +9,7 @@
 #include <UtH/Engine/GameObject.hpp>
 
 
-class EnemyManager
+class EnemyManager : public uth::GameObject
 {
 public:
 	EnemyManager();
@@ -19,10 +19,10 @@ public:
 	void DrawEnemies();
 	void SpawnEnemy(float healt, float armor, float speed, float angle);
 
-	std::vector<uth::GameObject*> GetEnemies();
+	std::vector<std::shared_ptr<uth::GameObject>> GetEnemies();
 	uth::Texture* enemytexture;
 protected:
-	std::vector<uth::GameObject*> enemies;
+	std::vector<std::shared_ptr<uth::GameObject>> enemies;
 };
 
 #endif

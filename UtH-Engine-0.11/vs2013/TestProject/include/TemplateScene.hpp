@@ -35,7 +35,7 @@ private:
 	uth::GameObject* turret;
 	Turret* turretComponent;
 
-	EnemyManager enemyManager;
+	EnemyManager* enemyManager;
 	TurretManager turretManager;
 
 	std::array<ns::Button*, 1> m_buttons;

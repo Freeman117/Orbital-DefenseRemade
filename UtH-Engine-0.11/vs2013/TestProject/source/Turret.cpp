@@ -47,7 +47,7 @@ void Turret::AddTurret(float o, float oPos, int tType)
 	turret->transform.SetScale(0.1f);
 	//if(turrets.size() <= 5)
 	//{
-		for (int i = turrets.size()-1; i >=0; i--)
+		for(size_t i = turrets.size()-1; i >=0; i--)
 		{
 		testi++;
 		turrets[i]->transform.SetPosition(100 * cosf(oPos + pmath::pi / 3 * testi), 100 * sinf(oPos + pmath::pi / 3 * testi));
@@ -74,7 +74,7 @@ void Turret::Draw(uth::RenderTarget& target)
 	{
 		return;
 	}
-	for(int i = turrets.size() -1; i>=0; i--)
+	for(size_t i = turrets.size() -1; i>=0; i--)
 	{
 		turrets[i]->Draw(target);
 	}

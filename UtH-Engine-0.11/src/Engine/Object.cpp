@@ -47,10 +47,12 @@ namespace uth
 	{
 		if (m_active)
 		{
-			for (auto& i : m_children)
+			for (size_t i = 0; i < m_children.size(); i++)
 			{
-				if (i->m_active)
-					i->Update(dt);
+				auto& e = *m_children[i];
+
+				if (e.m_active)
+					e.Update(dt);
 			}
 		}
 	}
@@ -58,10 +60,10 @@ namespace uth
 	{
 		if (m_active)
 		{
-			for (auto& i : m_children)
+			for (auto& e : m_children)
 			{
-				if (i->m_active)
-					i->Draw(target, attributes);
+				if (e->m_active)
+					e->Draw(target, attributes);
 			}
 		}
 	}
@@ -99,9 +101,9 @@ namespace uth
 	}
 	void Object::RemoveChildren(const std::vector<std::shared_ptr<Object>>& objects)
 	{
-		for (auto& o : objects)
+		for (size_t i = 0; i < objects.size(); i++)
 		{
-			RemoveChild(o);
+			RemoveChild(m_children[i]);
 		}
 	}
 
