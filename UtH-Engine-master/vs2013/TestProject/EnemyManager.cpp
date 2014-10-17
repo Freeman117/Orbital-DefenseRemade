@@ -22,11 +22,11 @@ void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float an
 	enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);
 	enemies.push_back(enemy);
 }
-void EnemyManager::UpdateEnemies(float deltaTime)
+void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 {
 	float tempDistance = 0.0f;
 	float tempAngle = 0.0f;
-	for (int i = enemies.size()-1; i > 0; i--)
+	for (int i = enemies.size()-1; i >= 0; i--)
 	{
 		uth::GameObject* enemy = enemies[i];
 		Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
@@ -40,11 +40,11 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 		enemy->transform.SetRotation(pmath::radiansToDegrees(-tempAngle)+90);
 
 
-		if (enemyC->GetDistance() <= 0)
+		if (enemyC->GetDistance() <= 20)
 		{
 			delete enemies[i];
 			enemies.erase(enemies.begin() + i);
-
+			health -= 1;
 		}
 		if (!enemyC->GetAlive())
 		{
@@ -57,9 +57,9 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 }
 void EnemyManager::DrawEnemies()
 {
-	for (int i = enemies.size(); i > 0; i--)
+	for (int i = enemies.size()-1; i >= 0; i--)
 	{
-		uth::GameObject* enemy = enemies[i-1];
+		uth::GameObject* enemy = enemies[i];
 		enemy->Draw(uthEngine.GetWindow());
 	}
 }

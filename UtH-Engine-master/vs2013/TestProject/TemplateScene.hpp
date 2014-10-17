@@ -8,6 +8,7 @@
 #include "EnemyManager.hpp"
 #include "TurretManager.hpp"
 #include "Button.hpp"
+#include "Player.hpp"
 #include <array>
 #include <memory>
 #include <UtH/Core/Randomizer.hpp>
@@ -24,7 +25,8 @@ public:
 	bool Update(float dt);
 	bool Draw();
 
-	int testi,testi2;
+	int testi,testi2,health;
+	float enemySpawnFrame;
 	float turretAngle;
 	
 private:
@@ -34,6 +36,7 @@ private:
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
 	uth::GameObject* turret;
+	uth::GameObject* player;
 	Turret* turretComponent;
 
 	uth::Randomizer* randomizer;

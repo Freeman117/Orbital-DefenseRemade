@@ -11,6 +11,7 @@ bool TemplateScene::Init()
 
 	testi = 0;
 	testi2 = 1;
+	health = 10;
 	turretAngle = 0;
 	moonbase = new GameObject();
 	moonbase->AddComponent(new Sprite("moonBaseMockup2.png"));
@@ -20,8 +21,7 @@ bool TemplateScene::Init()
 	background->AddComponent(new Sprite("stars2.png"));
 	background->transform.SetScale(0.7f);
 	
-	
-
+	enemySpawnFrame = 0;
 
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
@@ -42,6 +42,7 @@ bool TemplateScene::Init()
 
 bool TemplateScene::Update(float dt)
 {
+	enemySpawnFrame += dt;
 	if (uthInput.Mouse.IsButtonPressed(Mouse::LEFT))
 	{
 		float targetX = uthInput.Common.Position().x;
@@ -82,14 +83,20 @@ bool TemplateScene::Update(float dt)
 
 		testi++;
 	}
-	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
+	if (enemySpawnFrame > 8)
 	{
-		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
-		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
-		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
-		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
-		enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
-		enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
+		for (int i = 0; i < 7; i++)
+		{
+			enemyManager.SpawnEnemy(50, 3, 50 + randomizer->GetFloat(0, 1) * 15, rand + randomizer->GetInt(0, 40));
+		}
+		//enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		//enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		//enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		//enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		//enemyManager.SpawnEnemy(50, 3, 50, randomizer->GetInt(0,360));
+		//enemyManager.SpawnEnemy(50, 3, 60, randomizer->GetInt(0,360));
+		enemySpawnFrame -= 8;
 	}
 	if (uthInput.Mouse.IsButtonPressed(uth::Mouse::LEFT))
 	{
@@ -98,15 +105,16 @@ bool TemplateScene::Update(float dt)
 
 
 	turretManager.UpdateTurrets(dt, &enemyManager);
-	enemyManager.UpdateEnemies(dt);
+	enemyManager.UpdateEnemies(dt, health);
 	turretManager.UpdateBullets(dt, &enemyManager);
-
+	std::cout << health << std::endl;
 	return true;
 }
 bool TemplateScene::Draw()
 {
 
 	background->Draw(uthEngine.GetWindow());
+	if (health > 0)
 	moonbase->Draw(uthEngine.GetWindow());
 
 	turretManager.DrawTurrets();

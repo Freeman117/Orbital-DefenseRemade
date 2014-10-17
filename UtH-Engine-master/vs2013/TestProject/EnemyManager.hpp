@@ -13,7 +13,7 @@ public:
 	EnemyManager();
 	~EnemyManager(){};
 
-	void UpdateEnemies(float deltaTime);
+	void UpdateEnemies(float deltaTime, int &health);
 	void DrawEnemies();
 	void SpawnEnemy(float healt, float armor, float speed, float angle);
 
