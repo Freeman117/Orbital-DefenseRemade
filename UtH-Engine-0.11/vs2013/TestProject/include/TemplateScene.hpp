@@ -23,7 +23,8 @@ public:
 	void Update(float dt);
 	bool Draw();
 
-	int testi;
+	int testi, testi2, health;
+	float enemySpawnFrame;
 	float turretAngle;
 	
 private:
@@ -33,6 +34,8 @@ private:
 	uth::GameObject* background;
 	uth::GameObject* turret;
 	Turret* turretComponent;
+
+	uth::Randomizer* randomizer;
 
 	EnemyManager* enemyManager;
 	TurretManager* turretManager;

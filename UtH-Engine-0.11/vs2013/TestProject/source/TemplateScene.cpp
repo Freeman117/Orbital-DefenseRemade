@@ -10,7 +10,10 @@ bool TemplateScene::Init()
 	uthEngine.GetWindow().SetShader(&shader);
 
 	testi = 0;
+	testi2 = 1;
+	health = 10;
 	turretAngle = 0;
+	enemySpawnFrame = 0;
 
 	background = new GameObject();
 	AddChild(background);
@@ -53,41 +56,72 @@ bool TemplateScene::Init()
 
 void TemplateScene::Update(float dt)
 {
-		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
-		{
-			turretManager->RotateTurrets(1,2 * dt);
-		}
+	enemySpawnFrame += dt;
+	if (uthInput.Mouse.IsButtonPressed(Mouse::LEFT))
+	{
+		float targetX = uthInput.Common.Position().x;
+		float targetY = uthInput.Common.Position().y;
+		float fromX = (float)uthEngine.GetWindow().GetViewport().getRight() / 2;
+		float fromY = (float)uthEngine.GetWindow().GetViewport().getBottom() / 2;
+		turretManager->RotationChange(atan2f(targetY - fromY, targetX - fromX));
+	}
+	if (uthInput.Mouse.IsButtonDown(Mouse::LEFT))
+	{
+		float targetX = uthInput.Common.Position().x;
+		float targetY = uthInput.Common.Position().y;
+		float fromX = (float)uthEngine.GetWindow().GetViewport().getRight() / 2;
+		float fromY = (float)uthEngine.GetWindow().GetViewport().getBottom() / 2;
+		turretManager->RotationChange(atan2f(targetY - fromY, targetX - fromX), testi2);
+	}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::W))
+	{
+		testi2 = 2;
+	}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::S))
+	{
+		testi2 = 1;
+	}
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
+	{
+		turretManager->RotateTurrets(testi2,2 * dt);
+	}
 
-		if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
-		{
-			turretManager->RotateTurrets(1, -2 * dt);
-		}
-		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
-		{
-			turretManager->CreateTurret(1, 1, testi);
+	if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
+	{
+		turretManager->RotateTurrets(testi2, -2 * dt);
+	}
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
+	{
+		turretManager->CreateTurret(1, testi2, testi);
 
-			testi++;
-		}
-		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key3))
+		testi++;
+	}
+	if (enemySpawnFrame > 8)
+	{
+		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
+		for (int i = 0; i < 7; i++)
 		{
-			enemyManager->SpawnEnemy(150, 3, 50, 60);
-			enemyManager->SpawnEnemy(250, 3, 60, 70);
-			enemyManager->SpawnEnemy(150, 3, 50, 80);
-			enemyManager->SpawnEnemy(250, 3, 60, 90);
-			enemyManager->SpawnEnemy(150, 3, 50, 100);
-			enemyManager->SpawnEnemy(250, 3, 60, 110);
+			enemyManager->SpawnEnemy(50, 3, 50 + randomizer->GetFloat(0, 1) * 15, rand + randomizer->GetInt(0, 40));
 		}
+		enemySpawnFrame -= 8;
+		//enemyManager->SpawnEnemy(150, 3, 50, 60);
+		//enemyManager->SpawnEnemy(250, 3, 60, 70);
+		//enemyManager->SpawnEnemy(150, 3, 50, 80);
+		//enemyManager->SpawnEnemy(250, 3, 60, 90);
+		//enemyManager->SpawnEnemy(150, 3, 50, 100);
+		//enemyManager->SpawnEnemy(250, 3, 60, 110);
+	}
 
-		turretManager->UpdateTurrets(dt, enemyManager);
-		enemyManager->UpdateEnemies(dt);
-		turretManager->UpdateBullets(dt, enemyManager);
+	turretManager->UpdateTurrets(dt, enemyManager);
+	enemyManager->UpdateEnemies(dt, health);
+	turretManager->UpdateBullets(dt, enemyManager);
 
-		for(size_t i = 0; i < m_buttons.size(); i++)
-		{
-			m_buttons[i]->Update(dt);
-		}
+	for(size_t i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i]->Update(dt);
+	}
 
-		return;
+	return;
 }
 
 

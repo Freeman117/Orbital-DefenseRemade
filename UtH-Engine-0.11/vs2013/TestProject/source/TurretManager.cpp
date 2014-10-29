@@ -5,12 +5,14 @@ TurretManager::TurretManager()
 {
 	orbit01Angle = 0.0f;
 	orbit02Angle = 0.0f;
-	turretTexture = uthRS.LoadTexture("CannonTower.png");
+	turret01Sprite = new uth::Sprite("CannonTower.png");
+	turret01Texture = uthRS.LoadTexture("CannonTower.png");
+	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 }
 void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 {
 	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	turret->AddComponent(new uth::Sprite(turretTexture));
+	turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 1, 1, 5, 0, false, false));
 	turret->transform.SetScale(0.30f);
 	turret->AddComponent(new Turret(type, orb, orbitPos));
 	AddChild(turret);
@@ -19,11 +21,12 @@ void TurretManager::CreateTurret(float type, float orb, float orbitPos)
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe)
 {
 	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	bullet->AddComponent(new uth::Sprite(turretTexture));
-	bullet->transform.SetScale(0.10f);
+	bullet->AddComponent(new uth::AnimatedSprite(bullet01Texture, 1, 4, 2, 6, 5, false, true));
+	bullet->transform.SetScale(0.75f);
+	bullet->transform.SetPosition(posX, posY);
+	bullet->transform.SetRotation(pmath::radiansToDegrees(angle) + 90);
 	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe));
 	AddChild(bullet);
-	bullet->transform.SetPosition(posX, posY);
 	bullets.push_back(bullet);
 }
 void TurretManager::RotateTurrets(int orbit,float angle)
@@ -33,6 +36,16 @@ void TurretManager::RotateTurrets(int orbit,float angle)
 	else if (orbit == 2)
 		orbit02Angle += angle;
 
+}
+void TurretManager::RotationChange(float angle)
+{
+	currentAngle = angle;
+}
+void TurretManager::RotationChange(float angle, int orbit)
+{
+	float rotation = -(currentAngle -= angle);
+	RotateTurrets(orbit, rotation);
+	currentAngle = angle;
 }
 void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {
@@ -46,50 +59,24 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			auto& c = *turret.GetComponent<Turret>();
 			
 			if (c.orbit == 1)
-				turret.transform.SetPosition(cosf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit, sinf(orbit01Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit);
+				turret.transform.SetPosition(cosf(orbit01Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 100 * c.orbit, sinf(orbit01Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 100 * c.orbit);
 			else if (c.orbit == 2)
-				turret.transform.SetPosition(cosf(orbit02Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit, sinf(orbit02Angle + c.orbitPos*(pmath::pi / 3)) * 100 * c.orbit);
+				turret.transform.SetPosition(cosf(orbit02Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 100 * c.orbit, sinf(orbit02Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 100 * c.orbit);
 
 			float turretPositionX = turret.transform.GetPosition().x;
 			float turretPositionY = turret.transform.GetPosition().y;
-			//TURRETS ATTEMPT TO ACCESS ENEMIES THAT DO NOT EXIST, FIX IT!
-			
+			c.cooldown += deltaTime;
 			nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.range);
 
 				if (nearbyEnemies.size() > 0)
 				{
-					ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
 					turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)) + 90);
+					if (c.cooldown >= c.speed)
+					{
+						ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
+						c.cooldown = 0;
+					}
 				}
-			/*
-			for (int j = enemyManager->GetEnemies().size() - 1; j >= 0; j--)
-			{
-				enemy = enemyManager->GetEnemies()[j];
-				enemy_c = enemy->GetComponent<Enemy>("Enemy");
-
-				enemyPositionX = enemy->transform.GetPosition().x;
-				enemyPositionY = enemy->transform.GetPosition().y;
-
-				distanceToEnemy = sqrtf(pow((enemyPositionX - turretPositionX), 2) + pow((enemyPositionY - turretPositionY), 2));
-
-				if (distanceToEnemy < turret_c->range && distanceToEnemy < nearestEnemy)
-				{
-					target_i = j;
-					nearestEnemy = distanceToEnemy;
-
-					std::cout << "TARGET " << target_i << std::endl;
-					std::cout << "DISTANCE " << nearestEnemy << std::endl;
-				}
-			}
-			if (target_i != -1)
-			{
-				enemy = enemyManager->GetEnemies()[target_i];
-				enemy_c = enemy->GetComponent<Enemy>("Enemy");
-				turretAngle = pmath::radiansToDegrees(atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) + 90;
-				turret->transform.SetRotation(turretAngle);
-				ShootBullet(turretPositionX, turretPositionY, pmath::degreesToRadians(turretAngle-90), 400, 2, turret_c->range, 0);
-			}
-			*/
 		}
 	}
 }
@@ -118,12 +105,13 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 		}
 		else if (c.MaxRangeTravelled(dt))
 		{
+			RemoveChild(bullets[i]);
 			bullets.erase(bullets.begin() + i);
 		}
 	}
 }
 
-//Returns us a vector of enemies that are within the given range, the closest one being [0], ATTENTION: This function cannot return an empty vector, shared_ptr somehow won't allow it. This needs to be adressed ASAP.
+//Returns us a vector of enemies that are within the given range, the closest one being [0]
 std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)
 {
 		std::vector<std::shared_ptr<uth::GameObject>> enemies;

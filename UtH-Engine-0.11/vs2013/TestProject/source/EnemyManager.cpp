@@ -10,20 +10,21 @@ void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float an
 	auto enemy = std::shared_ptr<uth::GameObject>(new GameObject());
 	enemy->AddComponent(new Enemy(health_, armor_, speed_, pmath::degreesToRadians(angle_)));
 	enemy->AddComponent(new uth::AnimatedSprite(enemytexture,8,4,2,5,0,false,true));
+	enemy->transform.SetPosition(cosf(angle_)*700, sinf(angle_) * 700);
 	enemy->transform.SetScale(0.2f);
 	AddChild(enemy);
 	//A bit wonky at the moment, propably need to be reworked.
-	Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
-	float tempDistance = enemyC->GetDistance();
-	float tempAngle = enemyC->GetAngle();
-	enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);
+	//Enemy* enemyC = enemy->GetComponent<Enemy>("Enemy");
+	//float tempDistance = enemyC->GetDistance();
+	//float tempAngle = enemyC->GetAngle();
+	//enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);
 	enemies.push_back(enemy);
 }
-void EnemyManager::UpdateEnemies(float deltaTime)
+void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 {
 	float tempDistance = 0.0f;
 	float tempAngle = 0.0f;
-	for(int i = enemies.size() - 1; i > 0; i--)
+	for(int i = enemies.size() - 1; i >= 0; i--)
 	{
 		auto& enemy = enemies[i];
 		auto& c = *enemy->GetComponent<Enemy>();
@@ -40,6 +41,7 @@ void EnemyManager::UpdateEnemies(float deltaTime)
 		{
 			RemoveChild(enemy);
 			enemies.erase(enemies.begin() + i);
+			health -= 1;
 		}
 		if (!c.GetAlive())
 		{

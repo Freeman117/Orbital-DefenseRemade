@@ -21,7 +21,7 @@ void TurretManager::ShootBullet(float posX, float posY, float angle, float veloc
 {
 	uth::GameObject* bullet = new uth::GameObject();
 	//bullet->AddComponent(turret01Sprite);
-	bullet->AddComponent(new uth::AnimatedSprite(bullet01Texture, 3, 4, 2, 5, 5, false, true));
+	bullet->AddComponent(new uth::AnimatedSprite(bullet01Texture, 1, 4, 2, 5, 5, false, true));
 	bullet->transform.SetScale(0.75f);
 	bullet->transform.SetPosition(posX, posY);
 	bullet->transform.SetRotation(pmath::radiansToDegrees(angle)+90);

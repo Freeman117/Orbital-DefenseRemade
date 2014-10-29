@@ -22,17 +22,7 @@ public:
 	float orbit;
 	float orbitPos;
 
-	float testi;
-	float testi2;
-
-	std::vector<uth::GameObject*> turrets;
-
-	void Update(float dt) override;
-	void AddTurret(float o,float oPos, int tType);
-	void Draw(uth::RenderTarget& target) override;
-
-	uth::SpriteBatch* _spriteBatch;
-	uth::GameObject* turret;
+	float cooldown;
 	
 	
 };
