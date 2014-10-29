@@ -24,6 +24,8 @@ bool TemplateScene::Init()
 
 	AddChild(enemyManager = new EnemyManager());
 
+	AddChild(turretManager = new TurretManager());
+
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
 		uthRS.LoadTexture("test.tga")
@@ -53,16 +55,16 @@ void TemplateScene::Update(float dt)
 {
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::D))
 		{
-			turretManager.RotateTurrets(1,2 * dt);
+			turretManager->RotateTurrets(1,2 * dt);
 		}
 
 		if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
 		{
-			turretManager.RotateTurrets(1, -2 * dt);
+			turretManager->RotateTurrets(1, -2 * dt);
 		}
 		if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 		{
-			turretManager.CreateTurret(1, 1, testi);
+			turretManager->CreateTurret(1, 1, testi);
 
 			testi++;
 		}
@@ -76,9 +78,9 @@ void TemplateScene::Update(float dt)
 			enemyManager->SpawnEnemy(250, 3, 60, 110);
 		}
 
-		turretManager.UpdateTurrets(dt, enemyManager);
+		turretManager->UpdateTurrets(dt, enemyManager);
 		enemyManager->UpdateEnemies(dt);
-		turretManager.UpdateBullets(dt, enemyManager);
+		turretManager->UpdateBullets(dt, enemyManager);
 
 		for(size_t i = 0; i < m_buttons.size(); i++)
 		{

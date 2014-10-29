@@ -53,42 +53,42 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			float turretPositionX = turret.transform.GetPosition().x;
 			float turretPositionY = turret.transform.GetPosition().y;
 			//TURRETS ATTEMPT TO ACCESS ENEMIES THAT DO NOT EXIST, FIX IT!
+			
 			nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.range);
 
-			if (nearbyEnemies.size() > 0)
-			{
-				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
-				turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)) + 90);
-			}
-
+				if (nearbyEnemies.size() > 0)
+				{
+					ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
+					turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)) + 90);
+				}
 			/*
-			//for (int j = enemyManager->GetEnemies().size() - 1; j >= 0; j--)
-			//{
-			//	enemy = enemyManager->GetEnemies()[j];
-			//	enemy_c = enemy->GetComponent<Enemy>("Enemy");
+			for (int j = enemyManager->GetEnemies().size() - 1; j >= 0; j--)
+			{
+				enemy = enemyManager->GetEnemies()[j];
+				enemy_c = enemy->GetComponent<Enemy>("Enemy");
 
-			//	enemyPositionX = enemy->transform.GetPosition().x;
-			//	enemyPositionY = enemy->transform.GetPosition().y;
+				enemyPositionX = enemy->transform.GetPosition().x;
+				enemyPositionY = enemy->transform.GetPosition().y;
 
-			//	distanceToEnemy = sqrtf(pow((enemyPositionX - turretPositionX), 2) + pow((enemyPositionY - turretPositionY), 2));
+				distanceToEnemy = sqrtf(pow((enemyPositionX - turretPositionX), 2) + pow((enemyPositionY - turretPositionY), 2));
 
-			//	if (distanceToEnemy < turret_c->range && distanceToEnemy < nearestEnemy)
-			//	{
-			//		target_i = j;
-			//		nearestEnemy = distanceToEnemy;
+				if (distanceToEnemy < turret_c->range && distanceToEnemy < nearestEnemy)
+				{
+					target_i = j;
+					nearestEnemy = distanceToEnemy;
 
-			//		std::cout << "TARGET " << target_i << std::endl;
-			//		std::cout << "DISTANCE " << nearestEnemy << std::endl;
-			//	}
-			//}
-			//if (target_i != -1)
-			//{
-			//	enemy = enemyManager->GetEnemies()[target_i];
-			//	enemy_c = enemy->GetComponent<Enemy>("Enemy");
-			//	turretAngle = pmath::radiansToDegrees(atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) + 90;
-			//	turret->transform.SetRotation(turretAngle);
-			//	ShootBullet(turretPositionX, turretPositionY, pmath::degreesToRadians(turretAngle-90), 400, 2, turret_c->range, 0);
-			//}
+					std::cout << "TARGET " << target_i << std::endl;
+					std::cout << "DISTANCE " << nearestEnemy << std::endl;
+				}
+			}
+			if (target_i != -1)
+			{
+				enemy = enemyManager->GetEnemies()[target_i];
+				enemy_c = enemy->GetComponent<Enemy>("Enemy");
+				turretAngle = pmath::radiansToDegrees(atan2f(enemy->transform.GetPosition().y - turretPositionY, enemy->transform.GetPosition().x - turretPositionX)) + 90;
+				turret->transform.SetRotation(turretAngle);
+				ShootBullet(turretPositionX, turretPositionY, pmath::degreesToRadians(turretAngle-90), 400, 2, turret_c->range, 0);
+			}
 			*/
 		}
 	}
@@ -123,31 +123,34 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 	}
 }
 
-//Returns us a vector of enemies that are within the given range, the closest one being [0]
+//Returns us a vector of enemies that are within the given range, the closest one being [0], ATTENTION: This function cannot return an empty vector, shared_ptr somehow won't allow it. This needs to be adressed ASAP.
 std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)
 {
-	std::vector<std::shared_ptr<uth::GameObject>> enemies;
-	std::vector<pmath::Vec2> enemyDistances;
-	float distanceToEnemy = 0;
+		std::vector<std::shared_ptr<uth::GameObject>> enemies;
+		std::vector<pmath::Vec2> enemyDistances;
+		float distanceToEnemy = 0;
 
-	for(size_t i = enemyManager->GetEnemies().size() - 1; i >= 0; i--)
-	{
-		auto& enemy = *enemyManager->GetEnemies()[i];
-		auto& c = *enemy.GetComponent<Enemy>();
-
-		distanceToEnemy = sqrtf(pow((enemy.transform.GetPosition().x -positionX), 2) + pow((enemy.transform.GetPosition().y - positionY), 2)) - c.HitBox;
-
-		if (distanceToEnemy <= radius)
+		for (int i = enemyManager->GetEnemies().size() - 1; i >= 0; i--)
 		{
-			enemyDistances.push_back(pmath::Vec2(distanceToEnemy, i));
+			//This returns an invalid value, repair necessary
+			auto& enemy = *enemyManager->GetEnemies()[i];
+			auto& c = *enemy.GetComponent<Enemy>();
+
+			distanceToEnemy = sqrtf(pow((enemy.transform.GetPosition().x - positionX), 2) + pow((enemy.transform.GetPosition().y - positionY), 2)) - c.HitBox;
+
+			if (distanceToEnemy <= radius)
+			{
+				//enemyDistances.push_back(pmath::Vec2(distanceToEnemy, i));
+				enemyDistances.emplace_back(pmath::Vec2(distanceToEnemy, i));
+			}
 		}
-	}
 
-	std::sort(enemyDistances.begin(), enemyDistances.begin() + enemyDistances.size());
-	for(size_t i = 0; i < enemyDistances.size(); i++)
-	{
-		enemies.push_back(enemyManager->GetEnemies()[enemyDistances[i].y]);
-	}
+		std::sort(enemyDistances.begin(), enemyDistances.begin() + enemyDistances.size());
+		for (size_t i = 0; i < enemyDistances.size(); i++)
+		{
+			//enemies.push_back(enemyManager->GetEnemies()[enemyDistances[i].y]);
+			enemies.emplace_back(enemyManager->GetEnemies()[enemyDistances[i].y]);
+		}
 
-	return enemies;
+		return enemies;
 }

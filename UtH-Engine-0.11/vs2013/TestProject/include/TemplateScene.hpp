@@ -35,7 +35,7 @@ private:
 	Turret* turretComponent;
 
 	EnemyManager* enemyManager;
-	TurretManager turretManager;
+	TurretManager* turretManager;
 
 	std::array<ns::Button*, 1> m_buttons;
 
