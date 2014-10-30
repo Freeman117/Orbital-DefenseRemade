@@ -14,6 +14,7 @@ public:
 	~TurretManager(){};
 
 	void UpdateTurrets(float deltaTime, EnemyManager* enemyManager);
+	void UpgradeTurret(float &money);
 	void RotateTurrets(int orb, float angle);
 	void RotationChange(float angle);
 	void RotationChange(float angle, int orbit);

@@ -10,8 +10,10 @@ public:
 	~Turret();
 
 	void init(int t);
+	void Upgrade(float &money,int choice = 1);
 
 	int type;
+	int level;
 	float damage;
 	float speed;
 	float range;

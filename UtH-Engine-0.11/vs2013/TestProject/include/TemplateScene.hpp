@@ -26,7 +26,7 @@ public:
 	int testi, testi2, health;
 	float enemySpawnFrame;
 	float turretAngle;
-	
+	float money;
 private:
 	uth::Shader shader;
 	uth::SpriteBatch* spriteBatch;

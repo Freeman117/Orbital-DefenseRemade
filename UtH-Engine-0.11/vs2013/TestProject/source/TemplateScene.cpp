@@ -14,6 +14,7 @@ bool TemplateScene::Init()
 	health = 10;
 	turretAngle = 0;
 	enemySpawnFrame = 0;
+	money = 5000.0f;
 
 	background = new GameObject();
 	AddChild(background);
@@ -89,6 +90,10 @@ void TemplateScene::Update(float dt)
 	if (uthInput.Keyboard.IsKeyDown(Keyboard::A))
 	{
 		turretManager->RotateTurrets(testi2, -2 * dt);
+	}
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key1))
+	{
+		turretManager->UpgradeTurret(money);
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
