@@ -21,7 +21,7 @@ public:
 	bool DeInit();
 
 	void Update(float dt);
-	bool Draw();
+	//bool Draw();
 
 	int testi, testi2, health;
 	float enemySpawnFrame;

@@ -24,6 +24,7 @@
 
 #define NEWSCENEFUNC
 #include <Scenes.hpp>
+#include <UtH\Platform\Debug.hpp>
 
 void handle_cmd(android_app* app, int cmd)
 {
@@ -65,6 +66,7 @@ void windowEventHandler(void* handle)
 
 void android_main(android_app* state)
 {
+
 	app_dummy();
 
     ALooper* looper = ALooper_forThread();
@@ -99,7 +101,7 @@ void android_main(android_app* state)
 
 	uthAndroidEngine.winEveHand = windowEventHandler;
 
-
+	
     uthSceneM.registerNewSceneFunc(NewSceneFunc, COUNT);
 
 	while(1)
@@ -107,7 +109,6 @@ void android_main(android_app* state)
 		int ident;
 		int events;
 		android_poll_source* source;
-
 		while ((ident=ALooper_pollAll(0, nullptr, &events,(void**)&source)) >= 0)
 		{
 			//Insteads of these two 'if' statement proper exit should be placed

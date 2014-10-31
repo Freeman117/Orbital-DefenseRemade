@@ -30,7 +30,15 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := uthengine
 LOCAL_SRC_FILES := main.cpp \
-../../vs2013/TestProject/source/TestScene.cpp
+../../vs2013/TestProject/source/TestScene.cpp \
+../../vs2013/TestProject/source/Bullet.cpp \
+../../vs2013/TestProject/source/Button.cpp \
+../../vs2013/TestProject/source/Enemy.cpp \
+../../vs2013/TestProject/source/EnemyManager.cpp \
+../../vs2013/TestProject/source/TemplateScene.cpp \
+../../vs2013/TestProject/source/Player.cpp \
+../../vs2013/TestProject/source/Turret.cpp \
+../../vs2013/TestProject/source/TurretManager.cpp
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv2 -lOpenSLES
 LOCAL_STATIC_LIBRARIES := android_native_app_glue engine
 LOCAL_SHARED_LIBRARIES :=

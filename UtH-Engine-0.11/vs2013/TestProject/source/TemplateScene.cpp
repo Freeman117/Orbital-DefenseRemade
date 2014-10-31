@@ -58,6 +58,7 @@ bool TemplateScene::Init()
 void TemplateScene::Update(float dt)
 {
 	enemySpawnFrame += dt;
+#if defined WIN32
 	if (uthInput.Mouse.IsButtonPressed(Mouse::LEFT))
 	{
 		float targetX = uthInput.Common.Position().x;
@@ -101,6 +102,7 @@ void TemplateScene::Update(float dt)
 
 		testi++;
 	}
+#endif
 	if (enemySpawnFrame > 8)
 	{
 		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;

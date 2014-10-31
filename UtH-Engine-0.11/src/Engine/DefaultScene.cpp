@@ -20,6 +20,7 @@ DefaultScene::~DefaultScene()
 
 bool DefaultScene::Init()
 {
+	WriteLog("DEFAULT INIT");
 	logo = AddChild<GameObject>();
 	text = logo->AddChild<GameObject>();
 	textU = logo->AddChild<GameObject>();
