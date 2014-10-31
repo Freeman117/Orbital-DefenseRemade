@@ -18,7 +18,7 @@ public:
 	void RotateTurrets(int orb, float angle);
 	void RotationChange(float angle);
 	void RotationChange(float angle, int orbit);
-	void CreateTurret(float type, float orb, float orbPos);
+	void CreateTurret(int type, int orb, int orbPos);
 	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe);
 	void UpdateBullets(float dt, EnemyManager* enemyManager);
 	std::vector<std::shared_ptr<uth::GameObject>> EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius);

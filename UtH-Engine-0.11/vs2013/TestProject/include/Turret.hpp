@@ -6,7 +6,7 @@
 class Turret : public uth::Component
 {
 public:
-	Turret(int t, int orb, int orbPos);
+	Turret(int t, float orb, float orbPos);
 	~Turret();
 
 	void init(int t);

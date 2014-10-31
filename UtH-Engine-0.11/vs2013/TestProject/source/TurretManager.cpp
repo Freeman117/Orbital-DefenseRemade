@@ -9,7 +9,7 @@ TurretManager::TurretManager()
 	turret01Texture = uthRS.LoadTexture("TurretDesigns2.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 }
-void TurretManager::CreateTurret(float type, float orb, float orbitPos)
+void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
 	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
 	turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));

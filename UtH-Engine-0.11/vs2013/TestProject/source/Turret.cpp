@@ -1,6 +1,6 @@
 #include "Turret.hpp"
 
-Turret::Turret(int type_, int orb, int orbPos) : uth::Component("Turret")
+Turret::Turret(int type_, float orb, float orbPos) : uth::Component("Turret")
 {
 
 	type = type_;
@@ -44,7 +44,7 @@ void Turret::Upgrade(float &money, int choice)
 	}
 	else if (level == 1 && money > 70.0f)
 	{
-		speed = 1.35;
+		speed = 1.35f;
 		damage = 60;
 		range = 110;
 		level = 2;
@@ -52,7 +52,7 @@ void Turret::Upgrade(float &money, int choice)
 	}
 	else if (level == 2 && money > 90.0f)
 	{
-		speed = 1.35;
+		speed = 1.35f;
 		damage = 65;
 		range = 115;
 		level = 3;
@@ -60,7 +60,7 @@ void Turret::Upgrade(float &money, int choice)
 	}
 	else if (level == 3 && money > 110.0f)
 	{
-		speed = 1.2;
+		speed = 1.2f;
 		damage = 65;
 		range = 120;
 		level = 4;
@@ -68,7 +68,7 @@ void Turret::Upgrade(float &money, int choice)
 	}
 	else if (level == 4 && choice == 1 && money > 130.0f)
 	{
-		speed = 1.2;
+		speed = 1.2f;
 		damage = 80;
 		range = 120;
 		level = 5;
@@ -76,7 +76,7 @@ void Turret::Upgrade(float &money, int choice)
 	}
 	else if (level == 4 && choice == 2 && money > 150.0f)
 	{
-		speed = 1.2;
+		speed = 1.2f;
 		damage = 65;
 		range = 150;
 		level = 5;
