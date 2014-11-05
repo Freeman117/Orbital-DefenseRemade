@@ -95,6 +95,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\Button.cpp" />
     <ClCompile Include="source\Enemy.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="include\TestScene.hpp" />
     <ClInclude Include="include\Turret.hpp" />
     <ClInclude Include="include\TurretManager.hpp" />
+    <ClInclude Include="Node.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
