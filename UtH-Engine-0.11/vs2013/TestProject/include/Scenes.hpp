@@ -19,14 +19,14 @@ enum SceneName
 
 #include <TestScene.hpp>
 #include <TemplateScene.hpp>
-
+#include <MenuScene.hpp>
 // Create function for a new scene, having a case for every user made scene
 uth::Scene* NewSceneFunc(int SceneID)
 {
 	switch (SceneID)
 	{
-	case MENU:		return new /*Menu*/uth::TestScene();
-	case GAME:		return new /*Game*/uth::TestScene();
+	case MENU:		return new /*Menu*/MenuScene();
+	case GAME:		return new /*Game*/TemplateScene();
 	case CREDITS:	return new /*Credits*/uth::TestScene();
 	default:		return new TemplateScene();
 	}

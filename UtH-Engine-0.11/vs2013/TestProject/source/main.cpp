@@ -11,7 +11,7 @@ int main()
 	uthSceneM.registerNewSceneFunc(NewSceneFunc, COUNT);
 
 	uthEngine.Init();
-
+	uthSceneM.GoToScene(0);
 	while (uthEngine.Running())
 	{
 		uthEngine.Update();
