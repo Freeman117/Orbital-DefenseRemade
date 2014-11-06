@@ -14,15 +14,17 @@ bool MenuScene::Init()
 {
 //pragma region is just a flavor, you can show/hide the block of code with a comment to make it look nice
 #pragma region Camera
+	//With this, the menu will look the same whether the game is running on a pc or a handheld device
 	auto& window = uthEngine.GetWindow();
 	window.SetCamera(&menuCamera);
 	menuCamera.SetSize(1280, 720);
 	menuCamera.SetPosition(menuCamera.GetSize() / 2.f);
 #pragma endregion Camera
+
 	std::array<uth::Texture*, 2> buttonTextures =
 	{
-		uthRS.LoadTexture("test.tga"),
-		uthRS.LoadTexture("test2.tga")
+		uthRS.LoadTexture("startButton.png"),
+		uthRS.LoadTexture("exitButton.png")
 	};
 
 	for (auto i : buttonTextures)
@@ -45,7 +47,7 @@ bool MenuScene::Init()
 
 	buttons[1]->setCallBack([]
 	{
-		//Exit
+		//This button will unleash ragnarok. It's the bloody exit button what did you expect?
 		uthEngine.Exit();
 	});
 
@@ -54,7 +56,7 @@ bool MenuScene::Init()
 		auto b = buttons[i];
 
 		b->transform.SetOrigin(uth::Origin::TopLeft);
-		b->transform.SetPosition(100.f, 100.f + (i*50.f) + (i*b->transform.GetSize().y));
+		b->transform.SetPosition(528.f, 256.f + (i*50.f) + (i*b->transform.GetSize().y));
 		uth::Layer::AddChild(b);
 	}
 

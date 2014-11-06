@@ -30,18 +30,16 @@ bool TemplateScene::Init()
 
 	AddChild(turretManager = new TurretManager());
 
+	/*
 	std::array<uth::Texture*, 1> buttonTextures =
 	{
 		uthRS.LoadTexture("test.tga")
 	};
-
 	m_buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
-
 	m_buttons[0]->setCallBack([]()
 	{
 		WriteLog("KAIKKI KUOLI SAATANA");
 	});
-
 	for (size_t i = 0; i < m_buttons.size(); i++)
 	{
 		auto b = m_buttons[i];
@@ -50,8 +48,7 @@ bool TemplateScene::Init()
 		b->transform.SetScale(0.7f);
 		AddChild(b);
 	}
-	
-	
+	*/
 	return true;
 }
 
@@ -122,16 +119,14 @@ void TemplateScene::Update(float dt)
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);
 	turretManager->UpdateBullets(dt, enemyManager);
-
+	/*
 	for(size_t i = 0; i < m_buttons.size(); i++)
 	{
 		m_buttons[i]->Update(dt);
 	}
-
+	*/
 	return;
 }
-
-
 
 bool TemplateScene::DeInit()
 {
