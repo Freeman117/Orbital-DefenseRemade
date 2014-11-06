@@ -45,7 +45,11 @@
     <ClCompile Include="source\TurretManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Node.cpp">
+=======
+    <ClCompile Include="source\MenuScene.cpp">
+>>>>>>> origin/master
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +87,11 @@
     <ClInclude Include="include\TurretManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Node.hpp">
+=======
+    <ClInclude Include="include\MenuScene.hpp">
+>>>>>>> origin/master
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

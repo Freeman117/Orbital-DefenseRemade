@@ -40,7 +40,7 @@ private:
 	EnemyManager* enemyManager;
 	TurretManager* turretManager;
 
-	std::array<ns::Button*, 1> m_buttons;
+	//std::array<ns::Button*, 1> m_buttons; No longer relevant, was used for testing
 
 };
 

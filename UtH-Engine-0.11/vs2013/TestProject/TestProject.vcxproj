@@ -101,6 +101,7 @@
     <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\EnemyManager.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MenuScene.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\TemplateScene.cpp" />
     <ClCompile Include="source\TestScene.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="include\Button.hpp" />
     <ClInclude Include="include\Enemy.hpp" />
     <ClInclude Include="include\EnemyManager.hpp" />
+    <ClInclude Include="include\MenuScene.hpp" />
     <ClInclude Include="include\MoveAffector.hpp" />
     <ClInclude Include="include\Player.hpp" />
     <ClInclude Include="include\Scenes.hpp" />
