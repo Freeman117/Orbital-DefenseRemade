@@ -19,9 +19,6 @@
     <ClCompile Include="source\MenuScene.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="source\Player.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -35,6 +32,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\TurretManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Node.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -57,9 +57,6 @@
     <ClInclude Include="include\MoveAffector.hpp">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Node.hpp">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Player.hpp">
       <Filter>Include</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Scenes.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Node.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

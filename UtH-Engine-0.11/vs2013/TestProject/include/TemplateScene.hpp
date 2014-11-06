@@ -21,7 +21,6 @@ public:
 	bool DeInit();
 
 	void Update(float dt);
-	//bool Draw();
 
 	int testi, testi2, health;
 	float enemySpawnFrame;
@@ -29,19 +28,13 @@ public:
 	float money;
 private:
 	uth::Shader shader;
-	uth::SpriteBatch* spriteBatch;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
-	uth::GameObject* turret;
-	Turret* turretComponent;
 
 	uth::Randomizer* randomizer;
 
 	EnemyManager* enemyManager;
 	TurretManager* turretManager;
-
-	//std::array<ns::Button*, 1> m_buttons; No longer relevant, was used for testing
-
 };
 
 #endif
