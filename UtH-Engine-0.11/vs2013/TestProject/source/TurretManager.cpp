@@ -7,6 +7,9 @@ TurretManager::TurretManager()
 	turret01Sprite = new uth::Sprite("CannonTower.png");
 	turret01Texture = uthRS.LoadTexture("TurretDesigns2.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
+	node01Texture = uthRS.LoadTexture("buttonTest.png");
+	buttons[0] = new Node(1, 0, 0, node01Texture);
+	AddChild(buttons[0]);
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -50,6 +53,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {
 	std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
 
+	buttons[0]->MoveNode(orbit01Angle, orbit02Angle);
 	for (int i = turrets.size() - 1; i >= 0; i--)
 	{
 		auto& turret = *turrets[i];
