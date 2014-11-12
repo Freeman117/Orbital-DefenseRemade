@@ -30,7 +30,7 @@ private:
 	uth::Shader shader;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
-
+	uth::Text* testText;
 	uth::Randomizer* randomizer;
 
 	EnemyManager* enemyManager;

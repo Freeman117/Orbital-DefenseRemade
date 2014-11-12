@@ -81,11 +81,15 @@ void TemplateScene::Update(float dt)
 	}
 #endif
 	
-	/*if ()
+#if defined UTH_SYSTEM_ANDROID
+	if (uthInput.Touch[0].Motion() == TouchMotion::TAP)
 	{
-		uthInput.Touch[0].GetPosition();
-	}*/
-
+		pmath::Vec2f target = (uthInput.Touch[0].GetPosition());
+		float fromX = uthEngine.GetWindow().GetViewport().getRight() / 2;
+		float fromY = uthEngine.GetWindow().GetViewport().getBottom() / 2;
+		turretManager->RotationChange(atan2f(target.y - fromY, target.x - fromX), testi2);
+	}
+#endif
 
 	if (enemySpawnFrame > 8)
 	{
