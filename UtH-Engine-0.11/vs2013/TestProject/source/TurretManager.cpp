@@ -8,8 +8,7 @@ TurretManager::TurretManager()
 	turret01Texture = uthRS.LoadTexture("TurretDesigns2.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
-	buttons[0] = new Node(1, 0, 0, node01Texture);
-	AddChild(buttons[0]);
+	CreateNodes();
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -53,7 +52,11 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {
 	std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
 
-	buttons[0]->MoveNode(orbit01Angle, orbit02Angle);
+	for (int i = nodes.size() - 1; i >= 0; i--)
+	{
+		nodes[i]->MoveNode(orbit01Angle, orbit02Angle);
+	}
+	
 	for (int i = turrets.size() - 1; i >= 0; i--)
 	{
 		auto& turret = *turrets[i];
@@ -120,7 +123,21 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 		}
 	}
 }
-
+void TurretManager::CreateNodes()
+{
+	for (int i = 0; i < 6; i++)
+	{
+		auto node = new Node(1, i, orbit01Angle, node01Texture);
+		nodes.push_back(node);
+		AddChild(node);
+	}
+	for (int i = 0; i < 12; i++)
+	{
+		auto node = new Node(2, i, orbit02Angle, node01Texture);
+		nodes.push_back(node);
+		AddChild(node);
+	}
+}
 //Returns us a vector of enemies that are within the given range, the closest one being [0]
 std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius)
 {
