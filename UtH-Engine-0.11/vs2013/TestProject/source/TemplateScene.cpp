@@ -15,7 +15,12 @@ bool TemplateScene::Init()
 	turretAngle = 0;
 	enemySpawnFrame = 0;
 	money = 5000.0f;
-
+	
+	//THIS DOES NOT FUNCTION YET
+	//testText = new Text("8bitoperator", 12.f);
+	//testText->SetText("WHAT IS THIS I DONT EVEN");
+	//moonbase->AddComponent(testText);
+	
 	background = new GameObject();
 	AddChild(background);
 	background->AddComponent(new Sprite("stars2.png"));
