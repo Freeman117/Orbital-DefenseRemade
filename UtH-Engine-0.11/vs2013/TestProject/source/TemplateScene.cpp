@@ -5,9 +5,9 @@ using namespace uth;
 
 bool TemplateScene::Init()
 {
-	shader.LoadShader("Shaders/Default.vert", "Shaders/Default.frag");
-	shader.Use();
-	uthEngine.GetWindow().SetShader(&shader);
+	//shader.LoadShader("Shaders/Default.vert", "Shaders/Default.frag");
+	//shader.Use();
+	//uthEngine.GetWindow().SetShader(&shader);
 
 	testi = 0;
 	testi2 = 1;
@@ -15,11 +15,6 @@ bool TemplateScene::Init()
 	turretAngle = 0;
 	enemySpawnFrame = 0;
 	money = 5000.0f;
-	
-	//THIS DOES NOT FUNCTION YET
-	//testText = new Text("8bitoperator", 12.f);
-	//testText->SetText("WHAT IS THIS I DONT EVEN");
-	//moonbase->AddComponent(testText);
 	
 	background = new GameObject();
 	AddChild(background);
@@ -34,6 +29,10 @@ bool TemplateScene::Init()
 	AddChild(enemyManager = new EnemyManager());
 
 	AddChild(turretManager = new TurretManager());
+
+	testText = new Text("kenpixel.ttf", 32.f);
+	moonbase->AddComponent(testText);
+	testText->SetText("WHAT IS THIS I DONT EVEN");
 	return true;
 }
 
@@ -115,7 +114,8 @@ void TemplateScene::Update(float dt)
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);
 	turretManager->UpdateBullets(dt, enemyManager);
-	
+
+	Scene::Update(dt);
 	return;
 }
 
