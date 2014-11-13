@@ -32,7 +32,7 @@ bool TemplateScene::Init()
 
 	testText = new Text("kenpixel.ttf", 32.f);
 	moonbase->AddComponent(testText);
-	testText->SetText("WHAT IS THIS I DONT EVEN");
+	testText->SetText("WHAT IS THIS I DONT EVEN",pmath::Vec4(1,0,1,1));
 	return true;
 }
 
