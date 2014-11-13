@@ -100,6 +100,7 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 	Enemy* enemy_c;
 
 	std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
+	std::vector<std::shared_ptr<uth::GameObject>> enemiesWithinAoE;
 
 	for(int i = bullets.size() - 1; i >= 0; i--)
 	{
@@ -111,8 +112,20 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 
 		if (nearbyEnemies.size() > 0)
 		{
-			enemy_c = nearbyEnemies[0]->GetComponent<Enemy>();
-			enemy_c->TakeHit(c.damage);
+			if (c.explosionradius > 0)
+			{
+				enemiesWithinAoE = EnemyWithinRange(enemyManager, nearbyEnemies[0]->transform.GetPosition().x, nearbyEnemies[0]->transform.GetPosition().y, c.explosionradius);
+				for (int j = enemiesWithinAoE.size() - 1; j >= 0; j--)
+				{
+					enemy_c = enemiesWithinAoE[j]->GetComponent<Enemy>();
+					enemy_c->TakeHit(c.damage);
+				}
+			}
+			else
+			{
+				enemy_c = nearbyEnemies[0]->GetComponent<Enemy>();
+				enemy_c->TakeHit(c.damage);
+			}
 			RemoveChild(bullets[i]);
 			bullets.erase(bullets.begin() + i);
 		}
