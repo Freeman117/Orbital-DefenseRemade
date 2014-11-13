@@ -24,10 +24,12 @@ public:
 	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe);
 	void UpdateBullets(float dt, EnemyManager* enemyManager);
 	void CreateNodes();
+	void UpdateNodes();
 	std::vector<std::shared_ptr<uth::GameObject>> EnemyWithinRange(EnemyManager* enemyManager, float positionX, float positionY, float radius);
 	std::vector<std::shared_ptr<uth::GameObject>> turrets;
 	std::vector<std::shared_ptr<uth::GameObject>> bullets;
-	std::vector<Node*> nodes;
+	std::vector<std::shared_ptr<Node>> nodes;
+	//std::vector<Node*> nodes;
 protected:
 
 	float orbit01Angle;

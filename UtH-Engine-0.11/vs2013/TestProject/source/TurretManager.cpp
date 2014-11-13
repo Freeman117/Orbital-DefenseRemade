@@ -52,10 +52,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 {
 	std::vector<std::shared_ptr<uth::GameObject>> nearbyEnemies;
 
-	for (int i = nodes.size() - 1; i >= 0; i--)
-	{
-		nodes[i]->MoveNode(orbit01Angle, orbit02Angle);
-	}
+	UpdateNodes();
 	
 	for (int i = turrets.size() - 1; i >= 0; i--)
 	{
@@ -140,15 +137,29 @@ void TurretManager::CreateNodes()
 {
 	for (int i = 0; i < 6; i++)
 	{
-		auto node = new Node(1, i, orbit01Angle, node01Texture);
+		auto node = std::shared_ptr<Node>(new Node(1, i, orbit01Angle, node01Texture));
 		nodes.push_back(node);
 		AddChild(node);
 	}
 	for (int i = 0; i < 12; i++)
 	{
-		auto node = new Node(2, i, orbit02Angle, node01Texture);
+		auto node = std::shared_ptr<Node>(new Node(2, i, orbit02Angle, node01Texture));
 		nodes.push_back(node);
 		AddChild(node);
+	}
+}
+void TurretManager::UpdateNodes()
+{
+	for (int i = nodes.size() - 1; i >= 0; i--)
+	{
+		auto& node = *nodes[i];
+		node.MoveNode(orbit01Angle, orbit02Angle);
+		if (node.GetTrue())
+		{
+			CreateTurret(1, node.GetOrbit(), node.GetOrbitPos());
+			//RemoveChild(node);
+			nodes.erase(nodes.begin() + i);
+		}
 	}
 }
 //Returns us a vector of enemies that are within the given range, the closest one being [0]

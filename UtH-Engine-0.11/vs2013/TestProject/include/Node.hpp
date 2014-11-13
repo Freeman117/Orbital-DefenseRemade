@@ -7,15 +7,21 @@
 class Node : public uth::GameObject
 {
 public:
-	Node(int orb,int orbPos,float orbAngle, uth::Texture* texture);
+	Node(int orb, int orbPos, float orbAngle, uth::Texture* texture);
 	~Node(){};
 	void MoveNode(float orb01Angle, float orb02Angle);
+	void SetTrue();
 
-	int orbit, orbitPos;
-	float orbAngle;
+	bool GetTrue();
+	int GetOrbit();
+	int GetOrbitPos();
 
 	uth::Texture* buttonTexture;
 	ns::Button* button;
+private:
+	int orbit, orbitPos;
+	float orbAngle;
+	bool isTrue;
 };
 
 #endif
