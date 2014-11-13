@@ -21,7 +21,13 @@ void Node::MoveNode(float orb01angle, float orb02angle)
 }
 bool Node::GetTrue()
 {
-	return isTrue;
+	if (isTrue)
+	{
+		isTrue = false;
+		return true;
+	}
+	else
+	return false;
 }
 int Node::GetOrbit()
 {
