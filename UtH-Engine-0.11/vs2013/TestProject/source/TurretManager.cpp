@@ -158,7 +158,7 @@ void TurretManager::UpdateNodes()
 		{
 			CreateTurret(1, node.GetOrbit(), node.GetOrbitPos());
 			//RemoveChild(node);
-			nodes.erase(nodes.begin() + i);
+			//nodes.erase(nodes.begin() + i);
 		}
 	}
 }
