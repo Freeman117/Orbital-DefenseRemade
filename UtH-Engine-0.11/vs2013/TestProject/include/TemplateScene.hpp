@@ -30,6 +30,7 @@ private:
 	uth::Shader shader;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
+	uth::GameObject* textBox = new uth::GameObject();
 	uth::Text* testText;
 	uth::Randomizer* randomizer;
 

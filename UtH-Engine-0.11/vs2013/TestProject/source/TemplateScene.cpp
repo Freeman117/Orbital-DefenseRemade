@@ -30,9 +30,15 @@ bool TemplateScene::Init()
 
 	AddChild(turretManager = new TurretManager());
 
-	testText = new Text("kenpixel.ttf", 32.f);
-	moonbase->AddComponent(testText);
-	testText->SetText("WHAT IS THIS I DONT EVEN",pmath::Vec4(1,0,1,1));
+	
+	AddChild(textBox);
+	textBox->transform.SetPosition(pmath::Vec2f(-512.f,-256.f));
+
+	testText = new Text("kenpixel.ttf", 18.f);
+	textBox->AddComponent(testText);
+	testText->SetText("TURRET DEFENSE INTENSIFIES",pmath::Vec4(1,0,1,1));
+	
+
 	return true;
 }
 
@@ -110,6 +116,10 @@ void TemplateScene::Update(float dt)
 		//enemyManager->SpawnEnemy(150, 3, 50, 100);
 		//enemyManager->SpawnEnemy(250, 3, 60, 110);
 	}
+
+	float randomi = randomizer->GetFloat(0.f, 1.f);
+	float randomi2 = randomizer->GetFloat(0.f, 1.f);
+	textBox->transform.SetPosition(-450.f+10.f*randomi, -256.f+10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);
