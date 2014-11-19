@@ -1,14 +1,12 @@
 #include "Enemy.hpp"
-
-Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Component("Enemy")
+Enemy::Enemy()
 {
-	health = health_;
-	armor = armor_;
-	speed = speed_;
-	angle = angle_;
 	isAlive = true;
 	distance = 700;
-	HitBox = 30;
+	angle = randomizer->GetFloat(0.0f, 1.0f) * 360;
+}
+Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Component("Enemy")
+{
 }
 
 void Enemy::TakeHit(float damageAmount)
@@ -38,4 +36,8 @@ float Enemy::GetSpeed()
 bool Enemy::GetAlive()
 {
 	return isAlive;
+}
+float Enemy::GetBounty()
+{
+	return bounty;
 }

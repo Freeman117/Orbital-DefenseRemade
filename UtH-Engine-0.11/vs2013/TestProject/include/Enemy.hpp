@@ -8,6 +8,7 @@
 class Enemy : public uth::Component
 {
 public:
+	Enemy();
 	Enemy(float health, float armor, float speed, float angle);
 	~Enemy(){};
 
@@ -18,7 +19,7 @@ public:
 	float GetSpeed();
 	bool GetAlive();
 	float HitBox;
-
+	float GetBounty();
 protected:
 
 	bool isAlive;
@@ -27,7 +28,8 @@ protected:
 	float speed;
 	float distance;
 	float angle;
-
+	float bounty;
+	uth::Randomizer* randomizer;
 private:
 };
 

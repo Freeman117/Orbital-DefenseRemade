@@ -37,6 +37,9 @@
     <ClCompile Include="source\Node.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Enemy_Asteroid_Small.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp">
@@ -76,6 +79,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Node.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enemy_Asteroid_Small.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
