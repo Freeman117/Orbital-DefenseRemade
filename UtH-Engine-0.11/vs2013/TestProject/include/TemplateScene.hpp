@@ -36,6 +36,7 @@ private:
 
 	uth::Text* testText;
 	uth::Text* moneyText;
+	
 
 	uth::Randomizer* randomizer;
 

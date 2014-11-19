@@ -33,17 +33,17 @@ bool TemplateScene::Init()
 	AddChild(moneyTextBox);
 	AddChild(textBox);
 	textBox->transform.SetPosition(pmath::Vec2f(-512.f,-256.f));
-	moneyTextBox->transform.SetPosition(pmath::Vec2f(-512.f, 236.f));
+	moneyTextBox->transform.SetPosition(pmath::Vec2f(-512.f, -236.f));
 
 	testText = new Text("kenpixel.ttf", 12.f);
 	textBox->AddComponent(testText);
 	testText->SetText("TURRET DEFENSE INTENSIFIES",pmath::Vec4(1,0,1,1));
 	
-	//std::string str("%f", money);
-
+	
+	
 	moneyText = new Text("kenpixel.ttf", 12.f);
 	moneyTextBox->AddComponent(moneyText);
-	moneyText->SetText("prkl", pmath::Vec4(1, 0, 0, 1));
+	
 
 	return true;
 }
@@ -130,6 +130,10 @@ void TemplateScene::Update(float dt)
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);
 	turretManager->UpdateBullets(dt, enemyManager);
+	
+	std::stringstream mn;
+	mn << money;
+	moneyText->SetText(mn.str(), pmath::Vec4(1, 0, 0, 1));
 
 	Scene::Update(dt);
 	return;
