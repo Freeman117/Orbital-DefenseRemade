@@ -30,8 +30,13 @@ private:
 	uth::Shader shader;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
+
 	uth::GameObject* textBox = new uth::GameObject();
+	uth::GameObject* moneyTextBox = new uth::GameObject();
+
 	uth::Text* testText;
+	uth::Text* moneyText;
+
 	uth::Randomizer* randomizer;
 
 	EnemyManager* enemyManager;

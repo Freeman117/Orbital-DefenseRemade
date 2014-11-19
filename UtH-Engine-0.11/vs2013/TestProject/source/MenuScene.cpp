@@ -12,7 +12,7 @@ MenuScene::~MenuScene()
 
 bool MenuScene::Init()
 {
-//pragma region is just a flavor, you can show/hide the block of code with a comment to make it look nice
+//pragma region is just a flavor, you can show/hide the block of code with a comment on it to make it look nice
 #pragma region Camera
 	//With this, the menu will look the same whether the game is running on a pc or a handheld device
 	auto& window = uthEngine.GetWindow();
@@ -20,6 +20,14 @@ bool MenuScene::Init()
 	menuCamera.SetSize(1280, 720);
 	menuCamera.SetPosition(menuCamera.GetSize() / 2.f);
 #pragma endregion Camera
+
+	title = new uth::GameObject();
+	AddChild(title);
+	uth::Text* titleText = new uth::Text("kenpixel.ttf",24.f);
+	title->AddComponent(titleText);
+	titleText->SetText("ORBITAL DEFENCE",pmath::Vec4(0,0,1,1));
+	title->transform.SetOrigin(uth::Origin::TopLeft);
+	title->transform.SetPosition(528.f,112.f);
 
 	std::array<uth::Texture*, 2> buttonTextures =
 	{
@@ -81,4 +89,5 @@ void MenuScene::Update(float dt) //At the moment this isn't very important, unle
 	buttons[1]->transform.SetPosition(buttons[1]->transform.GetPosition().x, initial1 + 10.f*std::sinf(sine));
 	*/
 	uth::Layer::Update(dt);
+	uth::Scene::Update(dt);
 }

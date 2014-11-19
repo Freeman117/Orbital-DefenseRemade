@@ -30,14 +30,20 @@ bool TemplateScene::Init()
 
 	AddChild(turretManager = new TurretManager());
 
-	
+	AddChild(moneyTextBox);
 	AddChild(textBox);
 	textBox->transform.SetPosition(pmath::Vec2f(-512.f,-256.f));
+	moneyTextBox->transform.SetPosition(pmath::Vec2f(-512.f, 236.f));
 
-	testText = new Text("kenpixel.ttf", 18.f);
+	testText = new Text("kenpixel.ttf", 12.f);
 	textBox->AddComponent(testText);
 	testText->SetText("TURRET DEFENSE INTENSIFIES",pmath::Vec4(1,0,1,1));
 	
+	//std::string str("%f", money);
+
+	moneyText = new Text("kenpixel.ttf", 12.f);
+	moneyTextBox->AddComponent(moneyText);
+	moneyText->SetText("prkl", pmath::Vec4(1, 0, 0, 1));
 
 	return true;
 }
@@ -117,9 +123,9 @@ void TemplateScene::Update(float dt)
 		//enemyManager->SpawnEnemy(250, 3, 60, 110);
 	}
 
-	float randomi = randomizer->GetFloat(0.f, 1.f);
-	float randomi2 = randomizer->GetFloat(0.f, 1.f);
-	textBox->transform.SetPosition(-450.f+10.f*randomi, -256.f+10.f*randomi2);
+	//float randomi = randomizer->GetFloat(0.f, 1.f);
+	//float randomi2 = randomizer->GetFloat(0.f, 1.f);
+	//textBox->transform.SetPosition(-450.f+10.f*randomi, -256.f+10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);
