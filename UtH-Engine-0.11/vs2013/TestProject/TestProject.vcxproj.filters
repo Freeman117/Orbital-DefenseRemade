@@ -43,6 +43,9 @@
     <ClCompile Include="source\Enemy_Asteroid_Cluster.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Turret_Cannon.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp">
@@ -88,6 +91,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Enemy_Asteroid_Cluster.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Cannon.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

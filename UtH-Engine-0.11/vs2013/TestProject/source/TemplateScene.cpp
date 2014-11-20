@@ -129,10 +129,10 @@ void TemplateScene::Update(float dt)
 
 	if (enemySpawnFrame > 8)
 	{
-		//float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
+		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
 		for (int i = 0; i < 7; i++)
 		{
-			enemyManager->SpawnEnemy(15, 1, rand+ randomizer->GetFloat(0.0f, 1.0f) * 15);
+			enemyManager->SpawnEnemy(15, 1, rand + randomizer->GetFloat(0.0f, 1.0f) * 15);
 		}
 		enemyManager->SpawnEnemy(1, 2, rand+50);
 		enemySpawnFrame -= 8;

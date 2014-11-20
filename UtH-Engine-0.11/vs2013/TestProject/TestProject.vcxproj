@@ -109,6 +109,7 @@
     <ClCompile Include="source\TestScene.cpp" />
     <ClCompile Include="source\Turret.cpp" />
     <ClCompile Include="source\TurretManager.cpp" />
+    <ClCompile Include="source\Turret_Cannon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="include\TestScene.hpp" />
     <ClInclude Include="include\Turret.hpp" />
     <ClInclude Include="include\TurretManager.hpp" />
+    <ClInclude Include="include\Turret_Cannon.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

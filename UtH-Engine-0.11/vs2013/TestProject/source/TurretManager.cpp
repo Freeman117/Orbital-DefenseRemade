@@ -13,9 +13,12 @@ TurretManager::TurretManager()
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
 	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
 	turret->transform.SetScale(0.30f);
-	turret->AddComponent(new Turret(type, orb, orbitPos));
+	if (type == 1)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
+		turret->AddComponent(new TurretCannon(orb,orbitPos));
+	}
 	AddChild(turret);
 	turrets.push_back(turret);
 }
@@ -59,23 +62,22 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 		auto& turret = *turrets[i];
 		auto& c = *turret.GetComponent<Turret>();
 
-		if (c.orbit == 1)
-			turret.transform.SetPosition(cosf(orbit01Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 115 * c.orbit, sinf(orbit01Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 115 * c.orbit);
-		else if (c.orbit == 2)
-			turret.transform.SetPosition(cosf(orbit02Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 115 * c.orbit, sinf(orbit02Angle + c.orbitPos*(pmath::pi / 3 / c.orbit)) * 115 * c.orbit);
+		if (c.GetOrbit() == 1)
+			turret.transform.SetPosition(cosf(orbit01Angle + c.GetOrbitPos()*(pmath::pi / 3 / c.GetOrbit())) * 115 * c.GetOrbit(), sinf(orbit01Angle + c.GetOrbitPos()*(pmath::pi / 3 / c.GetOrbit())) * 115 * c.GetOrbit());
+		else if (c.GetOrbit() == 2)
+			turret.transform.SetPosition(cosf(orbit02Angle + c.GetOrbitPos()*(pmath::pi / 3 / c.GetOrbit())) * 115 * c.GetOrbit(), sinf(orbit02Angle + c.GetOrbitPos()*(pmath::pi / 3 / c.GetOrbit())) * 115 * c.GetOrbit());
 
 		float turretPositionX = turret.transform.GetPosition().x;
 		float turretPositionY = turret.transform.GetPosition().y;
-		c.cooldown += deltaTime;
-		nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.range);
+		c.SetCooldown(c.GetCooldown() + deltaTime);
+		nearbyEnemies = EnemyWithinRange(enemyManager, turretPositionX, turretPositionY, c.GetRange());
 
 		if (nearbyEnemies.size() > 0)
 		{
 			turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)));
-			if (c.cooldown >= c.speed)
+			if (c.CanShoot())
 			{
-				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), 400, c.damage, c.range, c.aoe);
-				c.cooldown = 0;
+				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c.GetBulletSpeed(), c.GetDamage(), c.GetRange(), c.GetAoe());
 			}
 		}
 	}

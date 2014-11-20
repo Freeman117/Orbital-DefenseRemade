@@ -4,6 +4,7 @@
 #include <UtH/Engine/Engine.hpp>
 #include <pmath/PMath.hpp>
 #include "Turret.hpp"
+#include "Turret_Cannon.hpp"
 #include "Bullet.hpp"
 #include "Node.hpp"
 #include "EnemyManager.hpp"

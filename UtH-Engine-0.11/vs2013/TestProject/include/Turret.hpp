@@ -6,27 +6,32 @@
 class Turret : public uth::Component
 {
 public:
-	Turret(int t, float orb, float orbPos);
-	~Turret();
+	Turret(){};
+	~Turret(){};
+	bool CanShoot();
+	virtual void Upgrade(float &money, int choice = 1){};
+	float GetOrbit(){ return orbit; }
+	float GetOrbitPos(){ return orbitPos; }
+	float GetCooldown(){ return cooldown; }
+	void SetCooldown(float value){cooldown = value;}
+	float GetReloadSpeed(){ return reloadSpeed; }
+	float GetDamage(){ return damage; }
+	float GetRange(){ return range; }
+	float GetAoe(){ return aoe; }
+	float GetBulletSpeed(){ return bulletSpeed; }
+protected:
 
-	void init(int t);
-	void Upgrade(float &money,int choice = 1);
-
-	int type;
 	int level;
 	float damage;
-	float speed;
+	float reloadSpeed;
+	float bulletSpeed;
 	float range;
 	float aoe;
-
-	float totalTime;
-
 	float orbit;
 	float orbitPos;
 
 	float cooldown;
-	
-	
+	float totalTime;
 };
 
 #endif
