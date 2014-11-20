@@ -116,9 +116,10 @@ void TemplateScene::Update(float dt)
 		//float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
 		for (int i = 0; i < 7; i++)
 		{
-			enemyManager->SpawnEnemy(15, 1, 50 + randomizer->GetFloat(0, 1) * 15);
+			enemyManager->SpawnEnemy(15, 1, rand+ randomizer->GetFloat(0.0f, 1.0f) * 15);
 		}
-		enemySpawnFrame -= 1;
+		enemyManager->SpawnEnemy(1, 2, rand+50);
+		enemySpawnFrame -= 8;
 		//enemyManager->SpawnEnemy(150, 3, 50, 60);
 		//enemyManager->SpawnEnemy(250, 3, 60, 70);
 		//enemyManager->SpawnEnemy(150, 3, 50, 80);

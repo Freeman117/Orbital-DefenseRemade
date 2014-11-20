@@ -99,6 +99,7 @@
     <ClCompile Include="source\Button.cpp" />
     <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\EnemyManager.cpp" />
+    <ClCompile Include="source\Enemy_Asteroid_Cluster.cpp" />
     <ClCompile Include="source\Enemy_Asteroid_Small.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MenuScene.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="include\Button.hpp" />
     <ClInclude Include="include\Enemy.hpp" />
     <ClInclude Include="include\EnemyManager.hpp" />
+    <ClInclude Include="include\Enemy_Asteroid_Cluster.hpp" />
     <ClInclude Include="include\Enemy_Asteroid_Small.hpp" />
     <ClInclude Include="include\MenuScene.hpp" />
     <ClInclude Include="include\MoveAffector.hpp" />

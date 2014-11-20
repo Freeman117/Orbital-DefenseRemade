@@ -23,12 +23,18 @@ void EnemyManager::SpawnEnemy(float health_,float armor_, float speed_, float an
 void EnemyManager::SpawnEnemy(int wave, int type, float angle)
 {
 	auto enemy = std::shared_ptr<uth::GameObject>(new GameObject());
+	enemy->transform.SetPosition(cosf(angle) * 700, sinf(angle) * 700);
 	if (type == 1)
 	{
 		enemy->AddComponent(new EnemyAsteroidSmall(wave,angle));
 		enemy->AddComponent(new uth::AnimatedSprite(enemytexture, 8, 4, 2, 5, 0, false, true));
-		enemy->transform.SetPosition(cosf(angle) * 700, sinf(angle) * 700);
 		enemy->transform.SetScale(0.2f);
+	}
+	else if (type == 2)
+	{
+		enemy->AddComponent(new EnemyAsteroidCluster(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(enemytexture, 8, 4, 2, 3, 0, false, true));
+		enemy->transform.SetScale(0.5f);
 	}
 	AddChild(enemy);
 	enemies.push_back(enemy);
@@ -58,6 +64,7 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 		}
 		if (!c.GetAlive())
 		{
+			c.OnDeath();
 			RemoveChild(enemy);
 			enemies.erase(enemies.begin() + i);
 		}

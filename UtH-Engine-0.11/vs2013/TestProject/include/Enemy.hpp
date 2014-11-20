@@ -13,6 +13,7 @@ public:
 	~Enemy(){};
 
 	void TakeHit(float damageAmount);
+	virtual void OnDeath(){};
 	float GetDistance();
 	void SetDistance(float f);
 	float GetAngle();

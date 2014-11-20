@@ -5,6 +5,7 @@
 #include <pmath/PMath.hpp>
 #include "Enemy.hpp"
 #include "Enemy_Asteroid_Small.hpp"
+#include "Enemy_Asteroid_Cluster.hpp"
 #include <UtH/Engine/AnimatedSprite.hpp>
 #include <UtH/Renderer/Texture.hpp>
 #include <UtH/Engine/GameObject.hpp>
