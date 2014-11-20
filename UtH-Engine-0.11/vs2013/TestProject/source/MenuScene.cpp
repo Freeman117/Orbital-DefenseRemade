@@ -1,5 +1,9 @@
 #include "MenuScene.hpp"
 
+#ifdef UTH_SYSTEM_ANDROID
+#pragma GCC diagnostic ignored "-Wmissing-braces"
+#endif
+
 MenuScene::MenuScene()
 {
 

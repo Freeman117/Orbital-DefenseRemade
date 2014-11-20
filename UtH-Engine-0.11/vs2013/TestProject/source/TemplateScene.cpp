@@ -95,6 +95,10 @@ void TemplateScene::Update(float dt)
 
 		testi++;
 	}
+	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Escape))
+	{
+		uthEngine.Exit();
+	}
 #endif
 	
 #if defined UTH_SYSTEM_ANDROID
@@ -109,7 +113,7 @@ void TemplateScene::Update(float dt)
 
 	if (enemySpawnFrame > 8)
 	{
-		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
+		//float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
 		for (int i = 0; i < 7; i++)
 		{
 			enemyManager->SpawnEnemy(15, 1, 50 + randomizer->GetFloat(0, 1) * 15);
