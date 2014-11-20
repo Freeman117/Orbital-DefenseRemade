@@ -34,7 +34,7 @@ bool MenuScene::Init()
 	title->transform.SetPosition(528.f,112.f);
 
 	std::array<uth::Texture*, 2> buttonTextures =
-	{
+	{ 
 		uthRS.LoadTexture("startButton.png"),
 		uthRS.LoadTexture("exitButton.png")
 	};

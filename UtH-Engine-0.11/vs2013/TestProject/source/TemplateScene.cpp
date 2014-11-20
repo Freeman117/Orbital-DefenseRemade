@@ -44,6 +44,22 @@ bool TemplateScene::Init()
 	moneyText = new Text("kenpixel.ttf", 12.f);
 	moneyTextBox->AddComponent(moneyText);
 	
+	//std::array<uth::Texture*, 2> buttonTextures =
+	//{
+	//	uthRS.LoadTexture("particle.png"),
+	//	uthRS.LoadTexture("particle.png")
+	//};
+	//buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
+	//buttons[1] = new ns::Button(uthEngine.GetWindow(), buttonTextures[1]);
+
+	//buttons[0]->setCallBack([]()
+	//{
+	//	//testi2 = 2;
+	//});
+	//buttons[1]->setCallBack([]()
+	//{
+	//	//testi2 = 1;
+	//});
 
 	return true;
 }
@@ -102,7 +118,7 @@ void TemplateScene::Update(float dt)
 #endif
 	
 #if defined UTH_SYSTEM_ANDROID
-	if (uthInput.Touch[0].Motion() == TouchMotion::TAP)
+	if (uthInput.Touch[0].Motion() == TouchMotion::DRAG)
 	{
 		pmath::Vec2f target = (uthInput.Touch[0].GetPosition());
 		float fromX = uthEngine.GetWindow().GetViewport().getRight() / 2;

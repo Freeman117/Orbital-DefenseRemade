@@ -3,6 +3,8 @@
 
 #include <UtH/Engine/Engine.hpp>
 #include <UtH/Platform/Input.hpp>
+#include <UtH/Renderer/Camera.hpp>
+#include <UtH/Renderer/RenderAttributes.hpp>
 #include "Turret.hpp"
 #include "EnemyManager.hpp"
 #include "TurretManager.hpp"
@@ -26,6 +28,9 @@ public:
 	float enemySpawnFrame;
 	float turretAngle;
 	float money;
+
+	//int setTestiValue(int i){ testi2 = i; }
+
 private:
 	uth::Shader shader;
 	uth::GameObject* moonbase;
@@ -37,6 +42,7 @@ private:
 	uth::Text* testText;
 	uth::Text* moneyText;
 	
+	//std::array<ns::Button*, 2> buttons;
 
 	uth::Randomizer* randomizer;
 
