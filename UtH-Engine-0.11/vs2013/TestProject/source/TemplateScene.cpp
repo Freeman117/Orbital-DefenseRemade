@@ -44,22 +44,33 @@ bool TemplateScene::Init()
 	moneyText = new Text("kenpixel.ttf", 12.f);
 	moneyTextBox->AddComponent(moneyText);
 	
-	//std::array<uth::Texture*, 2> buttonTextures =
-	//{
-	//	uthRS.LoadTexture("particle.png"),
-	//	uthRS.LoadTexture("particle.png")
-	//};
-	//buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
-	//buttons[1] = new ns::Button(uthEngine.GetWindow(), buttonTextures[1]);
+	std::array<uth::Texture*, 2> buttonTextures =
+	{
+		uthRS.LoadTexture("particle.png"),
+		uthRS.LoadTexture("particle.png")
+	};
+	buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
+	buttons[1] = new ns::Button(uthEngine.GetWindow(), buttonTextures[1]);
 
-	//buttons[0]->setCallBack([]()
-	//{
-	//	//testi2 = 2;
-	//});
-	//buttons[1]->setCallBack([]()
-	//{
-	//	//testi2 = 1;
-	//});
+	buttons[0]->setCallBack([&]()
+	{
+		testi2 = 2;
+		//setTestiValue();
+		
+	});
+	buttons[1]->setCallBack([&]()
+	{
+		testi2 = 1;
+	});
+
+	buttons[0]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f));
+	buttons[1]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f+buttons[0]->transform.GetSize().y+10.f));
+
+	for (int i = 0; i < buttons.size(); i++)
+	{
+		auto b = buttons[i];
+		uth::Layer::AddChild(b);
+	}
 
 	return true;
 }
@@ -136,17 +147,8 @@ void TemplateScene::Update(float dt)
 		}
 		enemyManager->SpawnEnemy(1, 2, rand+50);
 		enemySpawnFrame -= 8;
-		//enemyManager->SpawnEnemy(150, 3, 50, 60);
-		//enemyManager->SpawnEnemy(250, 3, 60, 70);
-		//enemyManager->SpawnEnemy(150, 3, 50, 80);
-		//enemyManager->SpawnEnemy(250, 3, 60, 90);
-		//enemyManager->SpawnEnemy(150, 3, 50, 100);
-		//enemyManager->SpawnEnemy(250, 3, 60, 110);
 	}
 
-	//float randomi = randomizer->GetFloat(0.f, 1.f);
-	//float randomi2 = randomizer->GetFloat(0.f, 1.f);
-	//textBox->transform.SetPosition(-450.f+10.f*randomi, -256.f+10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);

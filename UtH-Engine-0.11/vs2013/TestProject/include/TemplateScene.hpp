@@ -29,7 +29,7 @@ public:
 	float turretAngle;
 	float money;
 
-	//int setTestiValue(int i){ testi2 = i; }
+	//void setTestiValue(){ testi2 = 2; }
 
 private:
 	uth::Shader shader;
@@ -42,7 +42,7 @@ private:
 	uth::Text* testText;
 	uth::Text* moneyText;
 	
-	//std::array<ns::Button*, 2> buttons;
+	std::array<ns::Button*, 2> buttons;
 
 	uth::Randomizer* randomizer;
 
