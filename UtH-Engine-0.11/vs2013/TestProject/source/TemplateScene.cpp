@@ -39,8 +39,6 @@ bool TemplateScene::Init()
 	textBox->AddComponent(testText);
 	testText->SetText("TURRET DEFENSE INTENSIFIES",pmath::Vec4(1,0,1,1));
 	
-	
-	
 	moneyText = new Text("kenpixel.ttf", 12.f);
 	moneyTextBox->AddComponent(moneyText);
 	
@@ -55,8 +53,6 @@ bool TemplateScene::Init()
 	buttons[0]->setCallBack([&]()
 	{
 		testi2 = 2;
-		//setTestiValue();
-		
 	});
 	buttons[1]->setCallBack([&]()
 	{
@@ -149,6 +145,9 @@ void TemplateScene::Update(float dt)
 		enemySpawnFrame -= 8;
 	}
 
+	//float randomi = randomizer->GetFloat(0.f, 1.f);
+	//float randomi2 = randomizer->GetFloat(0.f, 1.f);
+	//textBox->transform.SetPosition(-512.f + 10.f*randomi, -256.f + 10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
 	enemyManager->UpdateEnemies(dt, health);

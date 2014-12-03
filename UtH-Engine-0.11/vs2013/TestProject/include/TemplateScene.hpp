@@ -44,6 +44,7 @@ private:
 	
 	std::array<ns::Button*, 2> buttons;
 
+
 	uth::Randomizer* randomizer;
 
 	EnemyManager* enemyManager;
