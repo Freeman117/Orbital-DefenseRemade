@@ -5,7 +5,7 @@ TurretManager::TurretManager()
 {
 	orbit02Angle = 0.0f;
 	turret01Sprite = new uth::Sprite("CannonTower.png");
-	turret01Texture = uthRS.LoadTexture("TurretDesigns2.png");
+	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
 	CreateNodes();
@@ -13,11 +13,36 @@ TurretManager::TurretManager()
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
 	auto turret = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	turret->transform.SetScale(0.30f);
+	turret->transform.SetScale(2.5f);
 	if (type == 1)
 	{
-		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 0, false, false));
 		turret->AddComponent(new TurretCannon(orb,orbitPos));
+	}
+	else if (type == 2)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 3, false, false));
+		turret->AddComponent(new TurretLazer(orb, orbitPos));
+	}
+	else if (type == 3)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
+		turret->AddComponent(new TurretBeam(orb, orbitPos));
+	}
+	else if (type == 4)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 4, false, false));
+		turret->AddComponent(new TurretMissile(orb, orbitPos));
+	}
+	else if (type == 5)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 2, false, false));
+		turret->AddComponent(new TurretDisruptor(orb, orbitPos));
+	}
+	else if (type == 6)
+	{
+		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 1, false, false));
+		turret->AddComponent(new TurretMrk(orb, orbitPos));
 	}
 	AddChild(turret);
 	turrets.push_back(turret);
@@ -158,7 +183,10 @@ void TurretManager::UpdateNodes()
 		node.MoveNode(orbit01Angle, orbit02Angle);
 		if (node.GetTrue())
 		{
-			CreateTurret(1, node.GetOrbit(), node.GetOrbitPos());
+			if (node.GetOrbit() == 1)
+				CreateTurret(node.GetOrbitPos() + 1, node.GetOrbit(), node.GetOrbitPos());
+			else
+				CreateTurret(1, node.GetOrbit(), node.GetOrbitPos());
 			//RemoveChild(node);
 			//nodes.erase(nodes.begin() + i);
 		}

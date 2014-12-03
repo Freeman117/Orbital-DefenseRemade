@@ -118,7 +118,7 @@ void TemplateScene::Update(float dt)
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{
-		turretManager->CreateTurret(1, testi2, testi);
+		turretManager->CreateTurret(2, testi2, testi);
 
 		testi++;
 	}
