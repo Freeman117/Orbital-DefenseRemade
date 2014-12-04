@@ -179,16 +179,22 @@ void TurretManager::UpdateNodes()
 {
 	for (int i = nodes.size() - 1; i >= 0; i--)
 	{
-		auto& node = *nodes[i];
-		node.MoveNode(orbit01Angle, orbit02Angle);
-		if (node.GetTrue())
+		auto node = nodes[i];
+		node->MoveNode(orbit01Angle, orbit02Angle);
+		if (node->GetTrue())
 		{
+<<<<<<< HEAD
 			if (node.GetOrbit() == 1)
 				CreateTurret(node.GetOrbitPos() + 1, node.GetOrbit(), node.GetOrbitPos());
 			else
 				CreateTurret(1, node.GetOrbit(), node.GetOrbitPos());
 			//RemoveChild(node);
+=======
+			CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
+			RemoveChild(node);
+>>>>>>> origin/master
 			//nodes.erase(nodes.begin() + i);
+			
 		}
 	}
 }

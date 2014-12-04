@@ -75,10 +75,14 @@ namespace uth
 
 	void Object::RemoveChild(const std::shared_ptr<Object>& object)
 	{
-		auto o = std::find(m_children.begin(), m_children.end(), object);
-		(*o)->setParent(nullptr);
-		m_children.erase(o);
+		if (object != nullptr)
+		{
+			auto o = std::find(m_children.begin(), m_children.end(), object);
+			(*o)->setParent(nullptr);
+			m_children.erase(o);
+		}
 	}
+
 	void Object::RemoveChildren()
 	{
 		for (auto& child : m_children)

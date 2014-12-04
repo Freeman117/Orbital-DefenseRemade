@@ -3,6 +3,8 @@
 
 #include "Button.hpp"
 #include <UtH/UtHEngine.hpp>
+#include <array>
+#include <memory>
 
 class Node : public uth::GameObject
 {
@@ -18,6 +20,9 @@ public:
 
 	uth::Texture* buttonTexture;
 	ns::Button* button;
+
+	//std::array<ns::Button*, 6> towers;
+
 private:
 	int orbit, orbitPos;
 	float orbAngle;
