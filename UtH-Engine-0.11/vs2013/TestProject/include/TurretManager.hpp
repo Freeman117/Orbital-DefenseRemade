@@ -37,10 +37,6 @@ public:
 	std::vector<std::shared_ptr<Node>> nodes;
 	//std::vector<Node*> nodes;
 
-	std::array<ns::Button*, 6> towers;
-	ns::Button* cancel;
-	//std::vector<
-
 protected:
 
 	float orbit01Angle;
@@ -53,6 +49,15 @@ private:
 	uth::Texture* turret01Texture;
 	uth::Texture* bullet01Texture;
 	uth::Texture* node01Texture;
+	uth::Texture* towerButtonTexture;
+
+	std::array<ns::Button*, 6> towers;
+	std::vector<std::shared_ptr<ns::Button>> towerButtons;
+	ns::Button* cancel;
+
+	void AddTurretButtons();
+	void RemoveTurretButtons();
+
 };
 
 #endif

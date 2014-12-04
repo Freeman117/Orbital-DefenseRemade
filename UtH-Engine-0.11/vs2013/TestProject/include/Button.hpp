@@ -5,6 +5,7 @@
 
 #include <UtH/Engine/GameObject.hpp>
 #include <functional>
+#include <UtH\Engine\AnimatedSprite.hpp>
 
 namespace uth
 {
@@ -20,7 +21,8 @@ namespace ns
 	public:
 		//Esimerkkikoodia uth-enginen sivulta
 		Button(const uth::RenderTarget& target, uth::Texture* texture);
-		
+		//Button(const uth::RenderTarget& target, uth::AnimatedSprite* animatedSprite);
+
 		void setCallBack(Callback callback);
 	private:
 		void update(float dt) override;

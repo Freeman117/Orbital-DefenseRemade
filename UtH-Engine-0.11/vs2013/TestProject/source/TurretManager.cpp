@@ -8,6 +8,7 @@ TurretManager::TurretManager()
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
+	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	CreateNodes();
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
@@ -183,28 +184,25 @@ void TurretManager::UpdateNodes()
 		node->MoveNode(orbit01Angle, orbit02Angle);
 		if (node->GetTrue())
 		{
-			/*cancel = new ns::Button(uthEngine.GetWindow(),uthRS.LoadTexture("particle.png"));
+		/*	cancel = new ns::Button(uthEngine.GetWindow(),uthRS.LoadTexture("particle.png"));
 			AddChild(cancel);
 			cancel->transform.SetPosition(512.f,-30.f);
 
-			for (int i = 0; i < 5; i++)
+			cancel->setCallBack([&]()
 			{
-				towers[i] = new ns::Button(uthEngine.GetWindow(), uthRS.LoadTexture("particle.png"));
-				AddChild(towers[i]);
-			}
-			towers[0]->transform.SetPosition(pmath::Vec2f(-524.f,-100.f));
-			towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -80.f));
-			towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -60.f));
-			towers[3]->transform.SetPosition(pmath::Vec2f(-500.f, -100.f));
-			towers[4]->transform.SetPosition(pmath::Vec2f(-500.f, -80.f));
-			towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));*/
+				for (int i = 0; i < 5; i++)
+				{
+					RemoveChild(towerButtons[i]);
+				}
+			});
+		*/
 
 			if (node->GetOrbit() == 1)
 				CreateTurret(node->GetOrbitPos() + 1, node->GetOrbit(), node->GetOrbitPos());
 			else
 				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
-			CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
+			//CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 			RemoveChild(node);
 			nodes.erase(nodes.begin() + i);
 
@@ -241,4 +239,24 @@ std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(En
 		}
 
 		return enemies;
+}
+
+void TurretManager::AddTurretButtons()
+{
+	/*for (int i = 0; i < 5; i++)
+	{
+		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+		AddChild(towers[i]);
+	}
+	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
+	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -80.f));
+	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -60.f));
+	towers[3]->transform.SetPosition(pmath::Vec2f(-500.f, -100.f));
+	towers[4]->transform.SetPosition(pmath::Vec2f(-500.f, -80.f));
+	towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));*/
+}
+
+void TurretManager::RemoveTurretButtons()
+{
+
 }

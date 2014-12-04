@@ -1,4 +1,4 @@
-#ifndef TURRET_RMK_HPP
+#ifndef TURRET_MRK_HPP
 #define TURRET_MRK_HPP
 
 #include "Turret.hpp"

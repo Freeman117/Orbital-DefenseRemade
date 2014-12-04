@@ -41,7 +41,15 @@ LOCAL_SRC_FILES := main.cpp \
 ../../vs2013/TestProject/source/TurretManager.cpp \
 ../../vs2013/TestProject/source/MenuScene.cpp \
 ../../vs2013/TestProject/source/Node.cpp \
-../../vs2013/TestProject/source/Enemy_Asteroid_Small.cpp
+../../vs2013/TestProject/source/Enemy_Asteroid_Small.cpp \
+../../vs2013/TestProject/source/Enemy_Asteroid_Cluster.cpp \
+../../vs2013/TestProject/source/Turret_Beam.cpp \
+../../vs2013/TestProject/source/Turret_Cannon.cpp \
+../../vs2013/TestProject/source/Turret_Disruptor.cpp \
+../../vs2013/TestProject/source/Turret_Lazer.cpp \
+../../vs2013/TestProject/source/Turret_Missile.cpp \
+../../vs2013/TestProject/source/Turret_Mrk.cpp
+
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv2 -lOpenSLES
 LOCAL_STATIC_LIBRARIES := android_native_app_glue engine
 LOCAL_SHARED_LIBRARIES :=

@@ -11,6 +11,12 @@ Button::Button(const uth::RenderTarget& target, uth::Texture* texture)
 {
 	this->AddComponent(new uth::Sprite(texture));
 }
+//Button::Button(const uth::RenderTarget& target, uth::AnimatedSprite* animatedSprite)
+//	: GameObject(),
+//	m_target(target)
+//{
+//	this->AddComponent(new uth::AnimatedSprite(animatedSprite));
+//}
 
 void Button::setCallBack(Callback callback)
 {
