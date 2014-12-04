@@ -95,6 +95,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\Turret_Lazer.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\Button.cpp" />
     <ClCompile Include="source\Enemy.cpp" />
@@ -109,7 +110,11 @@
     <ClCompile Include="source\TestScene.cpp" />
     <ClCompile Include="source\Turret.cpp" />
     <ClCompile Include="source\TurretManager.cpp" />
+    <ClCompile Include="source\Turret_Beam.cpp" />
     <ClCompile Include="source\Turret_Cannon.cpp" />
+    <ClCompile Include="source\Turret_Disruptor.cpp" />
+    <ClCompile Include="source\Turret_Missile.cpp" />
+    <ClCompile Include="source\Turret_Mrk.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp" />
@@ -127,7 +132,12 @@
     <ClInclude Include="include\TestScene.hpp" />
     <ClInclude Include="include\Turret.hpp" />
     <ClInclude Include="include\TurretManager.hpp" />
+    <ClInclude Include="include\Turret_Beam.hpp" />
+    <ClInclude Include="include\Turret_Disruptor.hpp" />
+    <ClInclude Include="include\Turret_Lazer.hpp" />
     <ClInclude Include="include\Turret_Cannon.hpp" />
+    <ClInclude Include="include\Turret_Missile.hpp" />
+    <ClInclude Include="include\Turret_Mrk.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

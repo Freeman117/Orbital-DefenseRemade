@@ -46,6 +46,21 @@
     <ClCompile Include="source\Turret_Cannon.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Turret_Missile.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Turret_Lazer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Turret_Beam.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Turret_Disruptor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Turret_Mrk.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp">
@@ -94,6 +109,21 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Turret_Cannon.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Missile.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Lazer.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Beam.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Disruptor.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Turret_Mrk.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

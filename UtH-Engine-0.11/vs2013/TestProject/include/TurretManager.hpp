@@ -5,6 +5,11 @@
 #include <pmath/PMath.hpp>
 #include "Turret.hpp"
 #include "Turret_Cannon.hpp"
+#include "Turret_Missile.hpp"
+#include "Turret_Lazer.hpp"
+#include "Turret_Beam.hpp"
+#include "Turret_Disruptor.hpp"
+#include "Turret_Mrk.hpp"
 #include "Bullet.hpp"
 #include "Node.hpp"
 #include "EnemyManager.hpp"
