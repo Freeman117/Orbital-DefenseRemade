@@ -158,10 +158,26 @@ void TurretManager::UpdateNodes()
 		node->MoveNode(orbit01Angle, orbit02Angle);
 		if (node->GetTrue())
 		{
+			/*cancel = new ns::Button(uthEngine.GetWindow(),uthRS.LoadTexture("particle.png"));
+			AddChild(cancel);
+			cancel->transform.SetPosition(512.f,-30.f);
+
+			for (int i = 0; i < 5; i++)
+			{
+				towers[i] = new ns::Button(uthEngine.GetWindow(), uthRS.LoadTexture("particle.png"));
+				AddChild(towers[i]);
+			}
+			towers[0]->transform.SetPosition(pmath::Vec2f(-524.f,-100.f));
+			towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -80.f));
+			towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -60.f));
+			towers[3]->transform.SetPosition(pmath::Vec2f(-500.f, -100.f));
+			towers[4]->transform.SetPosition(pmath::Vec2f(-500.f, -80.f));
+			towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));*/
+
+
 			CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 			RemoveChild(node);
-			//nodes.erase(nodes.begin() + i);
-			
+			nodes.erase(nodes.begin() + i);
 		}
 	}
 }

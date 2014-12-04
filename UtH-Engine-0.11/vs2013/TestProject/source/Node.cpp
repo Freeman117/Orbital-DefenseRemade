@@ -8,11 +8,7 @@ Node::Node(int orbit_, int orbitPos_, float orbAngle_, uth::Texture* texture) : 
 	isTrue = false;
 	button = new ns::Button(uthEngine.GetWindow(), buttonTexture);
 
-	/*for (int i = 0; i < 5; i++)
-	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(),uthRS.LoadTexture("particle.png"));
-	}*/
-
+	
 	button->setCallBack([&](){isTrue = true; });
 	button->transform.SetPosition(cosf(orbAngle_ + orbitPos_*(pmath::pi / 3 / orbit_)) * 115 * orbit_, sinf(orbAngle_ + orbitPos_*(pmath::pi / 3 / orbit_)) * 115 * orbit_);
 	button->transform.SetScale(1.0f);

@@ -31,6 +31,11 @@ public:
 	std::vector<std::shared_ptr<uth::GameObject>> bullets;
 	std::vector<std::shared_ptr<Node>> nodes;
 	//std::vector<Node*> nodes;
+
+	std::array<ns::Button*, 6> towers;
+	ns::Button* cancel;
+	//std::vector<
+
 protected:
 
 	float orbit01Angle;
