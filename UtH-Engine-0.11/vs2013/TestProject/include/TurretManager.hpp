@@ -49,7 +49,7 @@ private:
 	uth::Texture* turret01Texture;
 	uth::Texture* bullet01Texture;
 	uth::Texture* node01Texture;
-<<<<<<< HEAD
+
 	uth::Texture* towerButtonTexture;
 
 	std::array<ns::Button*, 6> towers;
@@ -59,9 +59,7 @@ private:
 	void AddTurretButtons();
 	void RemoveTurretButtons();
 
-=======
 	uth::Texture* disruptorProjectile;
->>>>>>> origin/master
 };
 
 #endif

@@ -8,11 +8,8 @@ TurretManager::TurretManager()
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
-<<<<<<< HEAD
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
-=======
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
->>>>>>> origin/master
 	CreateNodes();
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
@@ -213,10 +210,8 @@ void TurretManager::UpdateNodes()
 			else
 				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
-<<<<<<< HEAD
 			//CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
-=======
->>>>>>> origin/master
+
 			RemoveChild(node);
 			nodes.erase(nodes.begin() + i);
 
