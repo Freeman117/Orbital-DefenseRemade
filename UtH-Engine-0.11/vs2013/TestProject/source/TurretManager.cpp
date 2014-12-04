@@ -8,7 +8,11 @@ TurretManager::TurretManager()
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
 	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
+<<<<<<< HEAD
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
+=======
+	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
+>>>>>>> origin/master
 	CreateNodes();
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
@@ -18,44 +22,47 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 	if (type == 1)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 0, false, false));
-		turret->AddComponent(new TurretCannon(orb,orbitPos));
+		turret->AddComponent(new TurretCannon(orb,orbitPos,bullet01Texture));
 	}
 	else if (type == 2)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 3, false, false));
-		turret->AddComponent(new TurretLazer(orb, orbitPos));
+		turret->AddComponent(new TurretLazer(orb, orbitPos,bullet01Texture));
 	}
 	else if (type == 3)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
-		turret->AddComponent(new TurretBeam(orb, orbitPos));
+		turret->AddComponent(new TurretBeam(orb, orbitPos,bullet01Texture));
+		turret->transform.SetScale(2.0f);
 	}
 	else if (type == 4)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 4, false, false));
-		turret->AddComponent(new TurretMissile(orb, orbitPos));
+		turret->AddComponent(new TurretMissile(orb, orbitPos,bullet01Texture));
 	}
 	else if (type == 5)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 2, false, false));
-		turret->AddComponent(new TurretDisruptor(orb, orbitPos));
+		turret->AddComponent(new TurretDisruptor(orb, orbitPos,disruptorProjectile));
+		turret->transform.SetScale(1.85f);
 	}
 	else if (type == 6)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 1, false, false));
-		turret->AddComponent(new TurretMrk(orb, orbitPos));
+		turret->AddComponent(new TurretMrk(orb, orbitPos,bullet01Texture));
+		turret->transform.SetScale(2.70f);
 	}
 	AddChild(turret);
 	turrets.push_back(turret);
 }
-void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe)
+void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate, float slowAmount,uth::Texture* texture)
 {
 	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	bullet->AddComponent(new uth::AnimatedSprite(bullet01Texture, 1, 4, 2, 6, 5, false, true));
+	bullet->AddComponent(new uth::AnimatedSprite(texture, 3, 3, 1, 16.0f, 0, false, true));
 	bullet->transform.SetScale(0.75f);
 	bullet->transform.SetPosition(posX, posY);
 	bullet->transform.SetRotation(pmath::radiansToDegrees(angle) + 90);
-	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe));
+	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe,penetrate,slowAmount));
 	AddChild(bullet);
 	bullets.push_back(bullet);
 }
@@ -103,7 +110,7 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)));
 			if (c.CanShoot())
 			{
-				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c.GetBulletSpeed(), c.GetDamage(), c.GetRange(), c.GetAoe());
+				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c.GetBulletSpeed(), c.GetDamage(), c.GetRange(), c.GetAoe(),c.GetPenetrate(),c.GetSlowAmount(),c.GetTexture());
 			}
 		}
 	}
@@ -144,6 +151,7 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 				{
 					enemy_c = enemiesWithinAoE[j]->GetComponent<Enemy>();
 					enemy_c->TakeHit(c.damage);
+					enemy_c->SetMovementMod(c.slowAmount, 1);
 				}
 			}
 			else
@@ -151,8 +159,11 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 				enemy_c = nearbyEnemies[0]->GetComponent<Enemy>();
 				enemy_c->TakeHit(c.damage);
 			}
-			RemoveChild(bullets[i]);
-			bullets.erase(bullets.begin() + i);
+			if (!c.penetrate)
+			{
+				RemoveChild(bullets[i]);
+				bullets.erase(bullets.begin() + i);
+			}
 		}
 		else if (c.MaxRangeTravelled(dt))
 		{
@@ -202,7 +213,10 @@ void TurretManager::UpdateNodes()
 			else
 				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
+<<<<<<< HEAD
 			//CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
+=======
+>>>>>>> origin/master
 			RemoveChild(node);
 			nodes.erase(nodes.begin() + i);
 

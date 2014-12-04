@@ -1,6 +1,6 @@
 #include "Bullet.hpp"
 
-Bullet::Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float damage_, float range_, float splash) : uth::Component("Bullet")
+Bullet::Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float damage_, float range_, float splash, bool penetrate_, float slowAmount_) : uth::Component("Bullet")
 {
 	bPosx = bulletPositionX;
 	bPosy = bulletPositionY;
@@ -9,6 +9,8 @@ Bullet::Bullet(float bulletPositionX, float bulletPositionY, float angle, float 
 	speed = velocity;
 	range = range_;
 	explosionradius = splash;
+	slowAmount = slowAmount_;
+	penetrate = penetrate_;
 	travelledDistance = 0;
 	hitBox = 5;
 }

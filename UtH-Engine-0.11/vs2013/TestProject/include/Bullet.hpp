@@ -6,7 +6,7 @@
 class Bullet : public uth::Component
 {
 public:
-	Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float dmg,float range, float splash);
+	Bullet(float bulletPositionX, float bulletPositionY, float angle, float velocity, float dmg,float range, float splash = 0, bool penetrate = false, float slowAmount = 1);
 	~Bullet();
 
 	bool MaxRangeTravelled(float dt);
@@ -18,7 +18,8 @@ public:
 	float range;
 	float travelledDistance;
 	float hitBox;
-
+	bool penetrate;
+	float slowAmount;
 private:
 
 };

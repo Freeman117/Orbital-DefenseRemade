@@ -6,7 +6,7 @@
 class TurretDisruptor : public Turret
 {
 public:
-	TurretDisruptor(float orb, float orbPos);
+	TurretDisruptor(float orb, float orbPos, uth::Texture* projectileTexture);
 	~TurretDisruptor(){};
 	void Upgrade(float &money, int choice = 1);
 private:

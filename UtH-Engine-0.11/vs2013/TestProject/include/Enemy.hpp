@@ -16,6 +16,8 @@ public:
 	virtual void OnDeath(){};
 	float GetDistance();
 	void SetDistance(float f);
+	void UpdateMovementSpeed(float dt);
+	void SetMovementMod(float amount, float duration);
 	float GetAngle();
 	float GetSpeed();
 	bool GetAlive();
@@ -27,6 +29,8 @@ protected:
 	float health;
 	float armor;
 	float speed;
+	float speedMod;
+	float speedDuration;
 	float distance;
 	float angle;
 	float bounty;
