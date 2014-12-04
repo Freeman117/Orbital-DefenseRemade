@@ -6,7 +6,7 @@
 class TurretBeam : public Turret
 {
 public:
-	TurretBeam(float orb, float orbPos);
+	TurretBeam(float orb, float orbPos,uth::Texture* projectileTexture);
 	~TurretBeam(){};
 	void Upgrade(float &money, int choice = 1);
 private:

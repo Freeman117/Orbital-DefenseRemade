@@ -95,7 +95,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\Turret_Lazer.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\Button.cpp" />
     <ClCompile Include="source\Enemy.cpp" />
@@ -113,6 +112,7 @@
     <ClCompile Include="source\Turret_Beam.cpp" />
     <ClCompile Include="source\Turret_Cannon.cpp" />
     <ClCompile Include="source\Turret_Disruptor.cpp" />
+    <ClCompile Include="source\Turret_Lazer.cpp" />
     <ClCompile Include="source\Turret_Missile.cpp" />
     <ClCompile Include="source\Turret_Mrk.cpp" />
   </ItemGroup>

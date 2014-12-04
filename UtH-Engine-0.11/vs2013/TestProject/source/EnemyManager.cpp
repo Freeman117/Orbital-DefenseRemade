@@ -48,9 +48,9 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 		auto& enemy = enemies[i];
 		auto& c = *enemy->GetComponent<Enemy>();
 
+		c.UpdateMovementSpeed(deltaTime);
 		c.SetDistance(c.GetDistance() - c.GetSpeed() * deltaTime);
 		enemy->Update(deltaTime);
-
 		tempDistance = c.GetDistance();
 		tempAngle = c.GetAngle();
 		enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);

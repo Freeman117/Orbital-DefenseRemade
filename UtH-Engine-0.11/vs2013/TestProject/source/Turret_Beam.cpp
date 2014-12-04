@@ -1,6 +1,6 @@
 #include "Turret_Beam.hpp"
 
-TurretBeam::TurretBeam(float orb, float orbPos) : Turret()
+TurretBeam::TurretBeam(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
 {
 	damage = 175;
 	reloadSpeed = 3.5f;
@@ -9,6 +9,8 @@ TurretBeam::TurretBeam(float orb, float orbPos) : Turret()
 	aoe = 0;
 	cooldown = 0;
 	totalTime = 0;
+	penetrate = false;
+	slowAmount = 1;
 	level = 0;
 	orbit = orb;
 	orbitPos = orbPos;
