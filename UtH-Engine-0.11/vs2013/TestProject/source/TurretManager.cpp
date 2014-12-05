@@ -11,6 +11,11 @@ TurretManager::TurretManager()
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
+	/*for (int i = 0; i < 5; i++)
+	{
+		towers[i] = new ns::Button(uthEngine.GetWindow(),towerButtonTexture);
+	}
+	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);*/
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -192,25 +197,10 @@ void TurretManager::UpdateNodes()
 		node->MoveNode(orbit01Angle, orbit02Angle);
 		if (node->GetTrue())
 		{
-		/*	cancel = new ns::Button(uthEngine.GetWindow(),uthRS.LoadTexture("particle.png"));
-			AddChild(cancel);
-			cancel->transform.SetPosition(512.f,-30.f);
-
-			cancel->setCallBack([&]()
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					RemoveChild(towerButtons[i]);
-				}
-			});
-		*/
-
 			if (node->GetOrbit() == 1)
 				CreateTurret(node->GetOrbitPos() + 1, node->GetOrbit(), node->GetOrbitPos());
 			else
 				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
-
-			//CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
 			RemoveChild(node);
 			nodes.erase(nodes.begin() + i);
@@ -254,7 +244,6 @@ void TurretManager::AddTurretButtons()
 {
 	/*for (int i = 0; i < 5; i++)
 	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 		AddChild(towers[i]);
 	}
 	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
@@ -262,10 +251,19 @@ void TurretManager::AddTurretButtons()
 	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -60.f));
 	towers[3]->transform.SetPosition(pmath::Vec2f(-500.f, -100.f));
 	towers[4]->transform.SetPosition(pmath::Vec2f(-500.f, -80.f));
-	towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));*/
+	towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));
+
+	AddChild(cancel);
+	cancel->transform.SetPosition(-512.f,35.f);*/
+
 }
 
 void TurretManager::RemoveTurretButtons()
 {
-
+	/*
+	for (int i = 0; i < 5; i++)
+	{
+		auto& tornit = *towerButtons[i];
+		RemoveChild(tornit[i]);
+	}*/
 }
