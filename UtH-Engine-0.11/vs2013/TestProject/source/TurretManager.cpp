@@ -11,11 +11,7 @@ TurretManager::TurretManager()
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
-	/*for (int i = 0; i < 5; i++)
-	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(),towerButtonTexture);
-	}
-	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);*/
+
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -56,6 +52,8 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 	}
 	AddChild(turret);
 	turrets.push_back(turret);
+
+	AddTurretButtons();
 }
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate, float slowAmount,uth::Texture* texture)
 {
@@ -242,28 +240,33 @@ std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(En
 
 void TurretManager::AddTurretButtons()
 {
-	/*for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 6; i++)
 	{
+		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 		AddChild(towers[i]);
 	}
+	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+
 	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
-	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -80.f));
-	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -60.f));
-	towers[3]->transform.SetPosition(pmath::Vec2f(-500.f, -100.f));
-	towers[4]->transform.SetPosition(pmath::Vec2f(-500.f, -80.f));
-	towers[5]->transform.SetPosition(pmath::Vec2f(-500.f, -60.f));
+	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
+	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
+	towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
+	towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
+	towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
+
 
 	AddChild(cancel);
-	cancel->transform.SetPosition(-512.f,35.f);*/
+	cancel->transform.SetPosition(-508.f,5.f);
 
 }
 
-void TurretManager::RemoveTurretButtons()
+void TurretManager::RemoveTurretButtons() //NEEDS TESTING
 {
-	/*
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		auto& tornit = *towerButtons[i];
-		RemoveChild(tornit[i]);
-	}*/
+		auto tornit = towerButtons[i];
+		RemoveChild(tornit);
+	}
+	auto prkl = std::shared_ptr<ns::Button>(cancel);
+	RemoveChild(prkl);
 }
