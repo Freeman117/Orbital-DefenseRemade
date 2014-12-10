@@ -4,6 +4,7 @@
 #include <UtH/UtHEngine.hpp>
 #include <pmath/PMath.hpp>
 #include "Enemy.hpp"
+#include "Wave.hpp"
 #include "Enemy_Asteroid_Small.hpp"
 #include "Enemy_Asteroid_Cluster.hpp"
 #include <UtH/Engine/AnimatedSprite.hpp>

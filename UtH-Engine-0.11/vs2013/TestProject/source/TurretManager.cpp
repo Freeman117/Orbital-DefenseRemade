@@ -41,7 +41,7 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 	else if (type == 5)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 2, false, false));
-		turret->AddComponent(new TurretDisruptor(orb, orbitPos,disruptorProjectile));
+		turret->AddComponent(new TurretDisruptor(orb, orbitPos, bullet01Texture));
 		turret->transform.SetScale(1.85f);
 	}
 	else if (type == 6)
@@ -58,7 +58,7 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate, float slowAmount,uth::Texture* texture)
 {
 	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
-	bullet->AddComponent(new uth::AnimatedSprite(texture, 3, 3, 1, 16.0f, 0, false, true));
+	bullet->AddComponent(new uth::AnimatedSprite(texture, 1, 4, 2, 16.0f, 5, false, false));
 	bullet->transform.SetScale(0.75f);
 	bullet->transform.SetPosition(posX, posY);
 	bullet->transform.SetRotation(pmath::radiansToDegrees(angle) + 90);

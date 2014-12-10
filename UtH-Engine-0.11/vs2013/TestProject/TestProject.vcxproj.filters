@@ -61,6 +61,9 @@
     <ClCompile Include="source\Turret_Lazer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Wave.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp">
@@ -124,6 +127,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Turret_Mrk.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Wave.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
