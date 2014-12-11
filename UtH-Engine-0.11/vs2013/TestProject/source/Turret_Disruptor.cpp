@@ -9,7 +9,6 @@ TurretDisruptor::TurretDisruptor(float orb, float orbPos, uth::Texture* projecti
 	aoe = 100;
 	cooldown = 0;
 	totalTime = 0;
-	penetrate = false;
 	level = 0;
 	slowAmount = 0.75f;
 	orbit = orb;

@@ -9,8 +9,6 @@ TurretLazer::TurretLazer(float orb, float orbPos, uth::Texture* projectileTextur
 	aoe = 0;
 	cooldown = 0;
 	totalTime = 0;
-	slowAmount = 1;
-	penetrate = false;
 	level = 0;
 	orbit = orb;
 	orbitPos = orbPos;
@@ -64,6 +62,7 @@ void TurretLazer::Upgrade(float &money, int choice)
 		reloadSpeed = 0.6f;
 		damage = 25;
 		range = 160.0;
+		critAmount = 1.2f;
 		level = 5;
 		money -= 180;
 	}

@@ -10,7 +10,6 @@ TurretMissile::TurretMissile(float orb, float orbPos, uth::Texture* projectileTe
 	cooldown = 0;
 	totalTime = 0;
 	level = 0;
-	slowAmount = 1;
 	penetrate = false;
 	orbit = orb;
 	orbitPos = orbPos;

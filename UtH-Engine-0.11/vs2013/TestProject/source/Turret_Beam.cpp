@@ -9,8 +9,6 @@ TurretBeam::TurretBeam(float orb, float orbPos, uth::Texture* projectileTexture)
 	aoe = 0;
 	cooldown = 0;
 	totalTime = 0;
-	penetrate = false;
-	slowAmount = 1;
 	level = 0;
 	orbit = orb;
 	orbitPos = orbPos;
@@ -66,6 +64,7 @@ void TurretBeam::Upgrade(float &money, int choice)
 		range = 200.0;
 		level = 5;
 		money -= 180;
+		armorPenetration = 0.25f;
 	}
 	else
 	{

@@ -8,8 +8,9 @@ class Wave
 public:
 	Wave(){};
 	~Wave(){};
-	void Init(int wave,int enemyType1,float spawnInterval1,int enemyAmount1,int enemyType2,float spawnInterval2,int enemyAmount2);
+	void Init(int wave,int enemyType1,float spawnInterval1,int enemyAmount1,int enemyType2 = 0,float spawnInterval2 = 0,int enemyAmount2 = 0);
 	int getEnemy(float dt);
+	bool allEnemiesSpawned();
 private:
 	float enemySpawnTimer1, enemySpawnTimer2;
 	float spawnInterval1, spawnInterval2;

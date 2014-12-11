@@ -9,8 +9,6 @@ TurretCannon::TurretCannon(float orb, float orbPos, uth::Texture* projectileText
 	aoe = 0;
 	cooldown = 0;
 	totalTime = 0;
-	penetrate = false;
-	slowAmount = 1;
 	level = 0;
 	orbit = orb;
 	orbitPos = orbPos;

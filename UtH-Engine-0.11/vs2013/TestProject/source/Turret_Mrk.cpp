@@ -11,7 +11,6 @@ TurretMrk::TurretMrk(float orb, float orbPos, uth::Texture* projectileTexture) :
 	totalTime = 0;
 	level = 0;
 	penetrate = true;
-	slowAmount = 1;
 	orbit = orb;
 	orbitPos = orbPos;
 }

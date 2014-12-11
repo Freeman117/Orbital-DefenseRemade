@@ -20,13 +20,16 @@ public:
 
 	void UpdateEnemies(float deltaTime, int &health);
 	void DrawEnemies();
-	void SpawnEnemy(float healt, float armor, float speed, float angle);
 	void SpawnEnemy(int wave, int type, float angle);
+	void InitWaves(int wave);
+	void UpdateWaves(float dt);
 
 	std::vector<std::shared_ptr<uth::GameObject>> GetEnemies();
 	uth::Texture* enemytexture;
+	Wave waves[10];
 protected:
 	std::vector<std::shared_ptr<uth::GameObject>> enemies;
+	int currentWave;
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "Wave.hpp"
-void Wave::Init(int wave_, int enemyType1_, float spawnInterval1_, int enemyAmount1_, int enemyType2_ = 0, float spawnInterval2_ = 0, int enemyAmount2_ = 0)
+void Wave::Init(int wave_, int enemyType1_, float spawnInterval1_, int enemyAmount1_, int enemyType2_, float spawnInterval2_, int enemyAmount2_)
 {
 	currentWave = wave_;
 	enemyType1 = enemyType1_;
@@ -8,18 +8,24 @@ void Wave::Init(int wave_, int enemyType1_, float spawnInterval1_, int enemyAmou
 	enemyType2 = enemyType2_;
 	spawnInterval2 = spawnInterval2_;
 	enemyAmount2 = enemyAmount2_;
+	amountSpawned1 = 0;
+	amountSpawned2 = 0;
+	enemySpawnTimer1 = 0;
+	enemySpawnTimer2 = 0;
 }
 int Wave::getEnemy(float dt)
 {
-	if (enemyAmount1 < amountSpawned1 && enemySpawnTimer1 >= spawnInterval1)
+	enemySpawnTimer1 += dt;
+	enemySpawnTimer2 += dt;
+	if (enemyAmount1 > amountSpawned1 && enemySpawnTimer1 >= spawnInterval1)
 	{
 		amountSpawned1++;
 		enemySpawnTimer1 -= spawnInterval1;
 		return enemyType1;
 	}
-	else if (enemyAmount2 < amountSpawned2 && enemySpawnTimer2 >= spawnInterval2)
+	else if (enemyAmount2 > amountSpawned2 && enemySpawnTimer2 >= spawnInterval2)
 	{
-		amountSpawned1++;
+		amountSpawned2++;
 		enemySpawnTimer2 -= spawnInterval2;
 		return enemyType2;
 	}
@@ -28,4 +34,11 @@ int Wave::getEnemy(float dt)
 		return 0;
 	}
 	return -1;
+}
+bool Wave::allEnemiesSpawned()
+{
+	if (enemyAmount1 == amountSpawned1 && enemyAmount2 == amountSpawned2)
+		return true;
+	else
+		return false;
 }

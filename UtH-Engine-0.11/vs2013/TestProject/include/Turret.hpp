@@ -6,8 +6,9 @@
 class Turret : public uth::Component
 {
 public:
-	Turret(uth::Texture* projectileTexture_){ projectileTexture = projectileTexture_;};
-	~Turret(){};
+	Turret();
+	Turret(uth::Texture* projectileTexture_);
+	~Turret();
 	bool CanShoot();
 	virtual void Upgrade(float &money, int choice = 1){};
 	float GetOrbit(){ return orbit; }
@@ -34,7 +35,8 @@ protected:
 	float orbitPos;
 	bool penetrate;
 	float slowAmount;
-
+	float armorPenetration;
+	float critAmount;
 	float cooldown;
 	float totalTime;
 	uth::Texture* projectileTexture;

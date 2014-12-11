@@ -135,20 +135,8 @@ void TemplateScene::Update(float dt)
 		turretManager->RotationChange(atan2f(target.y - fromY, target.x - fromX), testi2);
 	}
 #endif
+	enemyManager->UpdateWaves(dt);
 
-	if (enemySpawnFrame > 8)
-	{
-		float rand = randomizer->GetFloat(0.0f, 1.0f) * 360;
-		for (int i = 0; i < 7; i++)
-		{
-			enemyManager->SpawnEnemy(15, 1, rand + randomizer->GetFloat(0.0f, 1.0f) * 15);
-		}
-		enemyManager->SpawnEnemy(1, 2, rand+50);
-		enemySpawnFrame -= 8;
-	}
-
-	//float randomi = randomizer->GetFloat(0.f, 1.f);
-	//float randomi2 = randomizer->GetFloat(0.f, 1.f);
 	//textBox->transform.SetPosition(-512.f + 10.f*randomi, -256.f + 10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
