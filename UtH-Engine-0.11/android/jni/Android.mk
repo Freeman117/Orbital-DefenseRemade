@@ -48,8 +48,8 @@ LOCAL_SRC_FILES := main.cpp \
 ../../vs2013/TestProject/source/Turret_Disruptor.cpp \
 ../../vs2013/TestProject/source/Turret_Lazer.cpp \
 ../../vs2013/TestProject/source/Turret_Missile.cpp \
-../../vs2013/TestProject/source/Turret_Mrk.cpp
-
+../../vs2013/TestProject/source/Turret_Mrk.cpp \
+../../vs2013/TestProject/source/Wave.cpp
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv2 -lOpenSLES
 LOCAL_STATIC_LIBRARIES := android_native_app_glue engine
 LOCAL_SHARED_LIBRARIES :=

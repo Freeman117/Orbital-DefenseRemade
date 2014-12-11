@@ -60,12 +60,13 @@ bool TemplateScene::Init()
 	});
 
 	buttons[0]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f));
-	buttons[1]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f+buttons[0]->transform.GetSize().y+10.f));
+	buttons[1]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f+buttons[0]->transform.GetSize().y+40.f));
 
 	for (int i = 0; i < buttons.size(); i++)
 	{
 		auto b = buttons[i];
 		uth::Layer::AddChild(b);
+		b->transform.SetScale(2.0f);
 	}
 
 	return true;
@@ -111,6 +112,7 @@ void TemplateScene::Update(float dt)
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key1))
 	{
 		turretManager->UpgradeTurret(money);
+		//turretManager->poisto();
 	}
 	if (uthInput.Keyboard.IsKeyPressed(Keyboard::Key2))
 	{

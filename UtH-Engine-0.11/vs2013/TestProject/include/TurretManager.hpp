@@ -37,6 +37,7 @@ public:
 	std::vector<std::shared_ptr<Node>> nodes;
 	//std::vector<Node*> nodes;
 
+	void poisto();
 protected:
 
 	float orbit01Angle;
@@ -55,6 +56,7 @@ private:
 	std::array<ns::Button*, 6> towers;
 	std::vector<std::shared_ptr<ns::Button>> towerButtons;
 	ns::Button* cancel;
+	std::vector<std::shared_ptr<ns::Button>> cancelButton;
 
 	void AddTurretButtons();
 	void RemoveTurretButtons();

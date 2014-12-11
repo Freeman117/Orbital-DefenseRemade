@@ -53,7 +53,7 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 	AddChild(turret);
 	turrets.push_back(turret);
 
-	AddTurretButtons();
+	//AddTurretButtons();
 }
 void TurretManager::ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate, float slowAmount,uth::Texture* texture)
 {
@@ -244,8 +244,9 @@ void TurretManager::AddTurretButtons()
 	{
 		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 		AddChild(towers[i]);
+		towerButtons.emplace_back(towers[i]);
 	}
-	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+	
 
 	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
 	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
@@ -254,19 +255,27 @@ void TurretManager::AddTurretButtons()
 	towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
 	towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
 
+	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 
 	AddChild(cancel);
+	cancelButton.emplace_back(cancel);
 	cancel->transform.SetPosition(-508.f,5.f);
 
 }
 
-void TurretManager::RemoveTurretButtons() //NEEDS TESTING
+void TurretManager::RemoveTurretButtons() //NEEDS MORE WORK
 {
 	for (int i = 0; i < 6; i++)
 	{
-		auto tornit = towerButtons[i];
-		RemoveChild(tornit);
+		//auto tornit = towerButtons[i];
+		RemoveChild(towerButtons[i]);
+		//towerButtons.erase(towerButtons[i]);  //The vector lists MUST be cleared, otherwise will result in memory corruption
 	}
-	auto prkl = std::shared_ptr<ns::Button>(cancel);
-	RemoveChild(prkl);
+	auto deleteCancel = cancelButton[0];
+	RemoveChild(deleteCancel);
+}
+
+void TurretManager::poisto()
+{
+	RemoveTurretButtons();
 }
