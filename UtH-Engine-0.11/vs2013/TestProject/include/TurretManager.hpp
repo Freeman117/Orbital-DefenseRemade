@@ -60,6 +60,7 @@ private:
 
 	void AddTurretButtons();
 	void RemoveTurretButtons();
+	bool UI;
 
 	uth::Texture* disruptorProjectile;
 };

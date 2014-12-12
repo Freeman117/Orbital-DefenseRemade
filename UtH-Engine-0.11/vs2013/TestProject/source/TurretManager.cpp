@@ -12,6 +12,7 @@ TurretManager::TurretManager()
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
 
+	UI = false;
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -240,39 +241,47 @@ std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(En
 
 void TurretManager::AddTurretButtons()
 {
-	for (int i = 0; i < 6; i++)
+	if (UI == false)
 	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-		AddChild(towers[i]);
-		towerButtons.emplace_back(towers[i]);
+		for (int i = 0; i < 6; i++)
+		{
+			towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+			AddChild(towers[i]);
+			towerButtons.emplace_back(towers[i]);
+		}
+
+
+		towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
+		towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
+		towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
+		towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
+		towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
+		towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
+
+		cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+
+		AddChild(cancel);
+		cancelButton.emplace_back(cancel);
+		cancel->transform.SetPosition(-508.f, 5.f);
+
+		UI = true;
 	}
-	
-
-	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
-	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
-	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
-	towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
-	towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
-	towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
-
-	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-
-	AddChild(cancel);
-	cancelButton.emplace_back(cancel);
-	cancel->transform.SetPosition(-508.f,5.f);
-
 }
 
 void TurretManager::RemoveTurretButtons() //NEEDS MORE WORK
 {
-	for (int i = 0; i < 6; i++)
+	if (towerButtons.size() > 0)
 	{
-		//auto tornit = towerButtons[i];
-		RemoveChild(towerButtons[i]);
-		//towerButtons.erase(towerButtons[i]);  //The vector lists MUST be cleared, otherwise will result in memory corruption
+		for (int i = towerButtons.size()-1; i >= 0; i--)
+		{
+			RemoveChild(towerButtons[i]);
+			//towerButtons.erase(towerButtons.begin()+i);
+		}
+		auto deleteCancel = cancelButton[0];
+		RemoveChild(deleteCancel);
+
+		UI = false;
 	}
-	auto deleteCancel = cancelButton[0];
-	RemoveChild(deleteCancel);
 }
 
 void TurretManager::poisto()

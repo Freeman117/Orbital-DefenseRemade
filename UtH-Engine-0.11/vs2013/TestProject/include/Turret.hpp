@@ -6,9 +6,9 @@
 class Turret : public uth::Component
 {
 public:
-	Turret();
+	Turret(){};
 	Turret(uth::Texture* projectileTexture_);
-	~Turret();
+	~Turret(){};
 	bool CanShoot();
 	virtual void Upgrade(float &money, int choice = 1){};
 	float GetOrbit(){ return orbit; }
