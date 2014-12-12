@@ -270,7 +270,7 @@ void TurretManager::AddTurretButtons()
 	}
 }
 
-void TurretManager::RemoveTurretButtons() //NEEDS MORE WORK
+void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
 {
 	if (towerButtons.size() > 0)
 	{
