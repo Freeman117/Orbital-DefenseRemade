@@ -11,11 +11,8 @@ TurretManager::TurretManager()
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
-<<<<<<< HEAD
 
 	UI = false;
-=======
->>>>>>> origin/master
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
