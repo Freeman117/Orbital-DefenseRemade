@@ -6,9 +6,9 @@
 class Turret : public uth::Component
 {
 public:
-	Turret();
+	Turret(){};
 	Turret(uth::Texture* projectileTexture_);
-	~Turret();
+	~Turret(){};
 	bool CanShoot();
 	virtual void Upgrade(float &money, int choice = 1){};
 	float GetOrbit(){ return orbit; }
@@ -22,6 +22,7 @@ public:
 	float GetBulletSpeed(){ return bulletSpeed; }
 	float GetSlowAmount(){ return slowAmount; }
 	bool GetPenetrate(){ return penetrate; }
+	float GetCrit(){ return critAmount; }
 	uth::Texture* GetTexture(){ return projectileTexture;}
 protected:
 
