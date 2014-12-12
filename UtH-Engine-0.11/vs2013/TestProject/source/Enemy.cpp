@@ -9,9 +9,9 @@ Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Com
 {
 }
 
-void Enemy::TakeHit(float damageAmount)
+void Enemy::TakeHit(float damageAmount, float armorPenetration)
 {
-	health -= (damageAmount - armor);
+	health -= (damageAmount - armor*armorPenetration);
 	if (health <= 0)
 	{
 		isAlive = false;

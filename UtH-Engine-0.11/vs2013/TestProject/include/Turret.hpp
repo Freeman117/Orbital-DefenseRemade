@@ -22,6 +22,7 @@ public:
 	float GetBulletSpeed(){ return bulletSpeed; }
 	float GetSlowAmount(){ return slowAmount; }
 	bool GetPenetrate(){ return penetrate; }
+	float GetCrit(){ return critAmount; }
 	uth::Texture* GetTexture(){ return projectileTexture;}
 protected:
 

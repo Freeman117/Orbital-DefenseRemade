@@ -27,7 +27,7 @@ public:
 	void RotationChange(float angle);
 	void RotationChange(float angle, int orbit);
 	void CreateTurret(int type, int orb, int orbPos);
-	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate,float slowAmount,uth::Texture* texture);
+	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate,float slowAmount,float crit, float armorPene, uth::Texture* texture);
 	void UpdateBullets(float dt, EnemyManager* enemyManager);
 	void CreateNodes();
 	void UpdateNodes();
@@ -50,8 +50,9 @@ private:
 	uth::Texture* turret01Texture;
 	uth::Texture* bullet01Texture;
 	uth::Texture* node01Texture;
-
 	uth::Texture* towerButtonTexture;
+
+	uth::Randomizer* rand;
 
 	std::array<ns::Button*, 6> towers;
 	std::vector<std::shared_ptr<ns::Button>> towerButtons;

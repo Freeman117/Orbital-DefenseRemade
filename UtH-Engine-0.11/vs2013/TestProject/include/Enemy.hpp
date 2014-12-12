@@ -12,7 +12,7 @@ public:
 	Enemy(float health, float armor, float speed, float angle);
 	~Enemy(){};
 
-	void TakeHit(float damageAmount);
+	void TakeHit(float damageAmount, float armorPenetration);
 	virtual void OnDeath(){};
 	float GetDistance();
 	void SetDistance(float f);
