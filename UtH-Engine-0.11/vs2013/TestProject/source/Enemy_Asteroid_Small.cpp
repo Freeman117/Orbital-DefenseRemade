@@ -2,27 +2,32 @@
 
 EnemyAsteroidSmall::EnemyAsteroidSmall(int wave,float angle_) : Enemy()
 {
+	armor = 0;
 	HitBox = 30;
 	angle = angle_;
-	if (wave < 5)
+	if (wave == 1 || wave == 2 || wave == 6 || wave == 11)
 	{
 		health = 20;
-		speed = 50;
-		armor = 0;
-		bounty = 1;
-	}
-	else if (wave < 15)
-	{
-		health = 20;
-		speed = 50 + (wave - 5)*5;
-		armor = 0 + wave - 5;
+		speed = 17;
 		bounty = 2;
 	}
-	else
+	else if (wave == 3)
+	{
+		health = 25;
+		speed = 17;
+		bounty = 2;
+	}
+	else if (wave == 15||wave == 17 || wave == 22)
+	{
+		health = 22;
+		speed = 17;
+		bounty = 2;
+	}
+	else if (wave == 23 || wave == 27)
 	{
 		health = 20;
-		speed = 100;
+		speed = 21;
 		bounty = 2;
-		armor = 10;
 	}
+	speed = 700/(30 - speed);
 }

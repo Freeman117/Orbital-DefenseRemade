@@ -3,7 +3,9 @@
 
 EnemyManager::EnemyManager()
 {
-	enemytexture = uthRS.LoadTexture("asteroidMockup.png");
+	asteroidTextures = uthRS.LoadTexture("asteroidSheet.png");
+	pirateTextures = uthRS.LoadTexture("enemySpriteSheet.png");
+	carrierTextures = uthRS.LoadTexture("CarrierSheet.png");
 	currentWave = 1;
 	InitWaves(currentWave - 1);
 }
@@ -15,14 +17,38 @@ void EnemyManager::SpawnEnemy(int wave, int type, float angle)
 	if (type == 1)
 	{
 		enemy->AddComponent(new EnemyAsteroidSmall(wave,angle));
-		enemy->AddComponent(new uth::AnimatedSprite(enemytexture, 8, 4, 2, 5, 0, false, true));
-		enemy->transform.SetScale(0.2f);
+		enemy->AddComponent(new uth::AnimatedSprite(asteroidTextures, 8, 4, 2, 3, 0, false, true));
+		enemy->transform.SetScale(1.0f);
 	}
 	else if (type == 2)
 	{
 		enemy->AddComponent(new EnemyAsteroidCluster(wave, angle));
-		enemy->AddComponent(new uth::AnimatedSprite(enemytexture, 8, 4, 2, 3, 0, false, true));
-		enemy->transform.SetScale(0.5f);
+		enemy->AddComponent(new uth::AnimatedSprite(asteroidTextures, 8, 4, 2, 3, 0, false, true));
+		enemy->transform.SetScale(2.0f);
+	}
+	else if (type == 3)
+	{
+		enemy->AddComponent(new EnemyPirateScout(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures,9, 3, 3, 3, 3, false, true));
+		enemy->transform.SetScale(1.0f);
+	}
+	else if (type == 4)
+	{
+		enemy->AddComponent(new EnemyPirateStriker(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 9, 3, 3, 3, 6, false, true));
+		enemy->transform.SetScale(1.0f);
+	}
+	else if (type == 5)
+	{
+		enemy->AddComponent(new EnemyPirateMarauder(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 9, 3, 3, 3, 0, false, true));
+		enemy->transform.SetScale(1.0f);
+	}
+	else if (type == 6)
+	{
+		enemy->AddComponent(new EnemyPirateCarrier(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 1, 3, 3, 0, false, true));
+		enemy->transform.SetScale(1.0f);
 	}
 	AddChild(enemy);
 	enemies.push_back(enemy);
@@ -61,7 +87,7 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 }
 void EnemyManager::InitWaves(int wave)
 {
-	waves[0].Init(wave,2, 1, 15,1,2,15);
+	waves[0].Init(wave,1, 5,5);
 	waves[1].Init(wave + 1, 1, 1.5f, 20);
 	waves[2].Init(wave + 2, 1, 4.5f, 6,1,2.25f,12);
 	waves[3].Init(wave + 3, 1, 1.5f, 20);
@@ -79,7 +105,23 @@ void EnemyManager::UpdateWaves(float dt)
 		int nextEnemy = waves[currentWave - 1].getEnemy(dt);
 		if (nextEnemy != 0)
 		{
-			SpawnEnemy(currentWave - 1, nextEnemy, 2.8f);
+			float spawnAngle = randomizer->GetInt(0, 360);
+			if (nextEnemy == 1 || nextEnemy == 3)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					SpawnEnemy(currentWave, nextEnemy, spawnAngle+pmath::degreesToRadians(randomizer->GetFloat()*40));
+				}
+			}
+			else if (nextEnemy == 5)
+			{
+				for (int i = 0; i < 2; i++)
+				{
+					SpawnEnemy(currentWave, nextEnemy, spawnAngle +pmath::degreesToRadians(randomizer->GetFloat()*15));
+				}
+			}
+			else
+				SpawnEnemy(currentWave, nextEnemy, spawnAngle);
 			std::cout << "Spawned enemy with type " << nextEnemy << ", current wave is " << currentWave<< "." << std::endl;
 		}
 	}

@@ -3,7 +3,7 @@ Enemy::Enemy()
 {
 	isAlive = true;
 	speedMod = 1;
-	distance = 700;
+	distance = 700+randomizer->GetFloat(0,1)*50;
 }
 Enemy::Enemy(float health_, float armor_, float speed_, float angle_) : uth::Component("Enemy")
 {

@@ -4,27 +4,42 @@ EnemyAsteroidCluster::EnemyAsteroidCluster(int wave, float angle_) : Enemy()
 {
 	HitBox = 70;
 	angle = angle_;
-	if (wave < 3)
+	if (wave == 4 || wave == 6)
 	{
-		health = 200;
-		speed = 30;
-		bounty = 10;
-		armor = 0;
+		health = 250;
+		speed = 9;
+		bounty = 75;
+		armor = 10;
 	}
-	else if (wave < 18)
+	else if (wave == 15 || wave == 22)
 	{
-		health = 200 + wave * 25;
-		speed = 30;
-		bounty = 10 + wave * 3;
-		armor = 0;
+		health = 825;
+		speed = 9;
+		bounty = 75;
+		armor = 10;
 	}
-	else
+	else if (wave == 16)
 	{
-		health = 200 + wave * 25;
-		speed = 30;
-		bounty = 25;
-		armor = 0;
+		health = 750;
+		speed = 9;
+		bounty = 75;
+		armor = 15;
 	}
+	else if (wave == 23)
+	{
+		health == 750;
+		speed = 13;
+		bounty = 75;
+		armor = 10;
+	}
+	else if (wave == 28)
+	{
+		health == 1500;
+		speed = 9;
+		bounty = 75;
+		armor = 10;
+	}
+	speed = 700 / (30 - speed);
 }
 void EnemyAsteroidCluster::OnDeath()
 {

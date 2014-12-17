@@ -7,6 +7,10 @@
 #include "Wave.hpp"
 #include "Enemy_Asteroid_Small.hpp"
 #include "Enemy_Asteroid_Cluster.hpp"
+#include "Enemy_Pirate_Carrier.hpp"
+#include "Enemy_Pirate_Marauder.hpp"
+#include "Enemy_Pirate_Scout.hpp"
+#include "Enemy_Pirate_Striker.hpp"
 #include <UtH/Engine/AnimatedSprite.hpp>
 #include <UtH/Renderer/Texture.hpp>
 #include <UtH/Engine/GameObject.hpp>
@@ -25,9 +29,12 @@ public:
 	void UpdateWaves(float dt);
 
 	std::vector<std::shared_ptr<uth::GameObject>> GetEnemies();
-	uth::Texture* enemytexture;
-	Wave waves[10];
+	uth::Texture* asteroidTextures;
+	uth::Texture* pirateTextures;
+	uth::Texture* carrierTextures;
+	Wave waves[30];
 protected:
+	uth::Randomizer* randomizer;
 	std::vector<std::shared_ptr<uth::GameObject>> enemies;
 	int currentWave;
 };

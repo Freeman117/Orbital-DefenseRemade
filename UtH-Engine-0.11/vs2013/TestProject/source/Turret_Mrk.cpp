@@ -22,7 +22,6 @@ void TurretMrk::Upgrade(float &money, int choice)
 		reloadSpeed = 3.75f;
 		damage = 140;
 		range = 260.0f;
-		aoe = 0;
 		level = 1;
 		money -= 70;
 	}
@@ -31,7 +30,6 @@ void TurretMrk::Upgrade(float &money, int choice)
 		reloadSpeed = 3.5f;
 		damage = 160;
 		range = 270;
-		aoe = 140;
 		level = 2;
 		money -= 95;
 	}
@@ -40,7 +38,6 @@ void TurretMrk::Upgrade(float &money, int choice)
 		reloadSpeed = 3.25f;
 		damage = 180;
 		range = 280.0f;
-		aoe = 160;
 		level = 3;
 		money -= 120;
 	}
@@ -49,7 +46,6 @@ void TurretMrk::Upgrade(float &money, int choice)
 		reloadSpeed = 3.0f;
 		damage = 200;
 		range = 290.0f;
-		aoe = 180;
 		level = 4;
 		money -= 145;
 	}
@@ -58,7 +54,6 @@ void TurretMrk::Upgrade(float &money, int choice)
 		reloadSpeed = 3.0f;
 		damage = 250;
 		range = 300.0f;
-		aoe = 200;
 		level = 5;
 		money -= 180;
 	}

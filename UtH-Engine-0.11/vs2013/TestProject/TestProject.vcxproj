@@ -101,6 +101,10 @@
     <ClCompile Include="source\EnemyManager.cpp" />
     <ClCompile Include="source\Enemy_Asteroid_Cluster.cpp" />
     <ClCompile Include="source\Enemy_Asteroid_Small.cpp" />
+    <ClCompile Include="source\Enemy_Pirate_Carrier.cpp" />
+    <ClCompile Include="source\Enemy_Pirate_Marauder.cpp" />
+    <ClCompile Include="source\Enemy_Pirate_Scout.cpp" />
+    <ClCompile Include="source\Enemy_Pirate_Striker.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MenuScene.cpp" />
     <ClCompile Include="source\Node.cpp" />
@@ -124,6 +128,10 @@
     <ClInclude Include="include\EnemyManager.hpp" />
     <ClInclude Include="include\Enemy_Asteroid_Cluster.hpp" />
     <ClInclude Include="include\Enemy_Asteroid_Small.hpp" />
+    <ClInclude Include="include\Enemy_Pirate_Carrier.hpp" />
+    <ClInclude Include="include\Enemy_Pirate_Marauder.hpp" />
+    <ClInclude Include="include\Enemy_Pirate_Scout.hpp" />
+    <ClInclude Include="include\Enemy_Pirate_Striker.hpp" />
     <ClInclude Include="include\MenuScene.hpp" />
     <ClInclude Include="include\MoveAffector.hpp" />
     <ClInclude Include="include\Node.hpp" />
