@@ -2,8 +2,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#include <UtH/Engine/GameObject.hpp>
-#include <UtH/Engine/Engine.hpp>
+#include <UtH/UtHEngine.hpp>
 
 class Player : public uth::GameObject
 {

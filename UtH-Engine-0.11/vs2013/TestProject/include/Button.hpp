@@ -3,9 +3,8 @@
 #ifndef BUTTON_HPP_
 #define BUTTON_HPP_
 
-#include <UtH/Engine/GameObject.hpp>
+#include <UtH/UtHEngine.hpp>
 #include <functional>
-#include <UtH\Engine\AnimatedSprite.hpp>
 
 namespace uth
 {

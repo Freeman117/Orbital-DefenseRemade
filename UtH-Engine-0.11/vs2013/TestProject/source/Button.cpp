@@ -1,7 +1,5 @@
 #include "Button.hpp"
-#include <UtH/Platform/Input.hpp>
-#include <UtH/Renderer/RenderTarget.hpp>
-#include <UtH/Engine/Sprite.hpp>
+#include <UtH/UtHEngine.hpp>
 
 using namespace ns;
 

@@ -1,22 +1,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    		package="com.android.uth"
+    		package="fi.kajakgames.uth"
     		android:versionCode="1"
     		android:versionName="1.0"
     		>
 
   <uses-feature android:glEsVersion="0x00020000"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19"/>
-  
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-  <application android:hasCode="true">
+  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21"/>
 
-    <activity android:name="com.android.uth.GameActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-          android:launchMode="singleTask"
-    android:screenOrientation="landscape"
-          android:configChanges="orientation|keyboardHidden">
+  <application android:hasCode="true" android:icon="@drawable/ic_launcher" android:testOnly="false" android:label="TestiSofta">
+  
+	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+	<meta-data 	android:name="com.google.android.gms.games.APP_ID"
+	    		android:value="@string/app_id" />
+	
+	<activity	android:name="fi.kajakgames.uth.GameActivity"
+				android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+				android:launchMode="singleTask"
+				android:screenOrientation="landscape"
+				android:configChanges="orientation|keyboardHidden">
 
       <meta-data android:name="android.app.lib_name" android:value="uthengine" />
 
@@ -26,6 +34,12 @@
       </intent-filter>
 
     </activity>
-
+    
+	<activity android:name="com.google.android.gms.ads.AdActivity"
+			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+			android:theme="@android:style/Theme.Translucent"/>
+	<!-- Google Analytics Version v4 needs this value for easy tracking -->
+	<meta-data android:name="com.google.android.gms.analytics.globalConfigResource" android:resource="@xml/global_tracker" />
+    
   </application>
 </manifest>

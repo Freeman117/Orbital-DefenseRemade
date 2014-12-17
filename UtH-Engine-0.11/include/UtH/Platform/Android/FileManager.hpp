@@ -25,11 +25,12 @@ namespace uth
 		};
 
 		FileManager();
-		FileManager(const std::string& path, const Location = Location::ASSET);
+        FileManager(const std::string& path, const Location = Location::ASSET, bool isWritable = false);
 		~FileManager();
 
-		void OpenFile(const std::string& path, const Location = Location::ASSET);
-		void CloseFile();
+     
+        bool OpenFile(const std::string& path, const Location = Location::ASSET, bool isWritable = false);
+        void CloseFile();
 		int GetFileSize();
 		
 		// Move the file pointer by offset from origin(defaults to beginning of file)
@@ -39,7 +40,7 @@ namespace uth
 		// Read a 'count' ammount of 'blockSize' sized blocks of data from file to buffer
 		// Buffer is a pointer to the first element of an array
 		// Also sets the file pointer to the end of read block
-		bool ReadBytes(void* buffer, unsigned int count, unsigned int blockSize = 1);
+		bool ReadBytes(void* const buffer, const unsigned int count, const unsigned int blockSize = 1);
 		
 		// Returns the content of whole file as binary data
 		const BINARY_DATA ReadBinary();
@@ -47,17 +48,11 @@ namespace uth
 		// Returns the content of the whole file as text
 		const std::string ReadText();
 
-		// Saves text to file.
-		// Location::INTERNAL path:
-		//		@android: "/data/data/net.app.name/" (hidden file)
-		//		@pc:	  "/internal/"
-		// Location::EXTERNAL:
-		//		@android: "/sdcard/"
-		//		@pc:	  "/external/"
-		// Location::ASSET: not available
-		void WriteToFile(const std::string& filenameAndPath,
-						 const std::string& data,
-						 const Location = Location::INTERNAL);
+        // Write text to file.
+		void WriteString(const std::string& data);
+
+		void WriteBytes(const void* const buffer, const unsigned int count, const unsigned int blockSize = 1);
+		void WriteBinary(const BINARY_DATA& data);
 
 		static AAssetManager* m_manager;
 		
@@ -70,10 +65,9 @@ namespace uth
 		static int64_t tellAsset(void* asset);
 		
 	private:
-		//std::FILE* m_file;
 		std::fstream m_stream;
 		AAsset* m_asset;
-		unsigned int m_length;
+        bool m_writable;
 	};
 }
 

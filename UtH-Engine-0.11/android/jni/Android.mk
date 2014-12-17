@@ -30,7 +30,6 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := uthengine
 LOCAL_SRC_FILES := main.cpp \
-../../vs2013/TestProject/source/TestScene.cpp \
 ../../vs2013/TestProject/source/Bullet.cpp \
 ../../vs2013/TestProject/source/Button.cpp \
 ../../vs2013/TestProject/source/Enemy.cpp \

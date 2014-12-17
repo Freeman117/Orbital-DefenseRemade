@@ -3,6 +3,7 @@
 
 TurretManager::TurretManager()
 {
+	//orbit01Angle = 0.0f;
 	orbit02Angle = 0.0f;
 	turret01Sprite = new uth::Sprite("CannonTower.png");
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
@@ -16,13 +17,15 @@ TurretManager::TurretManager()
 	{
 		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 		towerButtons.emplace_back(towers[i]);
-		AddChild(towers[i]);
+		AddChild(towerButtons.back());
 		towers[i]->SetActive(false);
+		towers[i]->AddTag("Tower");
 	}
 	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
 	//cancelButton.emplace_back(cancel);
 	AddChild(cancel);
 	cancel->SetActive(false);
+	cancel->AddTag("Cancel");
 	
 
 	UI = false;
@@ -193,14 +196,16 @@ void TurretManager::CreateNodes()
 	for (int i = 0; i < 6; i++)
 	{
 		auto node = std::shared_ptr<Node>(new Node(1, i, orbit01Angle, node01Texture));
-		nodes.push_back(node);
+		nodes.emplace_back(node);
 		AddChild(node);
+		node->AddTag("Node");
 	}
 	for (int i = 0; i < 12; i++)
 	{
 		auto node = std::shared_ptr<Node>(new Node(2, i, orbit02Angle, node01Texture));
-		nodes.push_back(node);
+		nodes.emplace_back(node);
 		AddChild(node);
+		node->AddTag("Node2");
 	}
 }
 void TurretManager::UpdateNodes()

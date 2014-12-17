@@ -17,9 +17,14 @@ AnimatedSprite::AnimatedSprite(Texture* texture, const unsigned int frames,
 		m_fps(fps),
 		m_delay(0.0f),
 		m_reversed(reversed),
-		m_loop(loop)
+		m_loop(loop),
+		m_loopEnd(false)
 {
 	const pmath::Vec2 texSize = texture->GetSize();
+
+	m_frameCountX = static_cast<unsigned int>(texSize.x / frameSize.x);
+	m_frameCountY = static_cast<unsigned int>(texSize.y / frameSize.y);
+
 #ifndef NDEBUG
 	if(int(texSize.x) % int(frameSize.x) != 0 || int(texSize.y) % int(frameSize.y) != 0)
 	{
@@ -27,10 +32,23 @@ AnimatedSprite::AnimatedSprite(Texture* texture, const unsigned int frames,
 			texSize.x, texSize.y, frameSize.x, frameSize.y);
 		assert(false);
 	}
+
+	if (frames > m_frameCountX * m_frameCountY)
+	{
+		WriteError("Too many frames! (maximum frame capacity: %d)", m_frameCountX * m_frameCountY);
+		assert(false);
+	}
 #endif
-	m_frameCountX = static_cast<unsigned int>(texSize.x / frameSize.x);
-	m_frameCountY = static_cast<unsigned int>(texSize.y / frameSize.y);
-	AnimatedSprite(texture, frames, m_frameCountX, m_frameCountY, fps, firstFrame, reversed, loop);
+	
+	// Doesn't work for some reason.
+	//AnimatedSprite(texture, frames, m_frameCountX, m_frameCountY, fps, firstFrame, reversed, loop);
+
+	// frame size in pixels
+	m_sizePx.x = static_cast<const float>(texSize.x / m_frameCountX);
+	m_sizePx.y = static_cast<const float>(texSize.y / m_frameCountY);
+	// frame size in texcoord float
+	m_sizeTc.x = 1.0f / m_frameCountX;
+	m_sizeTc.y = 1.0f / m_frameCountY;
 }
 
 AnimatedSprite::AnimatedSprite(Texture* texture, const unsigned int frames,
@@ -45,6 +63,7 @@ AnimatedSprite::AnimatedSprite(Texture* texture, const unsigned int frames,
 		m_delay(0.0f),
 		m_reversed(reversed),
 		m_loop(loop),
+		m_loopEnd(false),
 		m_frameCountX(frameCountX),
         m_frameCountY(frameCountY)
 {
@@ -95,9 +114,15 @@ void AnimatedSprite::ChangeAnimation(int loopStartFrame, int loopFrames,
 	m_firstFrame = loopStartFrame;
 	m_fps = fps;
 	m_loop = loop;
+	m_loopEnd = false;
 	m_frameCount = 0;
 	m_reversed = reversed;
 	generateBuffer(true);
+}
+
+void AnimatedSprite::ChangeSpeed(float fps)
+{
+	m_fps = fps;
 }
 
 void AnimatedSprite::Init()
@@ -106,8 +131,6 @@ void AnimatedSprite::Init()
 
 	const pmath::Vec2 size = pmath::Vec2(m_sizePx.x, m_sizePx.y);
 	parent->transform.setSize(size);
-
-	loopEnd = false;
 }
 
 void AnimatedSprite::Update(float dt)
@@ -120,14 +143,13 @@ void AnimatedSprite::Update(float dt)
 	if (!m_loop)
 	{
 		if(m_frames == m_frameCount + 1)
-			loopEnd = true;
+			m_loopEnd = true;
 	}
 
-	if(m_delay > 1.0f / m_fps && !loopEnd)
+	if(m_delay > 1.0f / m_fps && !m_loopEnd)
 	{
 		m_delay = 0.0f;
 		m_frameCount++;
-
 		if(!m_reversed)
 		{
 			m_curFrame++;
@@ -141,7 +163,7 @@ void AnimatedSprite::Update(float dt)
 			m_curFrame--;
 			if(m_curFrame < m_firstFrame)
 			{
-				m_curFrame = m_firstFrame + m_frames;
+				m_curFrame = m_firstFrame + m_frames - 1;
 			}
 		}
 		generateBuffer();

@@ -1,10 +1,7 @@
 #ifndef MENUSCENE_HPP
 #define MENUSCENE_HPP
 
-#include <UtH/Engine/Engine.hpp>
-#include <UtH/Platform/Input.hpp>
-#include <UtH/Renderer/Camera.hpp>
-#include <UtH/Renderer/RenderAttributes.hpp>
+#include <UtH/UtHEngine.hpp>
 #include <memory>
 #include <array>
 #include "Button.hpp"
