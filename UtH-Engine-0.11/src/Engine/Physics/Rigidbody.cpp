@@ -159,12 +159,12 @@ void Rigidbody::SetUnitSize(const float radius)
 	m_size.y = radius*2;
 }
 
-const pmath::Vec2 Rigidbody::GetSize()
+const pmath::Vec2 Rigidbody::GetSize() const
 {
 	return m_size * PIXELS_PER_METER;
 }
 
-const pmath::Vec2 Rigidbody::GetUnitSize()
+const pmath::Vec2 Rigidbody::GetUnitSize() const
 {
 	return m_size;
 }
@@ -175,7 +175,7 @@ void Rigidbody::SetPosition(const pmath::Vec2& position)
 	m_body->SetTransform(p, m_body->GetAngle());
 }
 
-const pmath::Vec2 Rigidbody::GetPosition()
+const pmath::Vec2 Rigidbody::GetPosition() const
 {
 	b2Vec2 pos = m_body->GetPosition();
 	pos *= PIXELS_PER_METER;
@@ -191,6 +191,16 @@ void Rigidbody::SetAngle(const float angle)
 float Rigidbody::GetAngle() const
 {
 	return -m_body->GetAngle() * 180.f / static_cast<float>(pmath::pi);
+}
+
+void Rigidbody::Move(const pmath::Vec2& offset)
+{
+    SetPosition(GetPosition() + offset);
+}
+
+void Rigidbody::Rotate(const float angle)
+{
+    SetAngle(GetAngle() + angle);
 }
 
 void Rigidbody::SetFixedRotation(bool value)
@@ -219,6 +229,16 @@ float Rigidbody::GetFriction() const
 	return m_body->GetFixtureList()->GetFriction();
 }
 
+void Rigidbody::SetRestitution(float restitution)
+{
+    m_body->GetFixtureList()->SetRestitution(restitution);
+}
+
+float uth::Rigidbody::GetRestitution() const
+{
+    return m_body->GetFixtureList()->GetRestitution();
+}
+
 void Rigidbody::SetActive(bool value)
 {
 	m_body->SetActive(value);
@@ -245,6 +265,66 @@ void Rigidbody::SetKinematic(bool value)
 	value ? m_body->SetType(b2_kinematicBody) : m_body->SetType(b2_dynamicBody);
 }
 
+void Rigidbody::SetPhysicsGroup(const short index)
+{
+    auto filter = m_body->GetFixtureList()->GetFilterData();
+
+    filter.groupIndex = index;
+
+    m_body->GetFixtureList()->SetFilterData(filter);
+}
+
+short Rigidbody::GetPhysicsGroup() const
+{
+    return m_body->GetFixtureList()->GetFilterData().groupIndex;
+}
+
+void Rigidbody::SetPhysicsCategory(const Physics::Category category)
+{
+    auto filter = m_body->GetFixtureList()->GetFilterData();
+
+    filter.categoryBits = static_cast<short>(category);
+
+    m_body->GetFixtureList()->SetFilterData(filter);
+}
+
+Physics::Category Rigidbody::GetPhysicsCategory() const
+{
+    return static_cast<Physics::Category>(m_body->GetFixtureList()->
+        GetFilterData().categoryBits);
+}
+
+
+void Rigidbody::SetPhysicsMask(const short mask)
+{
+    auto filter = m_body->GetFixtureList()->GetFilterData();
+
+    filter.maskBits = mask;
+
+    m_body->GetFixtureList()->SetFilterData(filter);
+}
+
+short Rigidbody::GetPhysicsMask() const
+{
+    return m_body->GetFixtureList()->GetFilterData().maskBits;
+}
+
+void Rigidbody::SetTrigger(bool trigger)
+{
+    m_body->GetFixtureList()->SetSensor(trigger);
+}
+
+bool Rigidbody::IsTrigger() const
+{
+    return m_body->GetFixtureList()->IsSensor();
+}
+
+b2Body* Rigidbody::GetBox2dBody() const
+{
+    return m_body;
+}
+
+
 // Private
 
 void Rigidbody::defaults()
@@ -263,9 +343,11 @@ void Rigidbody::init()
 	m_body = m_world.lock()->CreateBody(&bodyDef);
 	m_body->SetUserData(parent);
 
-	if(!(m_size.lengthSquared() > 0))
-		m_size = parent->transform.GetSize();
-
+    if (!(m_size.lengthSquared() > 0))
+    {
+        m_size = parent->transform.GetSize();
+        m_size.scale(parent->transform.GetScale());
+    }
 
 	m_size /= PIXELS_PER_METER;
 
@@ -299,15 +381,7 @@ void Rigidbody::init()
 	}
 }
 
-void Rigidbody::SetRestitution(float restitution)
-{
-	m_body->GetFixtureList()->SetRestitution(restitution);
-}
 
-float uth::Rigidbody::GetRestitution() const
-{
-	return m_body->GetFixtureList()->GetRestitution();
-}
 
 b2Vec2 umathToBox2D(const pmath::Vec2& vec)
 {

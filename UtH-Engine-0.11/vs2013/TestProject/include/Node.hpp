@@ -1,8 +1,9 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-#include "Button.hpp"
 #include <UtH/UtHEngine.hpp>
+
+#include "Button.hpp"
 #include <array>
 #include <memory>
 

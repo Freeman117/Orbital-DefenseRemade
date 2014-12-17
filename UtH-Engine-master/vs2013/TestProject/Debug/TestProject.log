@@ -1,0 +1,33 @@
+﻿Build started 29.10.2014 14:47:44.
+     1>Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\TestProject.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\include\\" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\freetype_include\\" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\include\\" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\\" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\\" /Fd"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TurretManager.cpp
+         TurretManager.cpp
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(17): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(61): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(63): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(147): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(151): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\vs2013\testproject\turretmanager.cpp(153): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TestProject.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TestProject.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TestProject.lib" /MACHINE:X86 "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\Bullet.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\Button.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\Enemy.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\EnemyManager.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\main.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\Player.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TemplateScene.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\Turret.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TurretManager.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\Debug\Audio.lib"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Core\Debug\Debug\Core.lib"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Debug\Platform.lib"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\Debug\Renderer.lib"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\Debug\Resources.lib"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\Build\Win32\Debug\UtHEngine.lib"
+         TestProject.vcxproj -> C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\Debug\TestProject.exe
+     1>Done Building Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\TestProject\TestProject.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.70

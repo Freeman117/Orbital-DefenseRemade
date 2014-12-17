@@ -1,0 +1,16 @@
+﻿Build started 9.10.2014 9:14:29.
+     1>Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Audio.vcxproj" on node 5 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\include\\" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\include\\" /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\\" /Fd"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\Audio\Sound.cpp ..\..\src\Audio\SoundDevice.cpp
+         SoundDevice.cpp
+         Sound.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\Debug\Audio.lib" OpenAL32.lib /LIBPATH:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\lib\openal\lib\Win32" /NOLOGO "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\Sound.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\SoundDevice.obj"
+         Audio.vcxproj -> C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Debug\Debug\Audio.lib
+     1>Done Building Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Audio\Audio.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.82

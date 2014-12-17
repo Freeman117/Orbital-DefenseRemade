@@ -1,0 +1,43 @@
+﻿Build started 9.10.2014 9:14:29.
+     1>Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Platform.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\include" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\include" /ZI /nologo /W4 /WX- /Od /Oy- /D NOMINMAX /D GLEW_STATIC /D FREEGLUT_STATIC /D WIN32 /D _CRT_SECURE_NO_WARNINGS /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\\" /Fd"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\Platform\Common\CommonWindowImpl.cpp ..\..\src\Platform\Common\FileReader.cpp ..\..\src\Platform\Common\InputController.cpp ..\..\src\Platform\Common\InputSensor.cpp ..\..\src\Platform\Debug.cpp ..\..\src\Platform\Graphics.cpp ..\..\src\Platform\HiResTimer.cpp ..\..\src\Platform\Input.cpp ..\..\src\Platform\OGLCheck.cpp ..\..\src\Platform\Common\InputBase.cpp ..\..\src\Platform\Common\InputCommon.cpp ..\..\src\Platform\Common\InputKeyboard.cpp ..\..\src\Platform\Common\InputMouse.cpp ..\..\src\Platform\Common\InputTouch.cpp ..\..\src\Platform\Window.cpp
+         Window.cpp
+         InputTouch.cpp
+         InputMouse.cpp
+         InputKeyboard.cpp
+         InputCommon.cpp
+         InputBase.cpp
+         OGLCheck.cpp
+         Input.cpp
+         HiResTimer.cpp
+         Graphics.cpp
+         Debug.cpp
+         InputSensor.cpp
+         InputController.cpp
+     1>c:\users\kat13sjussil\desktop\orbital-defenseremade\uth-engine-master\src\platform\common\inputcontroller.cpp(42): warning C4018: '<' : signed/unsigned mismatch
+         FileReader.cpp
+         CommonWindowImpl.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Debug\Platform.lib" glfw3d.lib glew32sd.lib OpenGL32.lib physfs.lib /LIBPATH:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\lib\physfs\lib\Win32" /LIBPATH:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\lib\glfw\lib\Win32" /LIBPATH:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\lib\glew\lib\Win32" /NOLOGO "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\CommonWindowImpl.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\FileReader.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputController.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputSensor.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Debug.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Graphics.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\HiResTimer.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Input.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\OGLCheck.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputBase.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputCommon.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputKeyboard.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputMouse.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\InputTouch.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Window.obj"
+         Platform.vcxproj -> C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Debug\Debug\Platform.lib
+     1>Done Building Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Platform\Platform.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.64

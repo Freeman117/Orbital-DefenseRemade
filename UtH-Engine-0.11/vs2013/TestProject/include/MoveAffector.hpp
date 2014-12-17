@@ -2,8 +2,7 @@
 #ifndef MOVEAFFECTOR_H_UTH
 #define MOVEAFFECTOR_H_UTH
 
-#include <UtH/Engine/Particles/Affector.hpp>
-#include <UtH/Engine/Particles/Particle.hpp>
+#include <UtH/UtHEngine.hpp>
 
 
 namespace uth

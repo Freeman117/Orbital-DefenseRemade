@@ -1,7 +1,7 @@
 #pragma once
 #ifndef BULLET_H_
 #define BULLET_H_
-#include <UtH/Engine/GameObject.hpp>
+#include <UtH/UtHEngine.hpp>
 
 class Bullet : public uth::Component
 {

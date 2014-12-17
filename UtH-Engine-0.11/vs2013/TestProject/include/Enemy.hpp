@@ -2,8 +2,6 @@
 #define ENEMY_HPP
 
 #include <UtH/UtHEngine.hpp>
-#include <UtH/Engine/SpriteBatch.hpp>
-#include <pmath/PMath.hpp>
 
 class Enemy : public uth::Component
 {

@@ -41,4 +41,5 @@ namespace uth
 		const TouchUnit& operator[](unsigned int id) const;
 	};
 }
+
 #endif

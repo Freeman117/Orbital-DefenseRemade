@@ -1,0 +1,20 @@
+﻿Build started 9.10.2014 9:14:29.
+     1>Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Resources.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\../ext/include" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\../include" /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\\" /Fd"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\Resources\Font.cpp ..\..\src\Resources\Image.cpp ..\..\src\Resources\ResourceManager.cpp ..\..\src\Resources\SoundBuffer.cpp
+         SoundBuffer.cpp
+         ResourceManager.cpp
+         Image.cpp
+         Font.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\Debug\Resources.lib" "libsndfile-1.lib" /LIBPATH:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\lib\libsndfile\lib\Win32" /NOLOGO "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\Font.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\Image.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\ResourceManager.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\SoundBuffer.obj"
+         Resources.vcxproj -> C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Debug\Debug\Resources.lib
+     1>Done Building Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Resources\Resources.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.95

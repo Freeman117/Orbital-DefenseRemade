@@ -1,0 +1,24 @@
+﻿Build started 9.10.2014 9:14:29.
+     1>Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Renderer.vcxproj" on node 6 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\ext\include\\" /I"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\..\include\\" /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\\" /Fd"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\ext\lib\tinyxml2\src\tinyxml2.cpp ..\..\src\Renderer\Camera.cpp ..\..\src\Renderer\RenderTarget.cpp ..\..\src\Renderer\RenderTexture.cpp ..\..\src\Renderer\Texture.cpp ..\..\src\Renderer\TextureAtlas.cpp
+         TextureAtlas.cpp
+         Texture.cpp
+         RenderTexture.cpp
+         RenderTarget.cpp
+         Camera.cpp
+         tinyxml2.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\Debug\Renderer.lib" /NOLOGO "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\tinyxml2.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\Camera.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\RenderTarget.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\RenderTexture.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\Texture.obj"
+         "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\TextureAtlas.obj"
+         Renderer.vcxproj -> C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Debug\Debug\Renderer.lib
+     1>Done Building Project "C:\Users\kat13sjussil\Desktop\Orbital-DefenseRemade\UtH-Engine-master\vs2013\Renderer\Renderer.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.84

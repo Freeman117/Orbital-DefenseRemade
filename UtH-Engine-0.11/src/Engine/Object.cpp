@@ -1,20 +1,23 @@
 #include <UtH/Engine/Object.hpp>
 #include <UtH/Renderer/RenderTarget.hpp>
 #include <cassert>
+#include <UtH/Platform/Debug.hpp>
 
 namespace uth
 {
 	Object::Object()
 		: transform(this),
 		m_parent(nullptr),
-		m_active(true)
+		m_active(true),
+		m_isRemoved(false)
 	{
 
 	}
 	Object::Object(Object* p)
-		: transform(this), 
+		: transform(this),
 		m_parent(p),
-		m_active(true)
+		m_active(true),
+		m_isRemoved(false)
 	{
 
 	}
@@ -45,46 +48,85 @@ namespace uth
 
 	void Object::Update(float dt)
 	{
-		if (m_active)
-		{
-			for (size_t i = 0; i < m_children.size(); i++)
-			{
-				auto& e = *m_children[i];
+		if (!m_active)
+			return;
 
-				if (e.m_active)
-					e.Update(dt);
-			}
+		const std::vector<std::shared_ptr<Object>> objBackup(m_children);
+
+		for (auto o : objBackup)
+		{
+			if (o->IsActive())
+				o->Update(dt);
+			if (o->IsRemoved())
+				RemoveChild(o);
 		}
 	}
 	void Object::Draw(RenderTarget& target, RenderAttributes attributes)
 	{
-		if (m_active)
+		if (!m_active)
+			return;
+
+		for (auto& i : m_children)
 		{
-			for (auto& e : m_children)
-			{
-				if (e->m_active)
-					e->Draw(target, attributes);
-			}
+			if (i->m_active)
+				i->Draw(target, attributes);
 		}
+	}
+
+	void Object::AddChildren(const std::vector<std::shared_ptr<Object>>& objects, const bool keepGlobalPos)
+	{
+		for (auto& o : objects)
+			AddChild(o, keepGlobalPos);
+	}
+	void Object::AddChildren(const std::vector<Object*>& objects, const bool keepGlobalPos)
+	{
+		for (auto& o : objects)
+			AddChild(o, keepGlobalPos);
 	}
 
 	bool Object::HasChild(const std::shared_ptr<Object>& object) const
 	{
 		return std::find(m_children.begin(), m_children.end(), object) != m_children.end();
 	}
+	bool Object::HasChild(const Object* object) const
+	{
+		for (auto it = m_children.begin(); it != m_children.end(); ++it)
+		{
+			if (object == it->get())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	void Object::RemoveChild(const std::shared_ptr<Object>& object)
 	{
-		if (object != nullptr)
+		auto it = std::find(m_children.begin(), m_children.end(), object);
+		(*it)->setParent(nullptr);
+		m_children.erase(it);
+	}
+	void Object::RemoveChild(Object* object)
+	{
+		for (auto it = m_children.begin(); it != m_children.end(); ++it)
 		{
-			auto o = std::find(m_children.begin(), m_children.end(), object);
-			(*o)->setParent(nullptr);
-			m_children.erase(o);
+			if (object == it->get())
+			{
+				(*it)->setParent(nullptr);
+				m_children.erase(it);
+				return;
+			}
 		}
 	}
 
 	void Object::RemoveChildren()
 	{
+		assert(
+			this != nullptr ?
+			true :
+			[]() -> bool { WriteError("This = nullptr, object deleted multiple times"); return false; }()
+			);
+
 		for (auto& child : m_children)
 			child->setParent(nullptr);
 		m_children.clear();
@@ -92,46 +134,45 @@ namespace uth
 	void Object::RemoveChildren(const std::string& tag)
 	{
 		RemoveChildren(Children(tag));
-
-		//m_children.erase(
-		//	std::remove_if( m_children.begin(), m_children.end(),
-		//	[tag](std::shared_ptr<Object> const& o)
-		//{
-		//	return o->HasTag(tag); 
-		//}
-		//	),
-		//	m_children.end()
-		//);
 	}
 	void Object::RemoveChildren(const std::vector<std::shared_ptr<Object>>& objects)
 	{
-		for (size_t i = 0; i < objects.size(); i++)
+		for (auto& o : objects)
 		{
-			RemoveChild(m_children[i]);
+			RemoveChild(o);
 		}
 	}
+	void Object::RemoveChildren(const std::vector<Object*>& objects)
+	{
+		for (auto& o : objects)
+		{
+			RemoveChild(o);
+		}
+	}
+	void Object::Remove()
+	{
+		m_isRemoved = true;
+	}
+	bool Object::IsRemoved() const
+	{
+		return m_isRemoved;
+	}
 
-	std::vector<std::shared_ptr<Object>> Object::ExtractChildren(const std::string& tag)
+	std::vector<std::shared_ptr<Object>> Object::ExtractChildren(const std::string& tag, const bool keepGlobalPos)
 	{
 		std::vector<std::shared_ptr<Object>> retVal;
 		for (auto it = m_children.begin(); it != m_children.end(); it++)
 		{
-			if ((*it)->HasTag(tag))
+			const auto& c = (*it);
+			if (c->HasTag(tag))
 			{
+				if (keepGlobalPos)
+					c->transform.SetTransform(c->transform.GetTransform());
 				retVal.push_back(*it);
 				m_children.erase(it);
 			}
 		}
 		return retVal;
-
-		//const auto it = std::remove_if(m_children.begin(), m_children.end(),
-		//	[tag](std::shared_ptr<Object> const& o)
-		//{
-		//	return o->HasTag(tag);
-		//});
-		//std::vector<std::shared_ptr<Object>> retVal(it, m_children.end());
-		//m_children.erase(it, m_children.end());
-		//return retVal;
 	}
 
 	std::vector<std::shared_ptr<Object>> Object::Children() const
@@ -149,16 +190,6 @@ namespace uth
 			}
 		}
 		return retVal;
-
-		//if (m_children.size() == 0)
-		//	return m_children;
-		//const auto it = std::remove_if(m_children.begin(), m_children.end(),
-		//	[tag](std::shared_ptr<Object> const& o)
-		//{
-		//	return o->HasTag(tag); 
-		//});
-		//std::vector<std::shared_ptr<Object>> retVal(it, m_children.end());
-		//return retVal;
 	}
 
 	std::vector<std::shared_ptr<Object>> Object::FindAll(const std::string& tag, const size_t reserveSize)
@@ -175,11 +206,6 @@ namespace uth
 		findAll(retVal);
 		return retVal;
 	}
-
-	//bool Object::InWorld() const
-	//{
-	//	return m_inWorld;
-	//}
 
 	void Object::AddTags(const std::vector<std::string>& tags)
 	{

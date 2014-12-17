@@ -1,10 +1,7 @@
 #ifndef TEMPLATESCENE_HPP
 #define TEMPLATESCENE_HPP
 
-#include <UtH/Engine/Engine.hpp>
-#include <UtH/Platform/Input.hpp>
-#include <UtH/Renderer/Camera.hpp>
-#include <UtH/Renderer/RenderAttributes.hpp>
+#include <UtH/UtHEngine.hpp>
 #include "Turret.hpp"
 #include "EnemyManager.hpp"
 #include "TurretManager.hpp"
@@ -32,7 +29,7 @@ public:
 	//void setTestiValue(){ testi2 = 2; }
 
 private:
-	uth::Shader shader;
+	//uth::Shader shader;
 	uth::GameObject* moonbase;
 	uth::GameObject* background;
 

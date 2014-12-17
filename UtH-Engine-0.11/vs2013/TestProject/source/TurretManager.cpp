@@ -3,6 +3,7 @@
 
 TurretManager::TurretManager()
 {
+	//orbit01Angle = 0.0f;
 	orbit02Angle = 0.0f;
 	turret01Sprite = new uth::Sprite("CannonTower.png");
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
@@ -11,6 +12,23 @@ TurretManager::TurretManager()
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+		towerButtons.emplace_back(towers[i]);
+		AddChild(towerButtons.back());
+		towers[i]->SetActive(false);
+		towers[i]->AddTag("Tower");
+	}
+	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+	//cancelButton.emplace_back(cancel);
+	AddChild(cancel);
+	cancel->SetActive(false);
+	cancel->AddTag("Cancel");
+	
+
+	UI = false;
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 {
@@ -178,14 +196,16 @@ void TurretManager::CreateNodes()
 	for (int i = 0; i < 6; i++)
 	{
 		auto node = std::shared_ptr<Node>(new Node(1, i, orbit01Angle, node01Texture));
-		nodes.push_back(node);
+		nodes.emplace_back(node);
 		AddChild(node);
+		node->AddTag("Node");
 	}
 	for (int i = 0; i < 12; i++)
 	{
 		auto node = std::shared_ptr<Node>(new Node(2, i, orbit02Angle, node01Texture));
-		nodes.push_back(node);
+		nodes.emplace_back(node);
 		AddChild(node);
+		node->AddTag("Node2");
 	}
 }
 void TurretManager::UpdateNodes()
@@ -241,39 +261,42 @@ std::vector<std::shared_ptr<uth::GameObject>> TurretManager::EnemyWithinRange(En
 
 void TurretManager::AddTurretButtons()
 {
-	for (int i = 0; i < 6; i++)
+	if (UI == false)
 	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-		AddChild(towers[i]);
-		towerButtons.emplace_back(towers[i]);
+		towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
+		towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
+		towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
+		towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
+		towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
+		towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
+
+		for (auto t : towers)
+			t->SetActive(true);
+
+		//AddChild(cancel);
+		cancel->SetActive(true);
+		//cancelButton.emplace_back(cancel);
+		cancel->transform.SetPosition(-508.f, 5.f);
+
+		UI = true;
 	}
-	
-
-	towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
-	towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
-	towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
-	towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
-	towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
-	towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
-
-	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-
-	AddChild(cancel);
-	cancelButton.emplace_back(cancel);
-	cancel->transform.SetPosition(-508.f,5.f);
-
 }
 
-void TurretManager::RemoveTurretButtons() //NEEDS MORE WORK
+void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
 {
-	for (int i = 0; i < 6; i++)
+	if (towerButtons.size() > 0)
 	{
-		//auto tornit = towerButtons[i];
-		RemoveChild(towerButtons[i]);
-		//towerButtons.erase(towerButtons[i]);  //The vector lists MUST be cleared, otherwise will result in memory corruption
+		for (int i = towerButtons.size()-1; i >= 0; i--)
+		{
+			//RemoveChild(towerButtons[i]);
+			towers[i]->SetActive(false);
+		}
+		//auto deleteCancel = cancelButton[0];
+		//RemoveChild(cancel);
+		cancel->SetActive(false);
+
+		UI = false;
 	}
-	auto deleteCancel = cancelButton[0];
-	RemoveChild(deleteCancel);
 }
 
 void TurretManager::poisto()
