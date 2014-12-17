@@ -12,6 +12,19 @@ TurretManager::TurretManager()
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
 	CreateNodes();
 
+	for (size_t i = 0; i < 6; i++)
+	{
+		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+		towerButtons.emplace_back(towers[i]);
+		AddChild(towers[i]);
+		towers[i]->SetActive(false);
+	}
+	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+	//cancelButton.emplace_back(cancel);
+	AddChild(cancel);
+	cancel->SetActive(false);
+	
+
 	UI = false;
 }
 void TurretManager::CreateTurret(int type, int orb, int orbitPos)
@@ -245,14 +258,6 @@ void TurretManager::AddTurretButtons()
 {
 	if (UI == false)
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-			AddChild(towers[i]);
-			towerButtons.emplace_back(towers[i]);
-		}
-
-
 		towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
 		towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
 		towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
@@ -260,10 +265,12 @@ void TurretManager::AddTurretButtons()
 		towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
 		towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
 
-		cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+		for (auto t : towers)
+			t->SetActive(true);
 
-		AddChild(cancel);
-		cancelButton.emplace_back(cancel);
+		//AddChild(cancel);
+		cancel->SetActive(true);
+		//cancelButton.emplace_back(cancel);
 		cancel->transform.SetPosition(-508.f, 5.f);
 
 		UI = true;
@@ -276,11 +283,12 @@ void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
 	{
 		for (int i = towerButtons.size()-1; i >= 0; i--)
 		{
-			RemoveChild(towerButtons[i]);
-			//towerButtons.erase(towerButtons.begin()+i);
+			//RemoveChild(towerButtons[i]);
+			towers[i]->SetActive(false);
 		}
-		auto deleteCancel = cancelButton[0];
-		RemoveChild(deleteCancel);
+		//auto deleteCancel = cancelButton[0];
+		//RemoveChild(cancel);
+		cancel->SetActive(false);
 
 		UI = false;
 	}
