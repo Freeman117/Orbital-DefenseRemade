@@ -7,17 +7,10 @@
 #include "Wave.hpp"
 #include "Enemy_Asteroid_Small.hpp"
 #include "Enemy_Asteroid_Cluster.hpp"
-<<<<<<< HEAD
 #include "Enemy_Pirate_Carrier.hpp"
 #include "Enemy_Pirate_Marauder.hpp"
 #include "Enemy_Pirate_Scout.hpp"
 #include "Enemy_Pirate_Striker.hpp"
-#include <UtH/Engine/AnimatedSprite.hpp>
-#include <UtH/Renderer/Texture.hpp>
-#include <UtH/Engine/GameObject.hpp>
-=======
->>>>>>> origin/master
-
 
 class EnemyManager : public uth::GameObject
 {
