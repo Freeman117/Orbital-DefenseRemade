@@ -35,7 +35,6 @@ public:
 	std::vector<std::shared_ptr<uth::GameObject>> turrets;
 	std::vector<std::shared_ptr<uth::GameObject>> bullets;
 	std::vector<std::shared_ptr<Node>> nodes;
-	//std::vector<Node*> nodes;
 
 	void poisto();
 protected:
@@ -52,15 +51,23 @@ private:
 	uth::Texture* node01Texture;
 	uth::Texture* towerButtonTexture;
 
+	uth::Texture* RocketButton;
+	uth::Texture* RailgunButton;
+	uth::Texture* DisruptorButton;
+	uth::Texture* CannonButton;
+	uth::Texture* BeamButton;
+	uth::Texture* GatlingLaserButton;
+	uth::Texture* CancelButton;
+
 	uth::Randomizer* rand;
 
 	std::array<ns::Button*, 6> towers;
 	std::vector<std::shared_ptr<ns::Button>> towerButtons;
 	ns::Button* cancel;
-	std::vector<std::shared_ptr<ns::Button>> cancelButton;
 
 	void AddTurretButtons();
 	void RemoveTurretButtons();
+	void SearchNodes();
 	bool UI;
 
 	uth::Texture* disruptorProjectile;

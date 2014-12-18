@@ -39,8 +39,8 @@ private:
 	uth::Text* testText;
 	uth::Text* moneyText;
 	
-	std::array<ns::Button*, 2> buttons;
-
+	//std::array<ns::Button*, 2> buttons;
+	ns::Button* ToggleOrbit;
 
 	uth::Randomizer* randomizer;
 

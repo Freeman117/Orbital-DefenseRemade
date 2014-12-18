@@ -11,22 +11,43 @@ TurretManager::TurretManager()
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
+	
+	RocketButton = uthRS.LoadTexture("RocketButton.png");
+	RailgunButton = uthRS.LoadTexture("RailgunButton.png");
+	DisruptorButton = uthRS.LoadTexture("disruptorButton.png");
+	CannonButton = uthRS.LoadTexture("CannonButton.png");
+	BeamButton = uthRS.LoadTexture("BeamButton.png");
+	GatlingLaserButton = uthRS.LoadTexture("GatlingLaserButton.png");
+	CancelButton = uthRS.LoadTexture("CancelButton.png");
+
 	CreateNodes();
 
+	towers[0] = new ns::Button(uthEngine.GetWindow(), CannonButton);
+	towers[1] = new ns::Button(uthEngine.GetWindow(), GatlingLaserButton);
+	towers[2] = new ns::Button(uthEngine.GetWindow(), BeamButton);
+	towers[3] = new ns::Button(uthEngine.GetWindow(), RocketButton);
+	towers[4] = new ns::Button(uthEngine.GetWindow(), DisruptorButton);
+	towers[5] = new ns::Button(uthEngine.GetWindow(), RailgunButton);
+	
 	for (size_t i = 0; i < 6; i++)
 	{
-		towers[i] = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
+		towers[i]->transform.SetScale(0.6f);
 		towerButtons.emplace_back(towers[i]);
 		AddChild(towerButtons.back());
 		towers[i]->SetActive(false);
 		towers[i]->AddTag("Tower");
 	}
-	cancel = new ns::Button(uthEngine.GetWindow(), towerButtonTexture);
-	//cancelButton.emplace_back(cancel);
+
+	cancel = new ns::Button(uthEngine.GetWindow(), CancelButton);
 	AddChild(cancel);
 	cancel->SetActive(false);
 	cancel->AddTag("Cancel");
-	
+	cancel->transform.SetScale(0.6f);
+
+	cancel->setCallBack([&]()
+	{
+		poisto();
+	});
 
 	UI = false;
 }
@@ -241,15 +262,17 @@ void TurretManager::UpdateNodes()
 		node->MoveNode(orbit01Angle, orbit02Angle);
 		if (node->GetTrue())
 		{
-			if (node->GetOrbit() == 1)
-				CreateTurret(node->GetOrbitPos() + 1, node->GetOrbit(), node->GetOrbitPos());
-			else
-				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
+			nodes[i]->AddTag("Construct");
+			AddTurretButtons();
+			
+			//if (node->GetOrbit() == 1)
+				//CreateTurret(node->GetOrbitPos() + 1, node->GetOrbit(), node->GetOrbitPos());
+			//else
+				//CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
 			//RemoveChild(node);
-			//nodes.erase(nodes.begin() + i);
-			node->SetActive(false);
-
+			//nodes.erase(nodes.begin() + i); Not necessary anymore since we can just hide the nodes
+			UI = true;
 		}
 	}
 }
@@ -290,11 +313,11 @@ void TurretManager::AddTurretButtons()
 	if (UI == false)
 	{
 		towers[0]->transform.SetPosition(pmath::Vec2f(-524.f, -100.f));
-		towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -70.f));
-		towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, -40.f));
-		towers[3]->transform.SetPosition(pmath::Vec2f(-492.f, -100.f));
-		towers[4]->transform.SetPosition(pmath::Vec2f(-492.f, -70.f));
-		towers[5]->transform.SetPosition(pmath::Vec2f(-492.f, -40.f));
+		towers[1]->transform.SetPosition(pmath::Vec2f(-524.f, -50.f));
+		towers[2]->transform.SetPosition(pmath::Vec2f(-524.f, 0.f));
+		towers[3]->transform.SetPosition(pmath::Vec2f(-524.f, 50.f));
+		towers[4]->transform.SetPosition(pmath::Vec2f(-524.f, 100.f));
+		towers[5]->transform.SetPosition(pmath::Vec2f(-524.f, 150.f));
 
 		for (auto t : towers)
 			t->SetActive(true);
@@ -302,13 +325,67 @@ void TurretManager::AddTurretButtons()
 		//AddChild(cancel);
 		cancel->SetActive(true);
 		//cancelButton.emplace_back(cancel);
-		cancel->transform.SetPosition(-508.f, 5.f);
+		cancel->transform.SetPosition(-524.f, 200.f);
 
-		UI = true;
+		SearchNodes();
+
+	}
+}
+void TurretManager::SearchNodes()
+{
+	for (int i = 0; i < nodes.size() - 1; i++)
+	{
+		auto& node = nodes[i];
+		if (node->HasTag("Construct"))
+		{
+			towers[0]->setCallBack([&]()
+			{
+				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+			towers[1]->setCallBack([&]()
+			{
+				CreateTurret(2, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+			towers[2]->setCallBack([&]()
+			{
+				CreateTurret(3, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+			towers[3]->setCallBack([&]()
+			{
+				CreateTurret(4, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+			towers[4]->setCallBack([&]()
+			{
+				CreateTurret(5, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+			towers[5]->setCallBack([&]()
+			{
+				CreateTurret(6, node->GetOrbit(), node->GetOrbitPos());
+				poisto();
+				node->RemoveTag("Construct");
+				node->SetActive(false);
+			});
+
+		}
 	}
 }
 
-void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
+void TurretManager::RemoveTurretButtons()
 {
 	if (towerButtons.size() > 0)
 	{
@@ -317,7 +394,6 @@ void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
 			towers[i]->SetActive(false);
 		}
 		cancel->SetActive(false);
-
 		UI = false;
 	}
 }

@@ -47,7 +47,7 @@ bool TemplateScene::Init()
 		uthRS.LoadTexture("particle.png"),
 		uthRS.LoadTexture("particle.png")
 	};
-	buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
+	/*buttons[0] = new ns::Button(uthEngine.GetWindow(), buttonTextures[0]);
 	buttons[1] = new ns::Button(uthEngine.GetWindow(), buttonTextures[1]);
 
 	buttons[0]->setCallBack([&]()
@@ -57,9 +57,21 @@ bool TemplateScene::Init()
 	buttons[1]->setCallBack([&]()
 	{
 		testi2 = 1;
+	});*/
+
+	ToggleOrbit = new ns::Button(uthEngine.GetWindow(),buttonTextures[0]);
+	ToggleOrbit->setCallBack([&]()
+	{
+		if (testi2 = 1)
+			testi2 = 2;
+		else testi2 = 1;
 	});
 
-	buttons[0]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f));
+	ToggleOrbit->transform.SetPosition(-512.f, -200.f);
+	uth::Layer::AddChild(ToggleOrbit);
+
+
+	/*buttons[0]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f));
 	buttons[1]->transform.SetPosition(pmath::Vec2f(-512.f,-200.f+buttons[0]->transform.GetSize().y+40.f));
 
 	for (int i = 0; i < buttons.size(); i++)
@@ -67,7 +79,7 @@ bool TemplateScene::Init()
 		auto b = buttons[i];
 		uth::Layer::AddChild(b);
 		b->transform.SetScale(2.0f);
-	}
+	}*/
 
 	return true;
 }

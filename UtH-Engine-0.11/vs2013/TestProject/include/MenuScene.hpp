@@ -18,6 +18,8 @@ private:
 	uth::Camera menuCamera;
 	std::array<ns::Button*, 2> buttons;
 	uth::GameObject* title;
+
+	uth::GameObject* Background;
 };
 
 #endif

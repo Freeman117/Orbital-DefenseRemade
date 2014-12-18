@@ -24,14 +24,21 @@ bool MenuScene::Init()
 	menuCamera.SetSize(1280, 720);
 	menuCamera.SetPosition(menuCamera.GetSize() / 2.f);
 #pragma endregion Camera
+	
+	Background = new uth::GameObject();
+	Background->AddComponent(new uth::Sprite("Menu.png"));
+	AddChild(Background);
+
+	Background->transform.SetPosition(menuCamera.GetSize() / 2);
+	Background->transform.SetScale(2.5f);
 
 	title = new uth::GameObject();
 	AddChild(title);
-	uth::Text* titleText = new uth::Text("kenpixel.ttf",24.f);
+	uth::Text* titleText = new uth::Text("kenpixel.ttf",30.f);
 	title->AddComponent(titleText);
 	titleText->SetText("ORBITAL DEFENCE",pmath::Vec4(0,0,1,1));
 	title->transform.SetOrigin(uth::Origin::TopLeft);
-	title->transform.SetPosition(528.f,112.f);
+	title->transform.SetPosition(484.f,62.f);
 
 	std::array<uth::Texture*, 2> buttonTextures =
 	{ 
@@ -67,10 +74,15 @@ bool MenuScene::Init()
 	{
 		auto b = buttons[i];
 
-		b->transform.SetOrigin(uth::Origin::TopLeft);
-		b->transform.SetPosition(528.f, 256.f + (i*50.f) + (i*b->transform.GetSize().y));
+		//b->transform.SetOrigin(uth::Origin::TopLeft);
+		//b->transform.SetPosition(528.f, 256.f + (i*50.f) + (i*b->transform.GetSize().y));
 		uth::Layer::AddChild(b);
 	}
+	buttons[0]->transform.SetPosition(320.f,256.f);
+	buttons[1]->transform.SetPosition(656.f,606.0f);
+
+	buttons[0]->transform.SetScale(1.7f);
+	buttons[1]->transform.SetScale(1.7f);
 
 	return true;
 }
