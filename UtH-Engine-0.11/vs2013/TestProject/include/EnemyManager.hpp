@@ -11,6 +11,7 @@
 #include "Enemy_Pirate_Marauder.hpp"
 #include "Enemy_Pirate_Scout.hpp"
 #include "Enemy_Pirate_Striker.hpp"
+#include "Enemy_Pirate_CarrierMinion.hpp"
 
 class EnemyManager : public uth::GameObject
 {
@@ -18,7 +19,7 @@ public:
 	EnemyManager();
 	~EnemyManager(){};
 
-	void UpdateEnemies(float deltaTime, int &health);
+	void UpdateEnemies(float deltaTime, int &health, float &money);
 	void DrawEnemies();
 	void SpawnEnemy(int wave, int type, float angle);
 	void InitWaves(int wave);

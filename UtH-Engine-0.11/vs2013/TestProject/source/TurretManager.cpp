@@ -186,6 +186,16 @@ void TurretManager::UpdateBullets(float dt, EnemyManager* enemyManager)
 		}
 		else if (c.MaxRangeTravelled(dt))
 		{
+			if (c.explosionradius > 0)
+			{
+				enemiesWithinAoE = EnemyWithinRange(enemyManager, bullet.transform.GetPosition().x, bullet.transform.GetPosition().y, c.explosionradius);
+				for (int j = enemiesWithinAoE.size() - 1; j >= 0; j--)
+				{
+					enemy_c = enemiesWithinAoE[j]->GetComponent<Enemy>();
+					enemy_c->TakeHit(c.damage, c.armorPenetration);
+					enemy_c->SetMovementMod(c.slowAmount, 1);
+				}
+			}
 			RemoveChild(bullets[i]);
 			bullets.erase(bullets.begin() + i);
 		}

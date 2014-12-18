@@ -6,7 +6,7 @@ EnemyManager::EnemyManager()
 	asteroidTextures = uthRS.LoadTexture("asteroidSheet.png");
 	pirateTextures = uthRS.LoadTexture("enemySpriteSheet.png");
 	carrierTextures = uthRS.LoadTexture("CarrierSheet.png");
-	currentWave = 1;
+	currentWave = 10;
 	InitWaves(currentWave - 1);
 }
 
@@ -29,31 +29,37 @@ void EnemyManager::SpawnEnemy(int wave, int type, float angle)
 	else if (type == 3)
 	{
 		enemy->AddComponent(new EnemyPirateScout(wave, angle));
-		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures,9, 3, 3, 3, 3, false, true));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures,3, 3, 3, 3, 3, false, true));
 		enemy->transform.SetScale(1.0f);
 	}
 	else if (type == 4)
 	{
 		enemy->AddComponent(new EnemyPirateStriker(wave, angle));
-		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 9, 3, 3, 3, 6, false, true));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 3, 3, 3, 6, false, true));
 		enemy->transform.SetScale(1.0f);
 	}
 	else if (type == 5)
 	{
 		enemy->AddComponent(new EnemyPirateMarauder(wave, angle));
-		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 9, 3, 3, 3, 0, false, true));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 3, 3, 3, 0, false, true));
 		enemy->transform.SetScale(1.0f);
 	}
 	else if (type == 6)
 	{
 		enemy->AddComponent(new EnemyPirateCarrier(wave, angle));
-		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 1, 3, 3, 0, false, true));
-		enemy->transform.SetScale(1.0f);
+		enemy->AddComponent(new uth::AnimatedSprite(carrierTextures, 3, 1, 3, 3, 0, false, true));
+		enemy->transform.SetScale(1.5f);
+	}
+	else if (type == 7)
+	{
+		enemy->AddComponent(new EnemyPirateCarrierMinion(wave, angle));
+		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 3, 3, 3, 0, false, true));
+		enemy->transform.SetScale(1.75f);
 	}
 	AddChild(enemy);
 	enemies.push_back(enemy);
 }
-void EnemyManager::UpdateEnemies(float deltaTime, int &health)
+void EnemyManager::UpdateEnemies(float deltaTime, int &health, float &money)
 {
 	float tempDistance = 0.0f;
 	float tempAngle = 0.0f;
@@ -61,15 +67,29 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 	{
 		auto& enemy = enemies[i];
 		auto& c = *enemy->GetComponent<Enemy>();
-
-		c.UpdateMovementSpeed(deltaTime);
-		c.SetDistance(c.GetDistance() - c.GetSpeed() * deltaTime);
-		enemy->Update(deltaTime);
-		tempDistance = c.GetDistance();
-		tempAngle = c.GetAngle();
-		enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);
-		enemy->transform.SetRotation(pmath::radiansToDegrees(-tempAngle) + 90);
-
+		if (!c.getCarrierStatus())
+		{
+			c.UpdateMovementSpeed(deltaTime);
+			c.SetDistance(c.GetDistance() - c.GetSpeed() * deltaTime);
+			enemy->Update(deltaTime);
+			tempDistance = c.GetDistance();
+			tempAngle = c.GetAngle();
+			enemy->transform.SetPosition(cosf(tempAngle)*tempDistance, sinf(tempAngle) * tempDistance);
+			enemy->transform.SetRotation(pmath::radiansToDegrees(tempAngle)+180);
+		}
+		else
+		{
+			tempAngle = c.GetAngle();
+			if (c.GetDistance() > 400)
+				c.SetDistance(c.GetDistance() - 30*deltaTime);
+			enemy->transform.SetPosition(cosf(tempAngle)*c.GetDistance(), sinf(tempAngle)*c.GetDistance());
+			enemy->transform.SetRotation(pmath::radiansToDegrees(tempAngle)+90);
+			if (c.GetCarrierSpawn(deltaTime))
+			{
+				SpawnEnemy(currentWave, 7, tempAngle);
+			}
+			c.SetAngle(tempAngle + 0.002f);
+		}
 		if (c.GetDistance() <= 0)
 		{
 			RemoveChild(enemy);
@@ -79,6 +99,7 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health)
 		if (!c.GetAlive())
 		{
 			c.OnDeath();
+			money += c.GetBounty();
 			RemoveChild(enemy);
 			enemies.erase(enemies.begin() + i);
 		}
@@ -96,7 +117,7 @@ void EnemyManager::InitWaves(int wave)
 	waves[6].Init(wave + 6, 1, 1.5f, 20);
 	waves[7].Init(wave + 7, 1, 1.5f, 20);
 	waves[8].Init(wave + 8, 1, 1.5f, 20);
-	waves[9].Init(wave + 9, 1, 1.5f, 20);
+	waves[9].Init(wave + 9, 6, 1.0f, 1);
 }
 void EnemyManager::UpdateWaves(float dt)
 {

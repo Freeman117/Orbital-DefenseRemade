@@ -76,6 +76,9 @@
     <ClCompile Include="source\Enemy_Pirate_Carrier.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Enemy_Pirate_CarrierMinion.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.hpp">
@@ -154,6 +157,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Enemy_Pirate_Striker.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enemy_Pirate_CarrierMinion.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,7 +15,7 @@ EnemyPirateScout::EnemyPirateScout(int wave, float angle_) : Enemy()
 	{
 		health = 31;
 		speed = 19;
-		bounty = 75;
+		bounty = 6;
 	}
 	else if (wave == 5)
 	{

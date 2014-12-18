@@ -3,8 +3,10 @@
 EnemyPirateCarrier::EnemyPirateCarrier(int wave, float angle_) : Enemy()
 {
 	armor = 0;
-	HitBox = 30;
+	carrierSpawn = 0;
+	HitBox = 80;
 	angle = angle_;
+	isCarrier = true;
 	if (wave == 10)
 	{
 		health = 1500;

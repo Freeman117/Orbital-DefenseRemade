@@ -17,13 +17,17 @@ public:
 	void UpdateMovementSpeed(float dt);
 	void SetMovementMod(float amount, float duration);
 	float GetAngle();
+	void SetAngle(float amount);
 	float GetSpeed();
+	bool GetCarrierSpawn(float dt);
 	bool GetAlive();
+	bool getCarrierStatus();
 	float HitBox;
 	float GetBounty();
 protected:
 
 	bool isAlive;
+	bool isCarrier;
 	float health;
 	float armor;
 	float speed;
@@ -32,6 +36,7 @@ protected:
 	float distance;
 	float angle;
 	float bounty;
+	float carrierSpawn;
 	uth::Randomizer* randomizer;
 private:
 };

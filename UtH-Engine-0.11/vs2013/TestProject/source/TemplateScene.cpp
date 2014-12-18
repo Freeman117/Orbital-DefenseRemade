@@ -140,7 +140,7 @@ void TemplateScene::Update(float dt)
 	//textBox->transform.SetPosition(-512.f + 10.f*randomi, -256.f + 10.f*randomi2);
 
 	turretManager->UpdateTurrets(dt, enemyManager);
-	enemyManager->UpdateEnemies(dt, health);
+	enemyManager->UpdateEnemies(dt, health, money);
 	turretManager->UpdateBullets(dt, enemyManager);
 	
 	std::stringstream mn;
