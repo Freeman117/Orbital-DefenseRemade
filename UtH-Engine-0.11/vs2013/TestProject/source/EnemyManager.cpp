@@ -30,19 +30,19 @@ void EnemyManager::SpawnEnemy(int wave, int type, float angle)
 	{
 		enemy->AddComponent(new EnemyPirateScout(wave, angle));
 		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures,3, 3, 3, 3, 3, false, true));
-		enemy->transform.SetScale(1.0f);
+		enemy->transform.SetScale(1.75f);
 	}
 	else if (type == 4)
 	{
 		enemy->AddComponent(new EnemyPirateStriker(wave, angle));
 		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 3, 3, 3, 6, false, true));
-		enemy->transform.SetScale(1.0f);
+		enemy->transform.SetScale(1.75f);
 	}
 	else if (type == 5)
 	{
 		enemy->AddComponent(new EnemyPirateMarauder(wave, angle));
 		enemy->AddComponent(new uth::AnimatedSprite(pirateTextures, 3, 3, 3, 3, 0, false, true));
-		enemy->transform.SetScale(1.0f);
+		enemy->transform.SetScale(1.75f);
 	}
 	else if (type == 6)
 	{
@@ -111,7 +111,7 @@ void EnemyManager::InitWaves(int wave)
 	waves[0].Init(wave, 1, 5, 5);
 	waves[1].Init(wave + 1, 1, 4.0f, 8, 3, 5.0f, 5);
 	waves[2].Init(wave + 2, 1, 4.5f, 6, 3, 4.0f, 8);
-	waves[3].Init(wave + 3, 4, 6.5f, 10);
+	waves[3].Init(wave + 3, 2, 6.5f, 10);
 	waves[4].Init(wave + 4, 3, 3.5f, 10,4,2,20);
 	waves[5].Init(wave + 5, 1, 2.5f, 10,2,5,5);
 	waves[6].Init(wave + 6, 5, 2.5f, 20);
