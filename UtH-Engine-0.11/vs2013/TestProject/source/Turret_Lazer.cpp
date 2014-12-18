@@ -1,6 +1,6 @@
 #include "Turret_Lazer.hpp"
 
-TurretLazer::TurretLazer(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
+TurretLazer::TurretLazer(float orb, float orbPos) : Turret()
 {
 	damage = 16;
 	reloadSpeed = 0.6f;
@@ -10,6 +10,8 @@ TurretLazer::TurretLazer(float orb, float orbPos, uth::Texture* projectileTextur
 	cooldown = 0;
 	totalTime = 0;
 	level = 0;
+	frameAmounts = 1;
+	startFrame = 12;
 	orbit = orb;
 	orbitPos = orbPos;
 }

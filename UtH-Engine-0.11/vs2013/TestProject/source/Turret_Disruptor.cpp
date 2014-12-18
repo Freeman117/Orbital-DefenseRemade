@@ -1,6 +1,6 @@
 #include "Turret_Disruptor.hpp"
 
-TurretDisruptor::TurretDisruptor(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
+TurretDisruptor::TurretDisruptor(float orb, float orbPos) : Turret()
 {
 	damage = 12;
 	reloadSpeed = 1;
@@ -11,6 +11,8 @@ TurretDisruptor::TurretDisruptor(float orb, float orbPos, uth::Texture* projecti
 	totalTime = 0;
 	level = 0;
 	slowAmount = 0.75f;
+	frameAmounts = 3;
+	startFrame = 30;
 	orbit = orb;
 	orbitPos = orbPos;
 }

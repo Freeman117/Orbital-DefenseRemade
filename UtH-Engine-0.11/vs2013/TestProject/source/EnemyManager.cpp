@@ -6,7 +6,7 @@ EnemyManager::EnemyManager()
 	asteroidTextures = uthRS.LoadTexture("asteroidSheet.png");
 	pirateTextures = uthRS.LoadTexture("enemySpriteSheet.png");
 	carrierTextures = uthRS.LoadTexture("CarrierSheet.png");
-	currentWave = 10;
+	currentWave = 1;
 	InitWaves(currentWave - 1);
 }
 
@@ -108,15 +108,15 @@ void EnemyManager::UpdateEnemies(float deltaTime, int &health, float &money)
 }
 void EnemyManager::InitWaves(int wave)
 {
-	waves[0].Init(wave,1, 5,5);
-	waves[1].Init(wave + 1, 1, 1.5f, 20);
-	waves[2].Init(wave + 2, 1, 4.5f, 6,1,2.25f,12);
-	waves[3].Init(wave + 3, 1, 1.5f, 20);
-	waves[4].Init(wave + 4, 1, 1.5f, 20);
-	waves[5].Init(wave + 5, 1, 1.5f, 20);
-	waves[6].Init(wave + 6, 1, 1.5f, 20);
-	waves[7].Init(wave + 7, 1, 1.5f, 20);
-	waves[8].Init(wave + 8, 1, 1.5f, 20);
+	waves[0].Init(wave, 1, 5, 5);
+	waves[1].Init(wave + 1, 1, 4.0f, 8, 3, 5.0f, 5);
+	waves[2].Init(wave + 2, 1, 4.5f, 6, 3, 4.0f, 8);
+	waves[3].Init(wave + 3, 4, 6.5f, 10);
+	waves[4].Init(wave + 4, 3, 3.5f, 10,4,2,20);
+	waves[5].Init(wave + 5, 1, 2.5f, 10,2,5,5);
+	waves[6].Init(wave + 6, 5, 2.5f, 20);
+	waves[7].Init(wave + 7, 5, 3.5f, 10,3,2.5f,15);
+	waves[8].Init(wave + 8, 4, 1.5f, 20);
 	waves[9].Init(wave + 9, 6, 1.0f, 1);
 }
 void EnemyManager::UpdateWaves(float dt)

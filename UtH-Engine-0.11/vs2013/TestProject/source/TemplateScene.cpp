@@ -18,8 +18,8 @@ bool TemplateScene::Init()
 	
 	background = new GameObject();
 	AddChild(background);
-	background->AddComponent(new Sprite("stars2.png"));
-	background->transform.SetScale(0.7f);
+	background->AddComponent(new Sprite("Space4.png"));
+	background->transform.SetScale(1.0f);
 
 	moonbase = new GameObject();
 	AddChild(moonbase);

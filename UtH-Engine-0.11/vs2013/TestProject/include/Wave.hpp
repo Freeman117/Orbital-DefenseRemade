@@ -1,8 +1,6 @@
 #ifndef WAVE_HPP
 #define WAVE_HPP
 
-//#include "EnemyManager.hpp"
-
 class Wave
 {
 public:

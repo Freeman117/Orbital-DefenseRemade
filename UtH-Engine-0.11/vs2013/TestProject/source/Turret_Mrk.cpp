@@ -1,6 +1,6 @@
 #include "Turret_Mrk.hpp"
 
-TurretMrk::TurretMrk(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
+TurretMrk::TurretMrk(float orb, float orbPos) : Turret()
 {
 	damage = 120;
 	reloadSpeed = 4;
@@ -13,6 +13,8 @@ TurretMrk::TurretMrk(float orb, float orbPos, uth::Texture* projectileTexture) :
 	penetrate = true;
 	orbit = orb;
 	orbitPos = orbPos;
+	frameAmounts = 1;
+	startFrame = 36;
 }
 
 void TurretMrk::Upgrade(float &money, int choice)

@@ -6,7 +6,7 @@
 class TurretCannon : public Turret
 {
 public:
-	TurretCannon(float orb, float orbPos, uth::Texture* projectileTexture);
+	TurretCannon(float orb, float orbPos);
 	~TurretCannon(){};
 	void Upgrade(float &money, int choice = 1);
 private:

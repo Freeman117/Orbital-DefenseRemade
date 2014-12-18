@@ -6,7 +6,7 @@
 class TurretMrk : public Turret
 {
 public:
-	TurretMrk(float orb, float orbPos, uth::Texture* projectileTexture);
+	TurretMrk(float orb, float orbPos);
 	~TurretMrk(){};
 	void Upgrade(float &money, int choice = 1);
 private:

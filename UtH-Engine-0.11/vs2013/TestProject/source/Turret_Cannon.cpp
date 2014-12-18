@@ -1,6 +1,6 @@
 #include "Turret_Cannon.hpp"
 
-TurretCannon::TurretCannon(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
+TurretCannon::TurretCannon(float orb, float orbPos) : Turret()
 {
 	damage = 50;
 	reloadSpeed = 1.5f;
@@ -10,6 +10,8 @@ TurretCannon::TurretCannon(float orb, float orbPos, uth::Texture* projectileText
 	cooldown = 0;
 	totalTime = 0;
 	level = 0;
+	frameAmounts = 1;
+	startFrame = 0;
 	orbit = orb;
 	orbitPos = orbPos;
 }

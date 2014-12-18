@@ -7,7 +7,7 @@ TurretManager::TurretManager()
 	orbit02Angle = 0.0f;
 	turret01Sprite = new uth::Sprite("CannonTower.png");
 	turret01Texture = uthRS.LoadTexture("pixelTurrets.png");
-	bullet01Texture = uthRS.LoadTexture("cannonProjectile.png");
+	bulletTexture = uthRS.LoadTexture("projectileSheet.png");
 	node01Texture = uthRS.LoadTexture("buttonTest.png");
 	towerButtonTexture = uthRS.LoadTexture("particle.png");
 	disruptorProjectile = uthRS.LoadTexture("Projectile_Disruptor.png");
@@ -37,34 +37,34 @@ void TurretManager::CreateTurret(int type, int orb, int orbitPos)
 	if (type == 1)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 0, false, false));
-		turret->AddComponent(new TurretCannon(orb,orbitPos,bullet01Texture));
+		turret->AddComponent(new TurretCannon(orb,orbitPos));
 	}
 	else if (type == 2)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 3, false, false));
-		turret->AddComponent(new TurretLazer(orb, orbitPos,bullet01Texture));
+		turret->AddComponent(new TurretLazer(orb, orbitPos));
 	}
 	else if (type == 3)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 5, false, false));
-		turret->AddComponent(new TurretBeam(orb, orbitPos,bullet01Texture));
+		turret->AddComponent(new TurretBeam(orb, orbitPos));
 		turret->transform.SetScale(2.0f);
 	}
 	else if (type == 4)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 4, false, false));
-		turret->AddComponent(new TurretMissile(orb, orbitPos,bullet01Texture));
+		turret->AddComponent(new TurretMissile(orb, orbitPos));
 	}
 	else if (type == 5)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 2, false, false));
-		turret->AddComponent(new TurretDisruptor(orb, orbitPos, bullet01Texture));
+		turret->AddComponent(new TurretDisruptor(orb, orbitPos));
 		turret->transform.SetScale(1.85f);
 	}
 	else if (type == 6)
 	{
 		turret->AddComponent(new uth::AnimatedSprite(turret01Texture, 1, 4, 4, 5, 1, false, false));
-		turret->AddComponent(new TurretMrk(orb, orbitPos,bullet01Texture));
+		turret->AddComponent(new TurretMrk(orb, orbitPos));
 		turret->transform.SetScale(2.70f);
 	}
 	AddChild(turret);
@@ -82,6 +82,20 @@ void TurretManager::ShootBullet(float posX, float posY, float angle, float veloc
 	bullet->transform.SetPosition(posX, posY);
 	bullet->transform.SetRotation(pmath::radiansToDegrees(angle) + 90);
 	bullet->AddComponent(new Bullet(posX, posY, angle, velocity, damage,range, aoe,penetrate,slowAmount,crit,armorPenetration));
+	AddChild(bullet);
+	bullets.push_back(bullet);
+}
+void TurretManager::ShootBullet(float posX, float posY, float angle, Turret &t)
+{
+	float damage = t.GetDamage();
+	if (rand->GetFloat() > 0.8f)
+		damage *= t.GetCrit();
+	auto bullet = std::shared_ptr<uth::GameObject>(new uth::GameObject());
+	bullet->AddComponent(new uth::AnimatedSprite(bulletTexture, t.GetFrameAmount(), 6, 8, 6.0f, t.GetStartFrame(), false, true));
+	bullet->transform.SetScale(1.5f);
+	bullet->transform.SetPosition(posX, posY);
+	bullet->transform.SetRotation(pmath::radiansToDegrees(angle));
+	bullet->AddComponent(new Bullet(posX, posY, angle, t.GetBulletSpeed(),damage, t.GetRange(), t.GetAoe(), t.GetPenetrate(), t.GetSlowAmount(),t.GetCrit(), t.GetPenetrate()));
 	AddChild(bullet);
 	bullets.push_back(bullet);
 }
@@ -129,7 +143,8 @@ void TurretManager::UpdateTurrets(float deltaTime, EnemyManager* enemyManager)
 			turret.transform.SetRotation(pmath::radiansToDegrees(atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX)));
 			if (c.CanShoot())
 			{
-				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c.GetBulletSpeed(), c.GetDamage(), c.GetRange(), c.GetAoe(),c.GetPenetrate(),c.GetSlowAmount(),c.GetCrit(),c.GetPenetrate(),c.GetTexture());
+				//ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c.GetBulletSpeed(), c.GetDamage(), c.GetRange(), c.GetAoe(),c.GetPenetrate(),c.GetSlowAmount(),c.GetCrit(),c.GetPenetrate(),c.GetTexture());
+				ShootBullet(turretPositionX, turretPositionY, atan2f(nearbyEnemies[0]->transform.GetPosition().y - turretPositionY, nearbyEnemies[0]->transform.GetPosition().x - turretPositionX), c);
 			}
 		}
 	}

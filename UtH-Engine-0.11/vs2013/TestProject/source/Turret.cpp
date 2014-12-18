@@ -1,11 +1,10 @@
 #include "Turret.hpp"
-Turret::Turret(uth::Texture* projectileTexture_)
+Turret::Turret()
 {
 	critAmount = 1;
 	armorPenetration = 1;
 	slowAmount = 1;
 	penetrate = false;
-	projectileTexture = projectileTexture_;
 }
 bool Turret::CanShoot()
 {

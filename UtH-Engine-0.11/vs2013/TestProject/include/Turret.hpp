@@ -6,8 +6,7 @@
 class Turret : public uth::Component
 {
 public:
-	Turret(){};
-	Turret(uth::Texture* projectileTexture_);
+	Turret();
 	~Turret(){};
 	bool CanShoot();
 	virtual void Upgrade(float &money, int choice = 1){};
@@ -21,6 +20,8 @@ public:
 	float GetAoe(){ return aoe; }
 	float GetBulletSpeed(){ return bulletSpeed; }
 	float GetSlowAmount(){ return slowAmount; }
+	float GetStartFrame(){ return startFrame; }
+	float GetFrameAmount(){ return frameAmounts; }
 	bool GetPenetrate(){ return penetrate; }
 	float GetCrit(){ return critAmount; }
 	uth::Texture* GetTexture(){ return projectileTexture;}
@@ -34,6 +35,8 @@ protected:
 	float aoe;
 	float orbit;
 	float orbitPos;
+	float startFrame;
+	float frameAmounts;
 	bool penetrate;
 	float slowAmount;
 	float armorPenetration;

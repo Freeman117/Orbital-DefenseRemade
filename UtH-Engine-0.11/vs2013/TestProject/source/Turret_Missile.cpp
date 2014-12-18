@@ -1,6 +1,6 @@
 #include "Turret_Missile.hpp"
 
-TurretMissile::TurretMissile(float orb, float orbPos, uth::Texture* projectileTexture) : Turret(projectileTexture)
+TurretMissile::TurretMissile(float orb, float orbPos) : Turret()
 {
 	damage = 35;
 	reloadSpeed = 2.2f;
@@ -10,6 +10,8 @@ TurretMissile::TurretMissile(float orb, float orbPos, uth::Texture* projectileTe
 	cooldown = 0;
 	totalTime = 0;
 	level = 0;
+	frameAmounts = 1;
+	startFrame = 6;
 	penetrate = false;
 	orbit = orb;
 	orbitPos = orbPos;

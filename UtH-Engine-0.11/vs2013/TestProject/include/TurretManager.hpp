@@ -27,6 +27,7 @@ public:
 	void RotationChange(float angle, int orbit);
 	void CreateTurret(int type, int orb, int orbPos);
 	void ShootBullet(float posX, float posY, float angle, float velocity, float damage, float range, float aoe, bool penetrate,float slowAmount,float crit, float armorPene, uth::Texture* texture);
+	void ShootBullet(float posX, float posY, float angle, Turret &turret);
 	void UpdateBullets(float dt, EnemyManager* enemyManager);
 	void CreateNodes();
 	void UpdateNodes();
@@ -47,7 +48,7 @@ protected:
 private:
 	uth::Sprite* turret01Sprite;
 	uth::Texture* turret01Texture;
-	uth::Texture* bullet01Texture;
+	uth::Texture* bulletTexture;
 	uth::Texture* node01Texture;
 	uth::Texture* towerButtonTexture;
 
