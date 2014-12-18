@@ -221,8 +221,9 @@ void TurretManager::UpdateNodes()
 			else
 				CreateTurret(1, node->GetOrbit(), node->GetOrbitPos());
 
-			RemoveChild(node);
-			nodes.erase(nodes.begin() + i);
+			//RemoveChild(node);
+			//nodes.erase(nodes.begin() + i);
+			node->SetActive(false);
 
 		}
 	}
@@ -288,11 +289,8 @@ void TurretManager::RemoveTurretButtons() //NEEDS A PROPER VECTOR ERASE LOOP
 	{
 		for (int i = towerButtons.size()-1; i >= 0; i--)
 		{
-			//RemoveChild(towerButtons[i]);
 			towers[i]->SetActive(false);
 		}
-		//auto deleteCancel = cancelButton[0];
-		//RemoveChild(cancel);
 		cancel->SetActive(false);
 
 		UI = false;
